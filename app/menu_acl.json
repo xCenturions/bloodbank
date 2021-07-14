@@ -1,0 +1,18 @@
+{
+  "Home" : "home",
+
+
+ "Appointments" : {
+
+   "My Appointments" : "appo",
+   "My Appointments" : "appo",
+   "Make an Appointment" : "appo/makeAppo"
+
+ },
+
+
+  "Login" : "donor/login",
+  "Logout" : "donor/logout"
+
+
+}

@@ -1,0 +1,31 @@
+{
+  "Guest" : {
+    "denied" : {},
+    "Home" : ["*"],
+    "Donor" : ["login", "register"],
+    "Restricted" : ["*"]
+  },
+  "LoggedIn" : {
+    "denied" : {
+      "Donor" : ["login", "register"]
+    },
+    "Donor" : ["logout","details"],
+    "Contacts" : ["*"],
+    "Tools" : ["*"],
+    "Home" : ["*"],
+    "Departments" : ["*"]
+
+  },
+
+  "Donor" : {
+    "denied" : {
+      "Donor" : ["login", "register"]
+    },
+    "Donor" : ["logout","details","edit_profile"],
+    "Contacts" : ["*"],
+    "Tools" : ["*"],
+    "Home" : ["*"],
+    "Departments" : ["*"],
+    "Appo" : ["*"]
+  }
+}
