@@ -98,9 +98,19 @@
 
     }
 
-    // public function findById($id)
-    // {
-    //   return $this->findById($id);
-    // }
+    public function findDonorById($id)
+    {
+      return $this->findById($id);
+    }
+
+       public function displayName()
+  {
+    
+    return $this->donor_fname . ' ' . $this->donor_lname;
+    
+  }
+
 
   }
+
+  

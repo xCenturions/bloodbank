@@ -1,22 +1,12 @@
 <?php $this->start('body'); ?>
 <!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
-	<!-- Bootstrap -->
+<!-- Bootstrap -->
 
-
-	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="<?=PROOT?>css/appo_style.css" />
-
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--  Respond.js doesn't work if you view the page via file:// -->
-<!--
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> -->
-
-
-
-
+<!-- Custom stlylesheet -->
+<link type="text/css" rel="stylesheet" href="<?= PROOT ?>css/appo_style.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <body>
 	<div id="booking" class="section">
 		<div class="section-center">
@@ -34,33 +24,51 @@
 					<div class="col-md-4 col-md-pull-7">
 						<div class="booking-form">
 							<form class="form" action="" method="post">
-                	<?= FH::csrfInput() ?>
-                  <!-- <div class="form-group">
-                    <span class="form-label">Location Type</span>
-                    <input type="text" id="nearest_location" name="nearest_location" class="form-control" value="<?= $this->appoint->nearest_location ?>">
-                  </div> -->
+								<?= FH::csrfInput() ?>
+								<div class="input-group has-validation mt-2">
+								</div>
 								<div class="form-group">
-									<span class="form-label">Nearest Location</span>
-									<input type="text" id="nearest_location" name="nearest_location" class="form-control" value="<?= $this->appoint->nearest_location ?>">
+									<div class=" mt-2">
+										<label for="location">Select Location Type</label>
+										<div class="input-group has-validation mt-2">
+											<select class="form-control" id="location_type" name="location_type" value="<?= $this->appoint->location_type ?>">
+												<option value="" selected="" disabled="" >Select Location type</option>
+												<?php foreach($this->location_types as $value): ?>
+													<option value="<?= $value->id ?>" ><?= $value->location_type?></option>
+												<?php endforeach; ?>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class=" mt-2">
+										<label for="location">Nearest Location</label>
+										<div class="input-group has-validation mt-2">
+											<select class="form-control" id="location" name="location" value="<?= $this->appoint->location ?>">
+												
+											</select>
+										</div>
+									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
 											<span class="form-label">Preffered Date </span>
-											<input class="form-control" type="date" min="<?= date('Y-m-d'); ?>" id="preffered_date" name="preffered_date" value="<?= $this->appoint->preffered_date ?>"required>
+											<input class="form-control" type="date" min="<?= date('Y-m-d'); ?>" id="preffered_date" name="preffered_date" value="<?= $this->appoint->preffered_date ?>" required>
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
 											<span class="form-label">Preffered Time </span>
-                      <select name="preffered_time" id="preffered_time" value="<?= $this->appoint->preffered_time ?>"required><?= get_times(); ?></select>
+											<select name="preffered_time" id="preffered_time" value="<?= $this->appoint->preffered_time ?>" required><?= get_times(); ?></select>
 
 										</div>
 									</div>
 
-								<div class="form-btn">
-									<button type="submit" class="submit-btn">Schedule Now</button>
-								</div>
+									<div class="form-btn">
+										<button type="submit" class="submit-btn">Schedule Now</button>
+									</div>
 							</form>
 						</div>
 					</div>
@@ -68,5 +76,26 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+
+		$(document).ready(function(){
+			$("#location_type").change(function(){
+				var check=$(this).val();
+				console.log(check);
+				$.ajax({
+					url:"http://localhost/bloodbank/appo/getLocation",
+					method:"GET",
+					data:{typeID:check},
+					success:function(data){
+						console.log("This data", data); 
+						$("#location").html(data);
+					}
+					
+					
+				});
+			});
+		});
+	</script>
 </body>
 <?php $this->end(); ?>

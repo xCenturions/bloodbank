@@ -42,6 +42,25 @@
       return $resultsQuery;
     }
 
+    // Find without soft delete
+    public function findWithoutSoftDelete($params= [])
+    {
+      
+      $resultsQuery = $this->_db->find($this->_table, $params,get_class($this));
+      if(!$resultsQuery) return [];
+
+      return $resultsQuery;
+    }
+
+    // Get all from given table
+    public function findFromTable($table, $params= [])
+    {
+      $resultsQuery = $this->_db->find($table, $params,get_class($this));
+      if(!$resultsQuery) return [];
+
+      return $resultsQuery;
+    }
+
 
     public function findFirst($params = [])
     {
@@ -124,3 +143,6 @@
       }
     }
   }
+
+
+  

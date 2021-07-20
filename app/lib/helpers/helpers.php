@@ -16,6 +16,11 @@ function currentUser()
   return Donor::currentLoggedInUser();
 }
 
+function admin()
+{
+  return Admin::currentLoggedInUser();
+}
+
 function posted_values($post){
   $clean_ary = [];
   foreach ($post as $key => $value) {
@@ -53,3 +58,34 @@ function get_times ($default = '19:00', $interval = '+30 minutes') {
 
     return $output;
 }
+
+// function locTypeDrop()
+// {
+//   $output = '';
+//   $sql = "SELECT * FROM location WHERE cid='" . $_POST['typeID'] . "' ORDER BY nearest_location";
+//   dnd($sql);
+//   $output .= '<option value="" disabled="" selected="">Find Nearest Location</option>';
+
+//   //while ($row = mysqli_fetch_array($result)) {
+//     $output .= '<option value="' . $row["id"] . '">' . $row['nearest_location'] . '</option>';
+//   // }//
+  
+
+//   return $output;
+// }
+
+// // function nearLocDrop()
+// // {
+// //                     $output = '';
+// // 										$sql= "SELECT * FROM  type ORDER BY location_type";
+// //                     $result = mysqli_query($conn, $sql);
+// //                     $output .= '<option value="" disabled="" selected="">Find Nearest Location</option>';
+// // 										while($row=mysqli_fetch_array($result)){
+
+// //                     $output .=	'<option value="' . $row["id"] . '">' . $row['location_type'] . '</option>';
+
+// //                     }
+
+// //                     return $output;
+								 
+// // }

@@ -1,7 +1,20 @@
-<?php
-    $menu = Router::getMenu('menu_acl');
+<?php if(currentUser()): ?>
+    
+
+ <?php if(currentUser()->acl == '["admin"]')
+    $menu = Router::getMenu('admin_menu');
+    $currentPage = currentPage(); 
+
+    else :
+      $menu = Router::getMenu('admin_menu');
     $currentPage = currentPage();
-?>
+
+    
+    ?>
+
+<?php endif; ?>
+
+
 <header id="header" class=" d-flex align-items-center">
     <div class="container d-flex align-items-center">
 

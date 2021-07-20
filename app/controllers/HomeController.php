@@ -6,7 +6,7 @@
    }
 
    public function indexAction(){
-
+dnd(admin());
 
      $this->view->render('home/index');
    }

@@ -7,6 +7,7 @@
   // load configuration and helper functions
   require_once(ROOT . DS . 'config' . DS . 'config.php');
   require_once(ROOT . DS . 'app' . DS . 'lib' . DS . 'helpers' . DS . 'functions.php');
+   require_once(ROOT . DS . 'app' . DS . 'lib' . DS . 'QR' . DS . 'autoload.php');
 
 
  // Autoload classes
@@ -17,8 +18,13 @@
      require_once(ROOT . DS . 'app' . DS . 'controllers' . DS . $className . '.php');
    }elseif (file_exists(ROOT . DS . 'app' . DS . 'models' . DS. $className . '.php')){
      require_once(ROOT . DS . 'app' . DS . 'models' . DS . $className . '.php');
-   }
- }
+   } elseif (file_exists(ROOT . DS . 'app' . DS . 'lib' . DS . 'Endroid' . DS . 'QrCode' . DS . $className . '.php')) {
+    require_once(ROOT . DS . 'app' . DS . 'lib' . DS . 'Endroid' . DS . 'QrCode' . DS . $className . '.php');
+ } elseif (file_exists(ROOT . DS . 'app' . DS . 'lib' . DS . 'Picqer' . DS . 'Barcode' . DS . $className . '.php')) {
+    require_once(ROOT . DS . 'app' . DS . 'lib' . DS . 'Picqer' . DS . 'Barcode' . DS . $className . '.php');
+  }
+} 
+
 
  spl_autoload_register('classAutoLoader');
   session_start();

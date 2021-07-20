@@ -1,5 +1,10 @@
 <?php
 
+      use BaconQrCode\Renderer\ImageRenderer;
+      use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+      use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+      use BaconQrCode\Writer;
+
   class DonorController extends Controller{
 
     public function __construct($controller, $action)
@@ -148,18 +153,22 @@
       $donorData = currentUser();
       //$this->view->displayErrors = $validation->displayErrors();
       // dnd(cu);
+      
+     // $this->view->displayName = $donorData->displayName();
       $this->view->contact =  $donorData;
+      
       $this->view->render('donor/details');
   }
 
   //  Account edit
   public function edit_profileAction(){
+   // $donor = $this->DonorModel->findByDonorId((int)$id);
     $validation = new Validate();
-    $posted_values = ['donor_name'=>'', 'password'=>'','donor_email'=>'' ];
+    $posted_values = ['donor_fname'=>'', 'password'=>'','donor_email'=>'' ];
     if ($_POST) {
       $posted_values = posted_values($_POST);
       $validation->check($_POST, [
-        'donor_name' => [
+        'donor_fname' => [
           'display' => 'First Name',
           'required' => true
         ],
@@ -179,14 +188,43 @@
 
       if ($validation->passed()) {
         $updateFields = $_POST;
+
         $this->DonorModel->update(currentUser()->id,$updateFields);
         Router::redirect('donor/details');
 
       }
     }
     $this->view->post = $posted_values;
+   // $this->view->postAction = PROOT . 'donor' . DS . 'edit_profile' . DS . currentUser()->id;
     $this->view->displayErrors = $validation->displayErrors();
 
     $this->view->render('donor/edit_profile');
+  }
+
+
+    //qrcode
+
+  public function qrcodeAction()
+  {
+    
+
+    $renderer = new ImageRenderer(
+        new RendererStyle(400),
+        new ImagickImageBackEnd()
+    );
+    $details = new Donor();
+    $details = 'Donor Name : ' . currentUser()->donor_fname . ' ' . currentUser()->donor_lname . "<br />";
+    $details .= 'Donor NIC : ' . currentUser()->nic . "<br />" ;
+    $details .= 'Donor Mobile Number  : ' . currentUser()->nic;
+  
+    //dnd($details);
+      $writer = new Writer($renderer);
+
+      $qr_image = base64_encode($writer->writeString($details));
+      $this->view->qr_image = $qr_image;
+
+      $this->view->render('donor/qrcode');
+
+
   }
 }

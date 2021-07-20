@@ -58,5 +58,8 @@
 <!-- Template Main JS File -->
 <script src="<?=PROOT?>js/main.js"></script>
 
+<script src="<?=PROOT?>vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 
 </html>

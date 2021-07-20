@@ -25,11 +25,11 @@
 						<table>
 							<thead>
 								<tr class="row100 head">
-									<!-- <th class="cell100 column1">Location Type</th> -->
-									<th class="cell100 column1">Location</th>
-									<th class="cell100 column2">Date</th>
-									<th class="cell100 column3">Time</th>
-									<th class="cell100 column4">Delete The Appointment</th>
+									<th class="cell100 column1">Location </th>
+									<th class="cell100 column2">LocationType</th>
+									<th class="cell100 column3">Date</th>
+									<th class="cell100 column4">Time</th>
+									<th class="cell100 column4">Delete </th>
 
 								</tr>
 							</thead>
@@ -41,12 +41,12 @@
 							<tbody>
 								<?php foreach($this->appoint as $appoint): ?>
 								<tr class="row100 body">
-									<!-- <td class="cell100 column1"></td> -->
-									<td class="cell100 column1"><?= $appoint->nearest_location;?></td>
-									<td class="cell100 column2"><?= $appoint->preffered_date;?></td>
-									<td class="cell100 column3"><?= $appoint->preffered_time;?></td>
+									<td class="cell100 column1"><?= $appoint->location;?></td>
+									<td class="cell100 column2"><?= $appoint->location_type;?></td>
+									<td class="cell100 column3"><?= $appoint->preffered_date;?></td>
+									<td class="cell100 column4"><?= $appoint->preffered_time;?></td>
 
-									<td class="cell100 column4">
+									<td class="cell100 column5">
 										<a href="<?=PROOT?>appo/delete/<?=$appoint->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are you sure?')){return false};">
 												<i class="glyphicon glyphicon-pencil"></i>Delete
 										</a>

@@ -65,7 +65,7 @@ class ContactsController extends Controller{
 
     $this->view->displayErrors = $validation->displayErrors();
     $this->view->contact = $contact;
-    $this->view->postAction = PROOT . 'contacts' . DS . 'edit' . DS . $contact->id;;
+    $this->view->postAction = PROOT . 'contacts' . DS . 'edit' . DS . $contact->id;
     $this->view->render('contacts/edit');
 
   }

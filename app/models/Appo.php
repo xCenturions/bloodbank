@@ -3,7 +3,7 @@
 
 class Appo extends Model {
 
-public $id,$donor_id,$preffered_time,$preffered_date,$nearest_location;
+public $id,$donor_id,$preffered_time,$preffered_date,$location,$location_type;
 public $deleted = 0;
 
   public function __construct()
@@ -36,7 +36,7 @@ public $deleted = 0;
   }
 
   public static $addValidation = [
-    'nearest_location' => [
+    'location' => [
       'display' => 'Location',
       'required' => true,
 
@@ -49,7 +49,11 @@ public $deleted = 0;
     'preffered_time' => [
       'display' => 'Time',
       'required' => true,
-    ]
+    ],
+     'location_type' => [
+      'display' => 'Time',
+      'required' => true,
+     ]
   ];
 
 }

@@ -1,31 +1,42 @@
 {
-  "Guest" : {
-    "denied" : {},
-    "Home" : ["*"],
-    "Donor" : ["login", "register"],
-    "Restricted" : ["*"]
+  "Guest": {
+    "denied": {},
+    "Home": ["*"],
+    "Donor": ["login", "register"],
+    "Admin": ["index"],
+    "Restricted": ["*"]
   },
-  "LoggedIn" : {
-    "denied" : {
-      "Donor" : ["login", "register"]
+  "LoggedIn": {
+    "denied": {
+      "Donor": ["login", "register"]
     },
-    "Donor" : ["logout","details"],
-    "Contacts" : ["*"],
-    "Tools" : ["*"],
-    "Home" : ["*"],
-    "Departments" : ["*"]
-
+    "Donor": ["logout", "details"],
+    "Contacts": ["*"],
+    "Tools": ["*"],
+    "Home": ["*"],
+    "Departments": ["*"]
   },
 
-  "Donor" : {
-    "denied" : {
-      "Donor" : ["login", "register"]
+  "Donor": {
+    "denied": {
+      "Donor": ["login", "register"],
+      "Admin": ["index", "register"]
     },
-    "Donor" : ["logout","details","edit_profile"],
-    "Contacts" : ["*"],
-    "Tools" : ["*"],
-    "Home" : ["*"],
-    "Departments" : ["*"],
-    "Appo" : ["*"]
+    "Donor": ["logout", "details", "edit_profile", "qrcode"],
+    "Contacts": ["*"],
+    "Tools": ["*"],
+    "Home": ["*"],
+    "Departments": ["*"],
+    "Appo": ["*"]
+  },
+
+  "Admin": {
+    "denied": {
+      "Admin": ["index"]
+    },
+    "Donor": ["*"],
+    "Contacts": ["*"],
+    "Tools": ["*"],
+    "Home": ["*"]
   }
 }

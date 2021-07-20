@@ -25,7 +25,6 @@ public $deleted = 0;
     ]
   ];
 
-;
 
 
 
