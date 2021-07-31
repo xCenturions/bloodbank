@@ -1,0 +1,22 @@
+{
+  "Home": "home",
+
+  "Donors": {
+    "Registered Donors": "staff/donorDetails",
+    "Add a new Donor": "donor/register"
+  },
+
+  "Blood Stock ": {
+    "Blood Stock Report": "staff/bloodStockReport",
+    "Blood Stock Details": "staff/bloodStockDetails"
+  },
+
+  "Blood Donations ": {
+    "Blood Donation Report": "staff/bloodDonationReport",
+    "Blood Donation Details": "staff/bloodStockDetails"
+  },
+
+  "Login": "home/login",
+
+  "Logout": "staff/logout"
+}

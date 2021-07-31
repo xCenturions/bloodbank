@@ -14,9 +14,14 @@
       <div class="carousel-item active" style="background-image: url(img/slide/slide-1.jpg)">
         <div class="carousel-container">
           <div class="container">
+             <h2 class="animate__animated animate__fadeInDown"><?= displayRole();?></h2>
             <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Blood Bank Management System</span></h2>
             <p class="animate__animated animate__fadeInUp">Our Blood Bank mission is to serve our community by meeting the needs of patients, hospitals, and donors for safe, high quality blood products and related services.</p>
-            <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+            <?php if(Session::exists(STAFF_SESSION_NAME)): ?>
+              <a href="<?=PROOT?>staff" class="btn-get-started animate__animated animate__fadeInUp scrollto">Go to the Services Panel</a>
+            <?php else: ?>
+               <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+               <?php endif; ?>
           </div>
         </div>
       </div>

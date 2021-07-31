@@ -76,6 +76,18 @@
                       $this->addError(["{$display} must be a valid email address", $item]);
                     }
                     break;
+
+                  case 'valid_mobile';
+                    if (!preg_match('/^[0-9]{10}+$/', $value)) {
+                      $this->addError(["{$display} must be a valid mobile number", $item]);
+                    }
+                    break;
+
+                  case 'valid_nic';
+                    if (!preg_match('/^[V]{10}+$/', $value)) {
+                      $this->addError(["{$display} must be a valid nic number", $item]);
+                    }
+                    break;
             }
           }
         }

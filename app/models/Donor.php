@@ -99,9 +99,15 @@
     }
 
     public function findDonorById($id)
-    {
-      return $this->findById($id);
-    }
+  {
+    $conditions = [
+      'conditions' => 'id = ?',
+      'bind' => [$id]
+    ];
+    $conditions = array_merge($conditions);
+    return $this->findFirst($conditions);
+  }
+
 
        public function displayName()
   {
@@ -110,7 +116,22 @@
     
   }
 
+   public function getAllDonors( $params = [])
+    {
+        $conditions = [
+        ];
+        $conditions = array_merge($conditions, $params);
 
+        return $this->findWithoutSoftDelete($conditions);
+    }
+
+     public function getAllDonor(){
+        return $this->findFromTable('donor');
+    }
+
+
+
+   
   }
 
   

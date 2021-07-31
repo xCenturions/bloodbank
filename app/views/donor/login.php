@@ -53,9 +53,9 @@
 		</div>
 	</section>
 
-	<script src="<?=PROOT?>js/jquery.min.js"></script>
+	<script src="<?=PROOT?>vendor/jquery/jquery.min.js"></script>
   <script src="<?=PROOT?>js/login_popper.js"></script>
-  <script src="<?=PROOT?>js/bootstrap.min.js"></script>
+  <script src="<?=PROOT?>vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="<?=PROOT?>js/login_main.js"></script>
 
 <?php $this->end(); ?>

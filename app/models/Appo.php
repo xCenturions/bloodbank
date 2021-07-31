@@ -13,7 +13,7 @@ public $deleted = 0;
     $this->_softDelete = true;
   }
 
-  public function findAllByDonorId($donor_id)
+  public function findAllByDonorId_temp($donor_id)
   {
     $conditions = [
       'conditions' => 'donor_id = ?',
@@ -21,7 +21,21 @@ public $deleted = 0;
     ];
     // $conditions = array_merge($conditions,$params);
 //dnd($conditions);
+// DND($conditions);
     return $this->find($conditions);
+
+  }
+
+  public function findAllByDonorId($donor_id)
+  {
+    $conditions = [
+      'conditions' => 'donor_id = ?',
+      'bind' => [$donor_id]
+    ];
+    $result = $this->query('SELECT * FROM appointment LEFT JOIN type on 
+    appointment.location_type = type.id where donor_id = ? and appointment.deleted != 1',[$donor_id]);
+    // dnd($result);
+    return $result->results();
 
   }
 

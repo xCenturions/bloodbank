@@ -9,11 +9,11 @@
 
       <div class="form-group">
         <label for="donor_fname">Name</label>
-        <input type="text" id="donor_fname" name="donor_fname" class="form-control" value="<?= $this->post['donor_fname'] ?>">
+        <input type="text" id="donor_fname" name="donor_fname" class="form-control" value="<?= $this->donor->donor_fname?>">
       </div>
       <div class="form-group">
         <label for="email">E-mail</label>
-        <input type="email" id="donor_email" name="donor_email" class="form-control" value="<?= $this->post['donor_email'] ?>">
+        <input type="email" id="donor_email" name="donor_email" class="form-control" value="">
       </div>
 
 

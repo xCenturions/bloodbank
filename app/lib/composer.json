@@ -1,5 +1,7 @@
 {
     "require": {
-        "bacon/bacon-qr-code": "^2.0"
+        "bacon/bacon-qr-code": "^2.0",
+        "egulias/email-validator": "^3.1",
+        "guzzlehttp/guzzle": "^7.3"
     }
 }

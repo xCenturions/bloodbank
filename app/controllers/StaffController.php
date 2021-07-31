@@ -181,7 +181,7 @@ class StaffController extends Controller{
 
   /////Blood stock Reports
 
-   public function bloodStockReportAction(){
+   public function bloodDonationReportAction(){
 
 
      $donationModel = new Donation('stock');
@@ -195,7 +195,7 @@ class StaffController extends Controller{
     
    //dnd( $donate);
 
-       $this->view->render('staff/bloodStockReport');
+       $this->view->render('staff/bloodDonationReport');
   }
 
   public function bloodStockDetailsAction(){
@@ -248,7 +248,7 @@ class StaffController extends Controller{
               
                 $stock = new Stock();
                 $stock->bld_grps = $donor->donor_bloodgroup;
-                $stock->donor_id = $donor->id;
+              
                 $stock->donor_nic = $donor->nic;
                 $stock->addToStock($_POST);
 
@@ -270,6 +270,24 @@ class StaffController extends Controller{
       $this->view->displayErrors = $validation->displayErrors();
       $this->view->render('staff/addBloodToStock');
 
+  }
+
+  
+public function bloodStockReportAction(){
+
+
+     $stockModel = new Stock();
+     $stock =  $stockModel->piechart(); 
+     $donate = $stockModel->barchart();
+      
+  //
+      
+   $this->view->result = $stock;
+   $this->view->results = $donate;
+    
+   //dnd( $donate);
+
+       $this->view->render('staff/bloodStockReport');
   }
 
 

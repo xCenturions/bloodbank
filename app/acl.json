@@ -4,29 +4,24 @@
     "Home": ["*"],
     "Donor": ["login", "register"],
     "Admin": ["index"],
-    "Restricted": ["*"]
+    "Restricted": ["*"],
+    "Staff": ["login"]
   },
   "LoggedIn": {
     "denied": {
-      "Donor": ["login", "register"]
+      "Admin": ["index"],
+      "Home": ["login"]
     },
-    "Donor": ["logout", "details"],
-    "Contacts": ["*"],
-    "Tools": ["*"],
-    "Home": ["*"],
-    "Departments": ["*"]
+
+    "Home": ["*"]
   },
 
   "Donor": {
     "denied": {
       "Donor": ["login", "register"],
-      "Admin": ["index", "register"]
+      "Home": ["login"]
     },
-    "Donor": ["logout", "details", "edit_profile", "qrcode"],
-    "Contacts": ["*"],
-    "Tools": ["*"],
-    "Home": ["*"],
-    "Departments": ["*"],
+    "Donor": ["*"],
     "Appo": ["*"]
   },
 
@@ -34,9 +29,18 @@
     "denied": {
       "Admin": ["index"]
     },
+    "Admin": ["*"],
     "Donor": ["*"],
-    "Contacts": ["*"],
-    "Tools": ["*"],
+    "Home": ["*"]
+  },
+
+  "Doctor": {
+    "denied": {
+      "Staff": ["login"],
+      "Home": ["login"]
+    },
+    "Staff": ["*"],
+    "Donor": ["*"],
     "Home": ["*"]
   }
 }

@@ -67,10 +67,12 @@
   public function registerAction()
   {
     $validation = new Validate();
+   
     $posted_values = ['donor_fname'=>'','donor_lname'=>'', 'nic'=>'', 'donor_email'=>'', 'password'=>'', 'confirm'=>'', 'donor_age'=>'','donor_sex'=>'','donor_mobile'=>'',
                         'donor_city'=>'', 'donor_bloodgroup'=>'','dob'=>''];
     if ($_POST) {
       $posted_values = posted_values($_POST);
+
       $validation->check($_POST, [
         'donor_fname' => [
           'display' => 'First Name',
@@ -87,6 +89,7 @@
           'unique' => 'donor',
           'min' => 6,
           'max' => 150
+          
 
         ],
         'donor_email' => [
@@ -105,8 +108,18 @@
           'display' => 'nic',
           'required' => true ,
           'matches' => 'password',
-          ]
+        ],
+
+        'donor_mobile' => [
+          'display' => 'Donor Mobile',
+          'required' => true ,
+          'valid_mobile' => true,
+        ]
+
+
       ],true);
+
+
       // dnd($_POST);
       if ($validation->passed()) {
         $newUser = new Donor();
@@ -132,41 +145,36 @@
 
 
   public function detailsAction(){
-    // $validation = new Validate();
-    // $posted_values = ['donor_name'=>'', 'password'=>'' ];
-    // if ($_POST) {
-    //   $posted_values = posted_values($_POST);
-    //   $validation->check($_POST, [
-    //     'donor_name' => [
-    //       'display' => 'Donor Name',
-    //       'max' => 3
-    //     ],
-    //
-    //   ]);
-    //   if ($validation->passed()) {
-    //     $this->DonorModel->update(currentUser()->id,$posted_values);
-    //     Router::redirect('donor/details');
-    //
-    //   }
-    // }
-      //$donorData = $this->DonorModel->findById(currentUser()->id);
+    
+   
       $donorData = currentUser();
-      //$this->view->displayErrors = $validation->displayErrors();
-      // dnd(cu);
+     //dnd($donorData);
+      $donationModel = new Donation();
+      $donation = $donationModel->findDonorById(currentUser()->id);
       
-     // $this->view->displayName = $donorData->displayName();
-      $this->view->contact =  $donorData;
-      
+      //  dnd($donation);
+      $this->view->donor =  $donorData;
+      $this->view->donation = $donation;
+     
       $this->view->render('donor/details');
   }
 
+ 
+  
+
+
+
   //  Account edit
-  public function edit_profileAction(){
-   // $donor = $this->DonorModel->findByDonorId((int)$id);
+  public function edit_profileAction($id){
+
+    if($id == currentUser()->id){
+
+    $donor = $this->DonorModel->findDonorById($id);
+    
     $validation = new Validate();
-    $posted_values = ['donor_fname'=>'', 'password'=>'','donor_email'=>'' ];
+  
     if ($_POST) {
-      $posted_values = posted_values($_POST);
+     
       $validation->check($_POST, [
         'donor_fname' => [
           'display' => 'First Name',
@@ -191,10 +199,14 @@
 
         $this->DonorModel->update(currentUser()->id,$updateFields);
         Router::redirect('donor/details');
-
       }
+        
+      
+      }
+    }else{
+     Router::redirect('Restricted');
     }
-    $this->view->post = $posted_values;
+    $this->view->donor = $donor;
    // $this->view->postAction = PROOT . 'donor' . DS . 'edit_profile' . DS . currentUser()->id;
     $this->view->displayErrors = $validation->displayErrors();
 
@@ -204,7 +216,7 @@
 
     //qrcode
 
-  public function qrcodeAction()
+  public function qrcodeAction($id)
   {
     
 
@@ -212,12 +224,14 @@
         new RendererStyle(400),
         new ImagickImageBackEnd()
     );
-    $details = new Donor();
-    $details = 'Donor Name : ' . currentUser()->donor_fname . ' ' . currentUser()->donor_lname . "<br />";
-    $details .= 'Donor NIC : ' . currentUser()->nic . "<br />" ;
-    $details .= 'Donor Mobile Number  : ' . currentUser()->nic;
-  
-    //dnd($details);
+   // $details = new Donor();
+    $details = $this->DonorModel->findDonorById($id);
+     
+    $details = 'Donor Name : ' . $details->donor_fname . ' ' . $details->donor_lname . "<br />" . ' ' . 'Donor NIC : ' . $details->nic . "<br />" ;
+    // $details .= 
+    // $details .= 'Donor Mobile Number  : ' . $details->donor_mobile;
+  //dnd($details);
+   
       $writer = new Writer($renderer);
 
       $qr_image = base64_encode($writer->writeString($details));

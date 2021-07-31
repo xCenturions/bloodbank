@@ -19,7 +19,7 @@
 					<div class="form-group">
 						<div class="form-wrapper">
 							<label for="donor_fname">First Name</label>
-							<input type="text" id="donor_fname" name="donor_fname" class="form-control" value="<?= $this->post['donor_fname'] ?>">
+							<input type="text" id="donor_fname" name="donor_fname" class="form-control" value="">
 						</div>
 						<div class="form-wrapper">
 							<label for="donor_lname">Last Name</label>

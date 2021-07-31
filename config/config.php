@@ -14,6 +14,8 @@ define('PROOT', '/bloodbank/'); // set this ti '/' for a alive server
 define('SITE_TITLE', 'R MVC FRAMEWORK'); // This will be used if no site titile is set
 define('MENU_BRAND', 'RUH'); // menue name
 define('CURRENT_USER_SESSION_NAME', 'qwaserfcvbhytgIKMNHFY'); //session name for logged in user
+define('ADMIN_SESSION_NAME', 'abcdefghsrttHGKGJHGJH'); // ADmin session name
+define('STAFF_SESSION_NAME', 'pqrstfghsrttHGKGJHGJH'); // staff session name
 define('REMEBER_ME_COOCKIE_NAME', 'JKJGRTSVBE534sdfibkD'); //cookie name for logged user
 define('REMEBER_ME_COOCKIE_EXPIRY', 2592000); //time in second for me cookie to live 30 days
 

@@ -64,6 +64,19 @@
        $current_user_acls[] = "LoggedIn";
        foreach (currentUser()->acls() as $a) {
          $current_user_acls[] = $a;
+        //dnd($current_user_acls);
+       }
+     } elseif (Session::exists(ADMIN_SESSION_NAME)) {
+       $current_user_acls[] = "LoggedIn";
+       foreach (admin()->acls() as $a) {
+         $current_user_acls[] = $a;
+        ///dnd($current_user_acls);
+       }
+     }elseif (Session::exists(STAFF_SESSION_NAME)) {
+       $current_user_acls[] = "LoggedIn";
+       foreach (staff()->acls() as $a) {
+         $current_user_acls[] = $a;
+        //dnd($current_user_acls);
        }
      }
 

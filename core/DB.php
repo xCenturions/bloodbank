@@ -3,7 +3,7 @@
   class DB{
     private static $_instance = null;
     private $_pdo, $_query, $_error = false, $_results, $_count = 0, $_lastInsertID = null;
-
+    
     private function __construct() {
       try {
         $this->_pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
@@ -30,7 +30,7 @@
             $x++;
           }
         }
-
+        // dnd($this);
         if ($this->_query->execute()) {
           if ($class) {
             $this->_results = $this->_query->fetchAll(PDO::FETCH_CLASS,$class);
@@ -181,5 +181,8 @@ protected function _read($table, $params=[],$class=false){
     {
       return $this->_error;
     }
+
+
+   
 
   }

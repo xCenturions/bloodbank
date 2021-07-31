@@ -1,0 +1,22 @@
+{
+  "Home": "home",
+
+  "Staff ": {
+    "Staff Registration": "admin/staffRegister",
+    "Staff Members": "admin/staffDetails"
+  },
+
+  "Donor": {
+    "Registered Donors": "admin/donorDetails",
+    "Add a new Donor": "donor/register"
+  },
+
+  "Reports": {
+    "Blood Stock": "admin/donorDetails",
+    "Add a new Donor": "donor/register"
+  },
+
+  "Admin Login": "admin/index",
+
+  "Admin Logout": "admin/logout"
+}

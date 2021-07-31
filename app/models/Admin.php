@@ -9,7 +9,7 @@ class Admin extends Model {
      {
       $table = 'admin';
       parent::__construct($table);
-      $this->_sessionName = CURRENT_USER_SESSION_NAME;
+      $this->_sessionName = ADMIN_SESSION_NAME;
       $this->_cookieName = REMEBER_ME_COOCKIE_NAME;
       $this->_softDelete = true;
       if ($user != '') {
@@ -59,8 +59,8 @@ class Admin extends Model {
 
     public static function currentLoggedInUser()
     {
-      if (!isset(self::$currentLoggedInUser) && Session::exists(CURRENT_USER_SESSION_NAME)) {
-        $u = new Admin((int)Session::get(CURRENT_USER_SESSION_NAME));
+      if (!isset(self::$currentLoggedInUser) && Session::exists(ADMIN_SESSION_NAME)) {
+        $u = new Admin((int)Session::get(ADMIN_SESSION_NAME));
         self::$currentLoggedInUser = $u;
       }
       return self::$currentLoggedInUser;
@@ -72,7 +72,7 @@ class Admin extends Model {
     {
       $user_agent = Session::uagent_no_version();
       $this->_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?",[$this->id, $user_agent]);
-      Session::delete(CURRENT_USER_SESSION_NAME);
+      Session::delete(ADMIN_SESSION_NAME);
       if (Cookie::exists(REMEBER_ME_COOCKIE_NAME)) {
         Cookie::delete(REMEBER_ME_COOCKIE_NAME);
       }
@@ -86,6 +86,11 @@ class Admin extends Model {
       return json_decode($this->acl, true);
 
     }
+
+     public function displayName()
+  {
+    return $this->donor_fname . ' ' . $this->donor_lname;
+  }
 
 
 }

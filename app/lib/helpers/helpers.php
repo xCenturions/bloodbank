@@ -13,13 +13,29 @@ function sanitize($dirty){
 
 function currentUser()
 {
+  
   return Donor::currentLoggedInUser();
+  
 }
 
-function admin()
-{
+function admin() {
+
   return Admin::currentLoggedInUser();
 }
+
+function staff() {
+
+  return Staff::currentLoggedInUser();
+}
+
+function displayRole(){
+
+    if(Session::exists(STAFF_SESSION_NAME)){
+
+      return 'Hello Doctor';
+    }
+  }
+
 
 function posted_values($post){
   $clean_ary = [];
@@ -59,6 +75,10 @@ function get_times ($default = '19:00', $interval = '+30 minutes') {
     return $output;
 }
 
+
+
+
+ 
 // function locTypeDrop()
 // {
 //   $output = '';
