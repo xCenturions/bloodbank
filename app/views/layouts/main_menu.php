@@ -66,6 +66,25 @@
 
 
         </ul>
+     
+         <?php if(staff()): ?>
+
+          <?php if( countMessage() == null) : ?>
+             <a  href="<?=PROOT?>staff/messages">Messages</a>
+             <?php else :?>
+          <a  href="<?=PROOT?>staff/messages">
+            <div class="notification-box">
+    <span class="notification-count"><?=  countMessage()?></span>
+    <div class="notification-bell">
+      <span class="bell-top"></span>
+      <span class="bell-middle"></span>
+      <span class="bell-bottom"></span>
+      <span class="bell-rad"></span>
+    </div>
+  </div>
+  <?php endif; ?>
+          </a>
+        <?php endif;?>
         <!-- <i class="bi bi-list mobile-nav-toggle"></i>
         <li class="nav-item active"> -->
         <?php if(currentUser()): ?>

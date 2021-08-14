@@ -1,4 +1,7 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+
+
 
   class Donor extends Model {
     private $_isLoggedIn, $_sessionName, $_cookieName;
@@ -107,6 +110,28 @@
     $conditions = array_merge($conditions);
     return $this->findFirst($conditions);
   }
+    public function findId($id)
+  {
+    $conditions = [
+      'conditions' => 'id = ?',
+      'bind' => [$id]
+    ];
+    $conditions = array_merge($conditions);
+    return $this->find($conditions);
+  }
+
+  public function findDonorMapData($donor_city)
+  {
+    $conditions = [
+      'conditions' => 'donor_id = ?',
+      
+    ];
+    $result = $this->query('SELECT * FROM donor LEFT JOIN cities on 
+    donor.donor_city = cities.name where donor_city = ? ',[$donor_city]);
+    // dnd($result);
+    return $result->results();
+
+  }
 
 
        public function displayName()
@@ -128,7 +153,53 @@
      public function getAllDonor(){
         return $this->findFromTable('donor');
     }
+     public function getAllCities(){
+        return $this->findFromTable('cities');
+    }
 
+
+ 
+public function verification($email,$confirmation,$name){
+    include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
+    //constructing email.
+    $db = DB::getInstance();
+    $id =$db->lastId();
+    $confirmationLink = $siteURL."donor/verify?id=".$id."&hash=".$confirmation."";
+
+    //change the HTML code of the mailer here. Be sure to include the confirmation link!
+    $body = "<html>
+              <body>
+
+                <p>Hi,.$name.</p>
+                <p>Thank you for signing up with us!</p>
+                <p> Click <a href=\"".$confirmationLink."\">here</a> to confirm your account.</p>
+
+              </body>
+            </html>";
+  //This will display if the mail client cannot display HTML.
+    $altBody = "Copy and paste the following link into your browser window to activate your account: ".$confirmationLink."";
+
+    //sending mail:
+    sendConfirmationMail($email, $body, $altBody);
+
+// else {
+//   echo "Something went wrong. Please try again later.";
+// }
+
+  }
+
+
+  public function verify($id){
+
+     include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
+
+    $query = "SELECT `".$confirmationHashColumnName."`,`".$verificationStatusColumnName."` FROM `".$tableName."` WHERE `id`=".$id;
+ 
+      $results = $this->query($query,[])->results();
+       
+         return $results;
+
+  }
 
 
    

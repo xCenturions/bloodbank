@@ -88,6 +88,14 @@
                       $this->addError(["{$display} must be a valid nic number", $item]);
                     }
                     break;
+
+                 case 'valid_age';
+                 if(validateAge($value)) {
+                   $this->addError(["Your age must be over 18", $item]);
+                 }
+                 break;
+
+                   
             }
           }
         }

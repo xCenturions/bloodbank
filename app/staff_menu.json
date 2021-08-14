@@ -1,6 +1,8 @@
 {
   "Home": "home",
 
+  "Patients": "staff/patientRegister",
+
   "Donors": {
     "Registered Donors": "staff/donorDetails",
     "Add a new Donor": "donor/register"

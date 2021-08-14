@@ -101,7 +101,45 @@
     }
 
 
+     public function findDonorWithMapData()
+  {
+    $conditions = [
+      'conditions' => 'donor_id = ?',
+      
+    ];
+    $result = $this->query('SELECT * FROM donor LEFT JOIN cities  on donor.donor_city = cities.name ',[]);
+    // dnd($result);
+    return $result->results();
+
+  }
+
+  public function searchDonorsByCity($donor_city){
+
+      $result = $this->query('SELECT * FROM donor LEFT JOIN cities on donor.donor_city = cities.name where donor_city = ?',[$donor_city]);
+
+
+    return $result->results();
+
+  }
+
+    public function getAllCities(){
+        return $this->findFromTable('cities');
+    }
+
+
+   public function displayName()
+  {
+    return $this->donor_fname . ' ' . $this->donor_lname;
+  }
   
+
+  public function updateCol(){
+
+   $sql = $this->query('UPDATE contactus SET status = "opened"',[]);
+
+   return $sql;
+  }
+
   
 
 

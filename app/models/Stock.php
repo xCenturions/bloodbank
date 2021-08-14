@@ -30,7 +30,7 @@ public function piechart(){
          $stock = "SELECT bld_grps, count(*) as count FROM stock GROUP BY bld_grps ";  
         //  $db = DB::getInstance();
          $results = $this->query($stock,[])->results();
-
+        
          return $results;
 
     }

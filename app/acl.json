@@ -2,7 +2,7 @@
   "Guest": {
     "denied": {},
     "Home": ["*"],
-    "Donor": ["login", "register"],
+    "Donor": ["login", "register", "verify", "contactus"],
     "Admin": ["index"],
     "Restricted": ["*"],
     "Staff": ["login"]

@@ -36,7 +36,7 @@ class StaffController extends Controller{
          if ($validation->passed()) {
      
              $user = $this->StaffModel->findByUsername($_POST['username']);
-            
+             
         //   }
 
           if ($user && password_verify(Input::get('password'), $user->password)) {
@@ -68,7 +68,19 @@ class StaffController extends Controller{
     $donorModel = new Donor();
     
     $data = $donorModel->findDonorById($id);
-    //dnd($data);
+    $map = $donorModel->findDonorMapData($data->donor_city);
+    
+     $donationModel = new Donation();
+      $donation = $donationModel->findDonorById($id);
+     
+      
+      
+      //dnd($donation);
+     
+      $this->view->donor =  $map;
+      $this->view->donation = $donation;
+    
+    
     $this->view->data = $data;
     
     $this->view->render('staff/donorData');
@@ -204,7 +216,7 @@ class StaffController extends Controller{
      $stockModel = new Stock();
      $stock =  $stockModel->getAllFromStock(); 
       
-  //dnd( $stock);
+ 
       
    $this->view->stock = $stock;
     
@@ -291,6 +303,114 @@ public function bloodStockReportAction(){
   }
 
 
+  public function searchDonorsAction(){
+
+    if(!$_POST){
+     $allData = $this->StaffModel->findDonorWithMapData();
+    // dnd($allData);
+
+}else{
+
+     $donor_city = $_POST['donor_city']  ;
+     
+
+      $allData = $this->StaffModel->searchDonorsByCity($donor_city);
+      
+}
+
+    $cities = $this->StaffModel->getAllCities();
+    $this->view->cities = $cities;
+    $this->view->allData = $allData;
+    $this->view->render('staff/searchDonors');
+  }
+
+
+  /////////// add Patient
+
+public function patientRegisterAction(){
+
+   $validation = new Validate();
+  
+                  
+    if ($_POST) {
+     
+      //dnd($_POST);       
+      $validation->check($_POST, [
+
+       'pt_name' => [
+          'display' => 'Patient Name',
+          'required' => true
+        
+        ],
+
+        'pt_nic' => [
+          'display' => 'National Identity Card Number',
+          'required' => true
+
+        ],
+        'pt_mobile' => [
+          'display' => 'Mobile Number',
+          'required' => true ,
+          'valid_mobile' => true
+        ],
+        'pt_city' => [
+          'display' => 'City',
+          'required' => true 
+        
+        ],
+        'dob' => [
+          'display' => 'Date of Birth',
+          'required' => true 
+          
+        ],
+        'qty' => [
+          'display' => 'Blood Quantity',
+          'required' => true 
+          
+        ],
+        'sex' => [
+          'display' => 'Sex',
+          'required' => true 
+          
+          ]
+
+
+
+
+      ]);
+       
+     
+      if ($validation->passed()) {
+        $newPatient = new Patient();
+        $newPatient->register($_POST);
+       
+        //$newUser->login();
+        Router::redirect('');
+
+      }
+    }
+    
+    $this->view->displayErrors = $validation->displayErrors();
+    $this->view->render('staff/patientRegister');
+  }
+
+
+////////////////messages()
+
+public function messagesAction() {
+
+  $contact = new ContactUs();
+
+  $results = $contact->getAllMessages();
+ // dnd($results[1]->name);
+
+  $this->StaffModel->updateCol();
+
+ $this->view->messages = $results;
+
+    $this->view->render('staff/messages');
+
+}
 
 
 

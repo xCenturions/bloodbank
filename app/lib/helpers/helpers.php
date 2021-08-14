@@ -1,5 +1,5 @@
 <?php
-
+use PHPMailer\PHPMailer\PHPMailer;
 function dnd($data){
   echo '<pre>';
   var_dump($data);
@@ -54,6 +54,7 @@ function currentPage(){
 }
 
 function getObjectProperties($obj){
+  
   return get_object_vars($obj);
 }
 
@@ -74,6 +75,20 @@ function get_times ($default = '19:00', $interval = '+30 minutes') {
 
     return $output;
 }
+
+ function validateAge($then)
+                              {
+                                  // $then will first be a string-date
+                                  $then = strtotime($then);
+                                  //The age to be over, over +18
+                                  $min = strtotime('+18 years', $then);
+                                  //echo $min;
+                                   if(time() < $min)   {
+                                      return true;
+                                  }
+                               
+                                  
+                              }
 
 
 
@@ -109,3 +124,94 @@ function get_times ($default = '19:00', $interval = '+30 minutes') {
 // //                     return $output;
 								 
 // // }
+
+
+function getToken($length)
+{
+    $token = "";
+    $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+    $codeAlphabet.= "0123456789";
+    $max = strlen($codeAlphabet) - 1;
+    for ($i=0; $i < $length; $i++) {
+        $token .= $codeAlphabet[crypto_rand_secure(0, $max)];
+    }
+    return $token;
+}
+
+function crypto_rand_secure($min, $max)
+{
+    $range = $max - $min;
+    if ($range < 1) return $min; // not so random...
+    $log = ceil(log($range, 2));
+    $bytes = (int) ($log / 8) + 1; // length in bytes
+    $bits = (int) $log + 1; // length in bits
+    $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+    do {
+        $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+        $rnd = $rnd & $filter; // discard irrelevant bits
+    } while ($rnd >= $range);
+    return $min + $rnd;
+}
+
+
+function sendConfirmationMail($toEmail, $emailBody, $emailAltBody)
+{
+  include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
+  include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS  .'vendor' . DS . 'autoload.php');
+
+  //dnd($toEmail);
+
+  $mail = new PHPMailer();
+  $mail->isSMTP();
+  $mail->Host = $mailHost;
+  
+ 
+  $mail->SMTPAuth = true;
+  $mail->Username = $mailUsername;
+  $mail->Password = $mailPassword;
+  $mail->SMTPSecure = $mailEncryptionType;
+  $mail->Port = $mailPortNumber;
+
+  $mail->setFrom($fromEmailID, $fromName);
+  $mail->addAddress($toEmail);
+
+  if($replyToEmailID)
+  $mail->addReplyTo($replyToEmailID);
+
+  if($BCCEmailID)
+  $mail->addBCC($BCCEmailID);
+
+
+
+  $mail->isHTML(true);
+
+  $mail->Subject = $subject;
+  $mail->Body    = $emailBody;
+  $mail->AltBody = $emailAltBody;
+
+  if(!$mail->send()) {
+      echo 'Message could not be sent.';
+      echo 'Mailer Error: ' . $mail->ErrorInfo;
+  } else {
+      echo 'Message has been sent. Please check your inbox and spam folder.';
+  }
+
+  
+}
+
+function countMessage(){
+
+        $message = "SELECT status  , count(*) as count FROM contactus WHERE status = 'unopened' GROUP BY status   ";  
+         $db = DB::getInstance();
+         $results = $db->query($message,[])->results();
+     // dnd($results);
+
+    if(empty($results)){
+
+         return null;
+       
+    }else{
+      return $results[0]->count;
+    }
+ }

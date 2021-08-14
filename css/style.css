@@ -19,7 +19,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #ffffff;
+  color: #4b4949;
 }
 
 a:hover {
@@ -1466,6 +1466,7 @@ section {
   padding: 30px;
   margin-bottom: 60px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
 }
 
 .blog .entry .entry-img {
@@ -1528,6 +1529,9 @@ section {
 .blog .entry .entry-content .read-more {
   -moz-text-align-last: right;
   text-align-last: right;
+  position: absolute;
+  padding-left: 500px;
+  font-size: 25px;
 }
 
 .blog .entry .entry-content .read-more a {
@@ -1536,7 +1540,7 @@ section {
   color: #fff;
   padding: 6px 20px;
   transition: 0.3s;
-  font-size: 14px;
+  font-size: 20px;
   border-radius: 4px;
 }
 
@@ -1818,6 +1822,7 @@ section {
   padding: 30px;
   margin: 0 0 60px 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
 }
 
 .blog .sidebar .sidebar-title {

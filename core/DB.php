@@ -19,6 +19,8 @@
       return self::$_instance;
     }
 
+    
+
     public function query($sql, $params = [],$class = false)
     {
       $this->_error = false;
@@ -142,6 +144,8 @@ protected function _read($table, $params=[],$class=false){
       }
       return false;
     }
+
+   
 
     public function delete($table, $id)
     {

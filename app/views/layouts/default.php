@@ -29,6 +29,7 @@
 
   <!-- Template Main CSS File -->
   <link href="<?=PROOT?>css/style.css" rel="stylesheet">
+  <link href="<?=PROOT?>css/notification.css" rel="stylesheet">
 
 
 

@@ -30,8 +30,11 @@ buttons.forEach(button => {
   button.addEventListener("click", buttonHandler);
 });
 	</script>
+  <div style="text-align: center; padding-top: 50px;">
 
 <button><img id="img1" src="data:image/png;base64, <?= $this->qr_image; ?>" alt=""></button>
+  </div>
+
 
 <?php $this->end(); ?>
 

@@ -14,7 +14,7 @@
 			<div class="inner">
 				<form action="" method="post">
 					<?= FH::csrfInput() ?>
-					<div class="bg-white"><?= $this->displayErrors ?></div>
+					<div style="font-size:18px"><?= $this->displayErrors ?></div>
 					<h3>Donor Registration Form</h3>
 					<div class="form-group">
 						<div class="form-wrapper">
@@ -78,7 +78,12 @@
 					</div>
 					<div class="form-wrapper">
 						<label for="donor_city">City</label>
-						<input type="text" id="donor_city" name="donor_city" class="form-control" value="<?=$this->post['donor_city'] ?>">
+						<select name="donor_city" class="form-control" id="donor_city" name="donor_city"  value="">
+							<option value="" selected="" disabled="" >Select Your City</option>
+							<?php foreach($this->cities as $ci): ?>
+								<option value="<?= $ci->name_en ?>" ><?= $ci->name_en?></option>
+							<?php endforeach; ?>
+						</select>
 					</div>
 					<div class="form-wrapper">
 						<label for="">Password</label>

@@ -6,7 +6,10 @@
     "Make an Appointment": "appo/makeAppo"
   },
 
+  "Contact Us": "donor/contactus",
+
   "Login": "home/login",
+  "Register": "donor/register",
 
   "Logout": "donor/logout"
 }
