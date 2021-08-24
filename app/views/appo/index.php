@@ -47,7 +47,7 @@
 									<td class="cell100 column4"><?= $appoint->preffered_time;?></td>
 
 									<td class="cell100 column5">
-										<a href="<?=PROOT?>appo/delete/<?=$appoint->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are you sure?')){return false};">
+										<a href="<?=PROOT?>appo/delete/<?= $appoint->id?>" class="btn btn-danger btn-xs" onclick="if(!confirm('Are you sure?')){return false};">
 												<i class="glyphicon glyphicon-pencil"></i>Delete
 										</a>
 
