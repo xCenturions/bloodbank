@@ -1,6 +1,6 @@
 
 <?php $this->start('head'); ?>
-
+<link href="<?=PROOT?>css/homecards.css" rel="stylesheet">
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <section id="hero">
@@ -27,22 +27,22 @@
       </div>
 
       <!-- Slide 2 -->
-      <div class="carousel-item" style="background-image: url(img/slide/slide-2.jpg)">
+      <div class="carousel-item" style="background-image: url(img/slide/slide.jpg)">
         <div class="carousel-container">
           <div class="container">
-            <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+            <h2 class="animate__animated animate__fadeInDown">Who can donate blood?</h2>
+            <p class="animate__animated animate__fadeInUp">The person must fulfill several criteria to be accepted as a blood donor. These criteria are set forth to ensure the safety of the donor as well as the quality of donated blood.</p>
             <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
           </div>
         </div>
       </div>
 
       <!-- Slide 3 -->
-      <div class="carousel-item" style="background-image: url(img/slide/slide-3.jpg)">
+      <div class="carousel-item" style="background-image: url(img/slide/1000.jpg)">
         <div class="carousel-container">
           <div class="container">
-            <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+            <h2 class="animate__animated animate__fadeInDown">Why should people donate blood?</h2>
+            <p class="animate__animated animate__fadeInUp">Safe blood saves lives. Blood is needed by women with complications during pregnancy and childbirth, children with severe anaemia, often resulting from malaria or malnutrition, accident victims and surgical and cancer patients.</p>
             <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
           </div>
         </div>
@@ -69,23 +69,29 @@
 
       <div class="row content">
         <div class="col-lg-6">
-          <h2>Eum ipsam laborum deleniti velitena</h2>
-          <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+          <h2 >National Blood Transfusion Service</h2>
+          <h3>To be a unique model for the world securing quality assured blood services, through a nationally coordinated system</h3>
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0">
           <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
+           Recently NBTS Sri Lanka proudly anounced that
+            we have 100% voluntory blood donor base.
+            Achievement of this figure is only a dream to all
+            developing countries and most of the developped countries.
+            We as Sri Lankan can be proud of this
+            acheivement just because of your dedication. 
           </p>
           <ul>
-            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-            <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
+            <li><i class="ri-check-double-line"></i> 100% of our donors are voluntory, non remunerated donors</li>
+            
           </ul>
           <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
+            The main function of NBTS is to collect,
+              process and deliver safe blood,
+              blood components and blood products
+              through 19 cluster centres and
+              77 peripheral blood banks situated
+              island wide
           </p>
         </div>
       </div>
@@ -95,33 +101,24 @@
 
   <!-- ======= Clients Section ======= -->
   <section id="clients" class="clients section-bg">
-    <div class="container">
+    <div class="container ">
 
-      <div class="row">
+      <div class="row justify-content-center">
+
+        
 
         <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <img src="img/clients/client-1.png" class="img-fluid" alt="">
+          <img src="img/clients/cl.jpg" class="img-fluid" alt="">
         </div>
 
         <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <img src="img/clients/client-2.png" class="img-fluid" alt="">
+          <img src="img/clients/who.png" class="img-fluid" alt="">
         </div>
 
         <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <img src="img/clients/client-3.png" class="img-fluid" alt="">
+          <img src="img/clients/moh.jpg" class="img-fluid" alt="">
         </div>
 
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <img src="img/clients/client-4.png" class="img-fluid" alt="">
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <img src="img/clients/client-5.png" class="img-fluid" alt="">
-        </div>
-
-        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-          <img src="img/clients/client-6.png" class="img-fluid" alt="">
-        </div>
 
       </div>
 
@@ -129,55 +126,76 @@
   </section><!-- End Clients Section -->
 
   <!-- ======= Services Section ======= -->
-  <section id="services" class="services">
-    <div class="container">
+  
+  
+    <div class="homes">
 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="icon-box">
-            <i class="bi bi-briefcase"></i>
-            <h4><a href="#">Lorem Ipsum</a></h4>
-            <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-          </div>
+      
+     
+          <img src="img/home/img.jpeg" style="width:100%">
+         <div class=" text-block">
+         <strong> Give Blood</strong>
+        
         </div>
-        <div class="col-md-6 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="bi bi-card-checklist"></i>
-            <h4><a href="#">Dolor Sitema</a></h4>
-            <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+        <div>
+         <p class=" text-block1">Donating Blood Makes a Big Difference in the Lives of Others.</p>
+         
+         </div>
+          <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Register as a Donor</button></center>
+
+          <br>
+      
+    </div>
+    <div class="homes">
+       <div class="row">
+          <div class="col-sm-4"><div class="card text-white card-has-bg click-col" style="background-image:url('img/home/bld.JPG');">
+          <img class="card-img d-none" src="img/home/bld.JPG" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+          <div class="card-img-overlay d-flex flex-column">
+         <div class="card-body">
+            <h2 class="card-meta mb-2">Find Nearest Blood Bank</h2>
+
+           <center> <small>NBTS consists of 96 hospital based blood banks affiliated to 19 cluster centers based on their geographic location. National Blood Center at Elvitigala Mawatha Narahenpita is the operational headquarters where national
+              policies are developed and implement for the efficient operation of blood bank network in the country. </small></center>
+          
           </div>
-        </div>
-        <div class="col-md-6 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="bi bi-bar-chart"></i>
-            <h4><a href="#">Sed ut perspiciatis</a></h4>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-          </div>
-        </div>
-        <div class="col-md-6 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="bi bi-binoculars"></i>
-            <h4><a href="#">Nemo Enim</a></h4>
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-          </div>
-        </div>
-        <div class="col-md-6 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="bi bi-brightness-high"></i>
-            <h4><a href="#">Magni Dolore</a></h4>
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-          </div>
-        </div>
-        <div class="col-md-6 mt-4 mt-md-0">
-          <div class="icon-box">
-            <i class="bi bi-calendar4-week"></i>
-            <h4><a href="#">Eiusmod Tempor</a></h4>
-            <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+          
           </div>
         </div>
       </div>
 
-    </div>
-  </section><!-- End Services Section -->
+       <div class="col-sm-4"><div class="card text-white card-has-bg click-col" style="background-image:url('img/home/app.JPG');">
+          <img class="card-img d-none" src="img/home/app.JPG" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+          <div class="card-img-overlay d-flex flex-column">
+         <div class="card-body">
+            <h2 class="card-meta mb-2"><a class="card-meta mb-2" href="<?=PROOT?>appo/makeAppo">Make An Appointment</h2></a>
 
+           <center> <small>Now you can make an appointment online via this link for island wide selected blood centers.
+                          Please reserve your convenient time slot as you wish. Donate Blood, Save a Life.</small></center>
+          
+          </div>
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4"><div class="card text-white card-has-bg click-col" style="background-image:url('img/home/camp.JPG');">
+          <img class="card-img d-none" src="img/home/camp.JPG" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+          <div class="card-img-overlay d-flex flex-column">
+         <div class="card-body">
+            <h2 class="card-meta mb-2"> <a class="card-meta mb-2" href="<?=PROOT?>staff">Organize a Blood Camp</h2></a>
+
+           <center> <small>By organizing a blood donation campaign, you can give your society a chance to donate blood. It is not that difficult or expensive to organize a campaign in your area or work place. </small></center>
+          
+          </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+      
+ 
+<?php include 'app/views/layouts/footer.php' ?>
 <?php $this->end(); ?>

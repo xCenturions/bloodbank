@@ -39,13 +39,13 @@ public $deleted = 0;
 
   }
 
-  public function findById($id)
+  public function findByIdAndDonorId($id,$donor_id)
   {
     $conditions = [
-      'conditions' => 'id = ? ',
-      'bind' => [$id]
+      'conditions' => 'id = ? AND donor_id = ?',
+      'bind' => [$id, $donor_id]
     ];
-    $conditions = array_merge($conditions,[]);
+    $conditions = array_merge($conditions,$params=[]);
     //dnd($conditions);
     return $this->findFirst($conditions);
 

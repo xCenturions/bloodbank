@@ -13,9 +13,8 @@ class AppoController extends Controller{
   public function indexAction()
   {
      $appoint = $this->AppoModel->findAllByDonorId(currentUser()->id);
-     //
+     dnd($appoint);
      $this->view->appoint = $appoint;
-     //dnd($appoint);
     $this->view->render('appo/index');
   }
 
@@ -53,14 +52,11 @@ class AppoController extends Controller{
 
   public function deleteAction($id)
   {
-
-    
-
-    $appoint = $this->AppoModel->findById($id);
+    $appoint = $this->AppoModel->findByIdAndDonorId($id,currentUser()->id);
     //dnd($appoint);
-   
+    if ($appoint) {
       $appoint->delete();
-  
+    }
     Router::redirect('appo');
   }
 
