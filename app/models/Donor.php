@@ -90,6 +90,7 @@ use PHPMailer\PHPMailer\PHPMailer;
       $this->assign($params);
       $this->acl = htmlspecialchars_decode(json_encode(['Donor']), ENT_QUOTES);
       $this->deleted = 0 ;
+      $this->form = 'not_submitted' ;
       $this->password = password_hash($this->password, PASSWORD_DEFAULT);
       $this->save();
     }
@@ -102,7 +103,7 @@ use PHPMailer\PHPMailer\PHPMailer;
     }
 
     public function findDonorById($id)
-  {
+    {
     $conditions = [
       'conditions' => 'id = ?',
       'bind' => [$id]

@@ -83,6 +83,12 @@
                     }
                     break;
 
+                  case 'valid_number';
+                    if (!preg_match('/^[0-9]/', $value)) {
+                      $this->addError(["{$display} must be a valid mobile number", $item]);
+                    }
+                    break;
+
                   case 'valid_nic';
                     if (!preg_match('/^[V]{10}+$/', $value)) {
                       $this->addError(["{$display} must be a valid nic number", $item]);

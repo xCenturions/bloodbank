@@ -1,4 +1,5 @@
 <?php $this->start('head'); ?>
+<link rel="stylesheet" type="text/css" href="<?=PROOT?>css/text.css">
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 
@@ -23,7 +24,11 @@ CountStepper = -1;
 LeadingZero = true;
 DisplayFormat = "%%D%% days";
 FinishMessage = "You are available to donate blood again";
+
+
 </script>
+
+
 
 <?php endif; ?>
 <script type="text/javascript" src="<?=PROOT?>app/lib/Google Maps/js/googlemap.js"></script>
@@ -38,6 +43,14 @@ FinishMessage = "You are available to donate blood again";
 		#data, #allData {
 			display: none;
 		}
+
+		.column{ 
+
+			float: center;
+  			width: 50%;
+  			
+		}
+		
 	</style>
 
 <section id="breadcrumbs" class="breadcrumbs">
@@ -50,7 +63,9 @@ FinishMessage = "You are available to donate blood again";
 
   </div>
 </section>
-
+<?php if(!$this->data->form == 'submitted'): ?>
+<div class="example-right"><a href="<?=PROOT?>donor/form?>">Donor didn't Fill the form Please ask him to fill the donor form</a></div>
+<?php endif; ?>
 <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
           <div class="row">
@@ -61,10 +76,9 @@ FinishMessage = "You are available to donate blood again";
 
             <div class="entry-content">
 				
-
-       <?php if(!$this->donation == null): ?>
-           <div class="read-more" style="padding-right:70px">Donor can Donate blood after<br><p  style="margin-right:110px"><script language="JavaScript" src="https://rhashemian.github.io/js/countdown.js"></script></p>	</div></div>
-		   <?php endif; ?>
+ <div class="row">
+      
+		   <div class="column">
             <p style="padding-top:10px"><strong>Email : </strong> <?= $this->data->donor_email ?></p>
 
             <p style="padding-top:10px"><strong>NIC Number : </strong> <?= $this->data->nic ?></p>
@@ -72,9 +86,12 @@ FinishMessage = "You are available to donate blood again";
             <p style="padding-top:10px"><strong>Blood Group : </strong> <?= $this->data->donor_bloodgroup ?></p>
             <p style="padding-top:10px"><strong>Date of Birth : </strong> <?= $this->data->dob ?></p>
             <p style="padding-top:10px"><strong>Nearest City : </strong> <?=$this->data->donor_city ?></p>
-		
-				
-      
+		   </div>
+
+		    <?php if(!$this->donation == null): ?>
+           <div class="column" style="font-size:20px;text-align:center">Donor can Donate blood after<br><script language="JavaScript" src="https://rhashemian.github.io/js/countdown.js"></script>	</div>
+		   <?php endif; ?>
+			</div>
 	
 
 	<h2 class="entry-title" style="padding-top:40px; text-align: center"> Donated History  </h2>
@@ -156,6 +173,7 @@ FinishMessage = "You are available to donate blood again";
             
 		<a href="<?= PROOT ?>donor/edit_profile/<?= $this->data->id?>"class="btn-get-started animate__animated animate__fadeInUp scrollto"><button type="button" class="btn btn-danger btn-rounded" >Edit My Profile</button></a>
             <a href="<?= PROOT ?>Appo/index"class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" >My Appoitments</button></a>
+            <a href="<?= PROOT ?>donor/pdfForm/<?=$this->data->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" >Donor's Form</button></a>
             <a href="<?= PROOT ?>donor/qrcode/<?=$this->data->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded"  >Generate QR Code</button></a>
             <a href="<?= PROOT ?>staff/donateBlood/<?= $this->data->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded">Add donor's blood to stock</button></a>
 		</div>
@@ -169,7 +187,7 @@ FinishMessage = "You are available to donate blood again";
             </div>
 		</div>
 			
-     
+	
 </section>
       
 

@@ -1,5 +1,5 @@
 <?php $this->start('head'); ?>
-<!-- <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> -->
+<link rel="stylesheet" type="text/css" href="<?=PROOT?>css/text.css">
 	
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
@@ -50,8 +50,11 @@ FinishMessage = "You are available to donate blood again";
     </div>
 
   </div>
+  
 </section>
-
+<?php if(!currentUser()->form == 'submitted'): ?>
+<div class="example-right"><a href="<?=PROOT?>donor/form?>">You have to Fill the form</a></div>
+<?php endif; ?>
 <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
           <div class="row">
@@ -152,11 +155,16 @@ FinishMessage = "You are available to donate blood again";
 		 ?>
 		
 		
-								<h3 class="sidebar-title">Actions</h3>
+								<h3 class="sidebar-title ">Actions</h3>
 		<div class="row" >
             
 		<a href="<?= PROOT ?>donor/edit_profile/<?= currentUser()->id?>"class="btn-get-started animate__animated animate__fadeInUp scrollto"><button type="button" class="btn btn-danger btn-rounded" >Edit My Profile</button></a>
             <a href="<?= PROOT ?>Appo/index"class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" >My Appoitments</button></a>
+			<?php if (currentUser()->form == 'submitted'): ?>
+            <a href="<?= PROOT ?>donor/pdfForm/<?= currentUser()->id?>"class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" >My Donor Form</button></a>
+			<?php else: ?>
+			<a href="<?= PROOT ?>donor/form"class="btn-get-started animate__animated animate__fadeInUp scrollto " style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" ><span>Fill Donor Form</span></button></a>
+			<?php endif; ?>
             <a href="<?= PROOT ?>donor/qrcode/<?= currentUser()->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded"  >Generate QR Code</button></a>
 		</div>
 		
