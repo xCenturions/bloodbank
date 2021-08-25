@@ -311,47 +311,9 @@
   }
 
 
-  ///////////contact us
+  
 
-  public function contactusAction(){
-     
-    $validation = new Validate();
-
-      if ($_POST) {
-     
-      $validation->check($_POST, [
-        'name' => [
-          'display' => 'Name',
-          'required' => true
-        ],
-        'message' => [
-          'display' => 'Message ',
-          'required' => true
-        ],
-
-        'email' => [
-          'display' => 'Email',
-          'required'=> true,
-          'valid_email' =>true
-          
-        ]
-      
-      ]);
-
-    }
-
-      if ($validation->passed()) {
-
-    $contact = new ContactUs();
-
-     $contact->addMessage($_POST);
-      }
-      
-      $this->view->displayErrors = $validation->displayErrors();
-    
-    $this->view->render('donor/contactus');
-  }
-
+ 
 
 
   ///donor form 

@@ -10,10 +10,14 @@
     "Registered Donors": "admin/donorDetails",
     "Add a new Donor": "donor/register"
   },
+  "Blood Stock ": {
+    "Blood Stock Report": "staff/bloodStockReport",
+    "Blood Stock Details": "staff/bloodStockDetails"
+  },
 
-  "Reports": {
-    "Blood Stock": "admin/donorDetails",
-    "Add a new Donor": "donor/register"
+  "Blood Donations ": {
+    "Blood Donation Report": "staff/bloodDonationReport",
+    "Blood Donation Details": "staff/bloodStockDetails"
   },
 
   "Admin Login": "admin/index",

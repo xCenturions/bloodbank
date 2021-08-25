@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="<?=PROOT?>css/login_style.css">
 
 	</head>
-	<body class="img js-fullheight" style="background-image: url(../img/donor/login/bg.jpg);">
+	<body class="img js-fullheight" style="background-image: url(img/donor/login/11.jpg);">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -54,9 +54,9 @@
 		</div>
 	</section>
 
-	<script src="<?=PROOT?>js/jquery.min.js"></script>
+	<script src="<?=PROOT?>vendor/jquery/jquery.min.js"></script>
   <script src="<?=PROOT?>js/login_popper.js"></script>
-  <script src="<?=PROOT?>js/bootstrap.min.js"></script>
+  <script src="<?=PROOT?>vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="<?=PROOT?>js/login_main.js"></script>
 
 <?php $this->end(); ?>

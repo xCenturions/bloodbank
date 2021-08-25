@@ -54,7 +54,7 @@ class AdminController extends Controller{
     if(admin()) {
         admin()->logout();
     }
-    Router::redirect('admin/index');
+    Router::redirect('admin');
   }
 
   public function donorDetailsAction(){
