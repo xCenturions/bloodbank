@@ -2153,3 +2153,13 @@ section {
   color: rgb(255, 255, 255);
   transform: translate(-25%, -75%);
 }
+
+.chart {
+  float: center;
+  position: relative;
+  margin-top: auto;
+  border: 10px solid rgb(251, 31, 31);
+  width: 50%;
+  background: rgb(255, 255, 255);
+  height: 500px;
+}

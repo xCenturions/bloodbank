@@ -3,6 +3,8 @@
 
 
 <?php $this->start('head'); ?>
+
+
  
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -79,9 +81,10 @@
 <?php $this->start('body') ?>
 
 <body>
-    <div class="row" style="margin-top: 100px; margin-left: 55px">
-     <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
-       <div id="top_x_div" style="width: 800px; height: 600px;"></div>
+    <div class="row">
+     <div id="piechart_3d" class="chart"></div>
+     
+       <div id="top_x_div" class="chart" ></div>
 
 
 
