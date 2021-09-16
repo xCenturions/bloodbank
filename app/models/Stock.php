@@ -27,10 +27,19 @@ class Stock extends Model
 
 public function piechart(){
 
-         $stock = "SELECT bld_grps, count(*) as count FROM stock GROUP BY bld_grps ";  
+         $stock = "SELECT bld_grps,bld_banks, count(*) as count FROM stock GROUP BY bld_grps ";  
         //  $db = DB::getInstance();
          $results = $this->query($stock,[])->results();
-        
+        //dnd($results);
+         return $results;
+
+    }
+public function piechartBank($bank){
+
+         $stock = $this->query('SELECT bld_grps,bld_banks,  count(*) as count FROM stock where bld_banks = ? GROUP BY bld_grps  ',[$bank]);  
+        //  $db = DB::getInstance();
+         $results = $stock->results();
+        //dnd($results);
          return $results;
 
     }

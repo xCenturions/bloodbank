@@ -53,6 +53,7 @@
 									<th class="cell100 column1">Donor Name </th>
 									<th class="cell100 column2">NIC</th>
 									<th class="cell100 column3">Email</th>
+									<th class="cell100 column4">Blood Group</th>
 									<th class="cell100 column4">City</th>
 									<th class="cell100 column4">Mobile </th>
 
@@ -70,11 +71,12 @@
                                         
                                     <td class="cell100 column1">
                                         <a href="<?=PROOT?>staff/donorData/<?= $donor->id ?>" >
-                                            <?= $donor->displayName(); ?>
+                                            <?= $donor->donor_name ?>
                                         </a>
                                         </td>
 									<td class="cell100 column2"><?= $donor->nic;?></td>
 									<td class="cell100 column3"><?= $donor->donor_email;?></td>
+									<td class="cell100 column4"><?= $donor->donor_bloodgroup;?></td>
 									<td class="cell100 column4"><?= $donor->donor_city;?></td>
 									<td class="cell100 column4"><?= $donor->donor_mobile;?></td>
 

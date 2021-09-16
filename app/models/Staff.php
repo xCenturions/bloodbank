@@ -3,7 +3,7 @@
   class Staff extends Model {
     private $_isLoggedIn, $_sessionName, $_cookieName;
     public static $currentLoggedInUser = null;
-    public $id,$password,$username,$staff_email,$staff_name,$staff_mobile,$staff_address,$acl,$deleted = 0;
+    public $id,$password,$username,$staff_email,$staff_name,$staff_mobile,$staff_address,$acl,$pro_img,$file,$deleted = 0;
     public function __construct($user='')
     {
       $table = 'staff';
@@ -92,6 +92,10 @@
     {
       return $this->findFirst(['conditions'=>"username = ?", 'bind'=>[$username]]);
     }
+     public function findById($id)
+    {
+      return $this->findFirst(['conditions'=>"id = ?", 'bind'=>[$id]]);
+    }
 
     public function acls()
     {
@@ -114,9 +118,10 @@
   }
 
   public function searchDonorsByCity($donor_city){
+    //dnd($donor_city);
 
       $result = $this->query('SELECT * FROM donor LEFT JOIN cities on donor.donor_city = cities.name where donor_city = ?',[$donor_city]);
-
+     // dnd($result->results());
 
     return $result->results();
 
@@ -140,7 +145,57 @@
    return $sql;
   }
 
-  
+  public function findFromBlood($bld){
+    $conditions = [
+      'conditions' => 'donor_bloodgroup = ? AND donor_city',
+      //'bind' => [$bld],[$city]
+    ];
+    // $conditions = array_merge($conditions,$params=[]);
+    // return $this->find($conditions);
+
+     $result = $this->query('SELECT * FROM donor where donor_bloodgroup = ? ',[$bld]);
+     //dnd($result);
+    return $result->results();
+
+  }
+
+  public function findFromBloodAndCity($bld,$city){
+    $conditions = [
+      'conditions' => 'donor_bloodgroup = ? AND donor_city',
+      'bind' => [$bld],[$city]
+    ];
+    // $conditions = array_merge($conditions,$params=[]);
+    // return $this->find($conditions);
+
+     $result = $this->query('SELECT * FROM donor where donor_bloodgroup = ? AND donor_city =?',[$bld,$city]);
+     //dnd($result);
+    return $result->results();
+
+  }
+
+  public function sendMessage($email,$message,$name){
+    include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
+    //constructing email.
+   
+   
+
+    //change the HTML code of the mailer here. Be sure to include the confirmation link!
+    $body = "<html>
+              <body>
+
+                <p>Hi,.$name.</p>
+                
+                <p> ".$message."</p>
+
+              </body>
+            </html>";
+  //This will display if the mail client cannot display HTML.
+    $altBody = "";
+
+    //sending mail:
+    sendMail($email, $body, $altBody);
+
+  }
 
 
 

@@ -1,0 +1,154 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanssinhala.css);
+.container1 {
+  width: 1000px;
+  margin: auto;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border-color: #f6efef;
+  border-width: 10px;
+  box-shadow: 0 0 10px;
+  height: 900px;
+}
+h6 {
+  font-size: 15px;
+  font-weight: bold;
+}
+p {
+  font-size: 14px;
+}
+.top {
+  background-color: #990000;
+  height: 50px;
+  width: 1000px;
+  text-align: center;
+}
+
+.top p {
+  color: white;
+  margin-left: 4px;
+}
+
+.menu {
+  width: 750px;
+  float: left;
+  height: 120px;
+}
+
+.menu p .din {
+  border-width: 0;
+}
+
+.box {
+  width: 250px;
+  float: left;
+  height: 120px;
+}
+
+.box h4 {
+  border-style: solid;
+  border-color: #999999;
+  border-width: 1px;
+  text-align: center;
+  padding: 30px;
+  font-size: 20px;
+}
+
+.box1,
+.box2 {
+  width: 248px;
+  float: left;
+  height: 35px;
+  border-style: solid;
+  border-color: #999999;
+  border-width: 1px;
+  text-align: left;
+  padding-top: 1px;
+}
+
+.box1 label,
+.box2 label {
+  margin-left: 5px;
+}
+
+.box1 input,
+.box2 input {
+  height: 30px;
+  border-width: 0;
+  padding-left: 0px;
+  margin-top: 1px;
+}
+
+.medical {
+  width: 200px;
+  height: 50px;
+  float: left;
+}
+
+.mosignature {
+  width: 550px;
+  height: 50px;
+  float: left;
+}
+
+.mosignature input {
+  border-width: 0;
+}
+
+.donor table .name {
+  border-width: 0;
+}
+
+.donor table tr .pls {
+  border-width: 0px;
+}
+
+.donor .remark {
+  border-width: 0;
+}
+
+.osignature {
+  width: 800px;
+  height: 50px;
+  float: left;
+}
+
+.osignature input {
+  border-width: 0;
+}
+
+.test,
+.blood {
+  width: 1000px;
+  height: 120px;
+}
+
+.blood p {
+  font-family: "Noto Sans Sinhala", sans-serif;
+  font-size: 12px;
+}
+
+.blood .sinhala {
+  border-width: 0;
+}
+
+.delta1 {
+  float: left;
+  width: 750px;
+}
+
+.donor table tr td .new2,
+.donor table tr td .new4 {
+  border-style: solid;
+  border-color: #999999;
+  border-width: 1px;
+  height: 20px;
+  font-size: 12px;
+  float: left;
+}
+
+.donor table tr td .new1,
+.donor table tr td .new3 {
+  height: 20px;
+  font-size: 14px;
+  float: left;
+}

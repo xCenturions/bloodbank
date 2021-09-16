@@ -28,6 +28,7 @@
 			</div>
 			<form class="form-detail" action="" method="post">
 				<h2>Patient Registration Form</h2>
+				<div ><?=$this->displayErrors ?></div>
 				<div class="form-row">
 					<label for="pt_name">Full Name:</label>
 					<input type="text" name="pt_name" id="pt_name" class="input-text" placeholder="ex: Lindsey Wilson">

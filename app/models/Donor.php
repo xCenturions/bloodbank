@@ -6,7 +6,8 @@ use PHPMailer\PHPMailer\PHPMailer;
   class Donor extends Model {
     private $_isLoggedIn, $_sessionName, $_cookieName;
     public static $currentLoggedInUser = null;
-    public $id,$password,$nic,$donor_email,$donor_fname,$donor_lname,$donor_city,$donor_mobile,$donor_bloodgroup,$donor_age,$tested_diseases,$donor_sex,$dob,$acl,$deleted = 0;
+    public $id,$password,$nic,$donor_email,$donor_name,$donor_lname,$donor_city,$donor_mobile,$donor_bloodgroup,$donor_age,$tested_diseases,$donor_sex,$dob,
+     $verification_code,$is_active,$form,$acl,$deleted = 0;
     public function __construct($user='')
     {
       $table = 'donor';
@@ -129,6 +130,16 @@ use PHPMailer\PHPMailer\PHPMailer;
     ];
     $result = $this->query('SELECT * FROM donor LEFT JOIN cities on 
     donor.donor_city = cities.name where donor_city = ? ',[$donor_city]);
+    // dnd($result);
+    return $result->results();
+
+  }
+
+  public function findDonorData($id)
+  {
+   
+    $result = $this->query('SELECT * FROM form INNER JOIN donor on 
+    donor.id = form.donor_id where donor.id = ? ',[$id]);
     // dnd($result);
     return $result->results();
 

@@ -283,6 +283,10 @@ body {
 .form-v2-content .form-detail .form-row-last input {
   padding: 15.5px;
 }
+.form-v2-content .form-detail .form-row-last1 input {
+  padding: 15.5px;
+  margin-top: 100.5px;
+}
 input::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: #999;

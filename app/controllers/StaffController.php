@@ -1,5 +1,8 @@
 <?php 
-
+  use BaconQrCode\Renderer\ImageRenderer;
+      use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+      use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+      use BaconQrCode\Writer;
 class StaffController extends Controller{
 
   public function __construct($controller, $action)
@@ -66,22 +69,30 @@ class StaffController extends Controller{
    public function donorDataAction($id)
   {
     $donorModel = new Donor();
-    
-    $data = $donorModel->findDonorById($id);
-    $map = $donorModel->findDonorMapData($data->donor_city);
-    
+    //$id = '973533576V';
+    $check = $donorModel->findDonorById($id);
+
+    if($check->form == 'submitted'){
+    $data = $donorModel->findDonorData($id);
+    $map = $donorModel->findDonorMapData($data[0]->donor_city);
+     $this->view->data = $data[0];
+    }else{
+       
+       $map = $donorModel->findDonorMapData($check->donor_city);
+       $this->view->data = $check;
+    }
      $donationModel = new Donation();
       $donation = $donationModel->findDonorById($id);
      
       
       
-      //dnd($donation);
+     // dnd($data);
      
       $this->view->donor =  $map;
       $this->view->donation = $donation;
     
     
-    $this->view->data = $data;
+   
     
     $this->view->render('staff/donorData');
   }
@@ -149,17 +160,63 @@ class StaffController extends Controller{
     
     $validation = new Validate();
     $donorModel = new Donor('donor');
+    $formModel = new Form();
+    $formData = $formModel->getDonorData($id);
     $donor = $donorModel->findDonorById($id);
+    $staff= staff();
 //dnd($donor);
-
+ $renderer = new ImageRenderer(
+        new RendererStyle(400),
+        new ImagickImageBackEnd()
+    );
+   // $details = new Donor();
    
+     
+    $details = 'Donor Name : ' . $donor->donor_name .  "<br />" . ' ' . 'Donor NIC : ' . $donor->nic . "<br />" ;
+    // $details .= 
+    // $details .= 'Donor Mobile Number  : ' . $details->donor_mobile;
+  //dnd($details);
+   
+      $writer = new Writer($renderer);
+
+      $qr_image = base64_encode($writer->writeString($details));
+      $this->view->qr_image = $qr_image;
+
+   //dnd($_POST);
      
     if ($_POST) {
       
         // form validation
         $validation->check($_POST, [
-          
-          
+
+           'din_name' => [
+            'display' => "DIN Name",
+            'required' => true
+          ],
+          'mo_name' => [
+            'display' => "Medical Officer's name",
+            'required' => true
+          ],
+
+          'weight' => [
+            'display' => 'Weight',
+            'required' => true
+          ],
+          'donor_name' => [
+            'display' => "Donor's Name",
+            'required' => true
+          ],
+          'of_name' => [
+            'display' => "Officer's name",
+            'required' => true
+          ],
+          'ph_name' => [
+            'display' => "Phlebotomist's name",
+            'required' => true
+          ],
+
+
+
         ],false);
 
          if($validation->passed()) {
@@ -169,10 +226,11 @@ class StaffController extends Controller{
           // $stock->donor_id = $donor->id;
           // $stock->addToStock($_POST);
 
-           $donate = new Donation('stock');
+           $donate = new Donation();
            $donate->donor_id = $donor->id;
+           $donate->staff_id = staff()->id;
            $donate->date = date('Y-m-d');
-           $donate->bld_grp = $donor->donor_bloodgroup;
+           $donate->bld_grp = $formData->bloodgroup; ////chnage
            $donate->addToDonation($_POST);
          
         
@@ -184,7 +242,8 @@ class StaffController extends Controller{
 
         
     }
-       $this->view->donor = $donor;              
+       $this->view->donor = $donor;   
+       $this->view->staff = $staff;           
       $this->view->displayErrors = $validation->displayErrors();
       $this->view->render('staff/donateBlood');
 
@@ -289,38 +348,41 @@ public function bloodStockReportAction(){
 
 
      $stockModel = new Stock();
+   
      $stock =  $stockModel->piechart(); 
      $donate = $stockModel->barchart();
-      
+     // dnd($stock);
   //
       
    $this->view->result = $stock;
    $this->view->results = $donate;
     
    //dnd( $donate);
-
+      
        $this->view->render('staff/bloodStockReport');
+  }
+
+
+  public function bloodStockAction(){
+    $stockModel = new Stock();
+       
+          $bank = $_POST['bld_bank'];
+            $stock =  $stockModel->piechartBank($bank); 
+          
+            $this->view->data = $stock;
+
+         echo json_encode($stock);
+    
   }
 
 
   public function searchDonorsAction(){
 
-    if(!$_POST){
-     $allData = $this->StaffModel->findDonorWithMapData();
-    // dnd($allData);
-
-}else{
-
-     $donor_city = $_POST['donor_city']  ;
-     
-
-      $allData = $this->StaffModel->searchDonorsByCity($donor_city);
-      
-}
-
+  //  $allData = $this->StaffModel->findDonorWithMapData();
+  //  $allData= json_encode($allData , true);
     $cities = $this->StaffModel->getAllCities();
     $this->view->cities = $cities;
-    $this->view->allData = $allData;
+   // $this->view->allData = $allData;
     $this->view->render('staff/searchDonors');
   }
 
@@ -409,6 +471,212 @@ public function messagesAction() {
  $this->view->messages = $results;
 
     $this->view->render('staff/messages');
+
+}
+
+
+  public function searchLocationAction(){
+     $output ='';
+     $result = '';
+    //dnd($_POST["donor_bloodgroup"]);
+    
+    //dnd($city);
+    if(isset($_POST["donor_city"])){
+      $donor_city = $_POST["donor_city"];
+      //$blood = '';
+     
+      
+      $city = $this->StaffModel->searchDonorsByCity($donor_city);
+        //dnd($city);
+      }elseif(isset($_POST["donor_bloodgroup"])){
+        //$donor_city = '';
+         $blood = $_POST["donor_bloodgroup"];
+       $city = $this->StaffModel->findFromBlood($blood);
+      //dnd($city);
+    }elseif(isset($_POST["donor_city"]) && isset($_POST["donor_bloodgroup"])){
+      $donor_city = $_POST["donor_city"];
+       $blood = $_POST["donor_bloodgroup"];
+          $city = $this->StaffModel->findFromBloodAndCity($blood,$donor_city);
+          dnd($city);
+    }
+      else{
+        $city = $this->StaffModel->findDonorWithMapData();
+      }
+     // $allData= json_encode($city, true);
+   //  $allData - $city->
+       //dnd($allData);
+$all ="allData";
+      // $output2= "<vdiv id=".$all."> ". $allData ." </div>";
+      $class = "cell100 column2";
+      //dnd($value);
+      foreach($city as $v){
+        
+           $output .= '<table>
+							<tbody>
+                            
+                                
+								
+                                   
+                                        
+                   <td class="cell100 column1"> '.$v->donor_name.'</td>                
+									<td class="cell100 column2"> '.$v->nic.'</td>
+									<td class="cell100 column3"> '.$v->donor_bloodgroup.'</td>
+									<td class="cell100 column4"> '.$v->donor_city.'</td>
+									<td class="cell100 column4"> '.$v->donor_mobile.'</td>
+									<td class="cell100 column5"> <button type="button" class="btn btn-danger"><a style="color:white" href="'.PROOT.'staff/sendMessage?id='.$v->id.'&email='.$v->donor_email.'&name='.$v->donor_name.'">Send_Message</a></button></td>
+
+
+
+								</tr>
+
+								 
+							</tbody>
+						</table>';
+
+            // /$result = 
+
+
+      }
+      // echo($output2);
+    echo($output);
+   
+  }
+
+public function allDonorsAction() {
+
+  $output ='';
+  $allData = $this->StaffModel->findDonorWithMapData();
+
+   $allData= json_encode($allData, true);
+
+      $output .=  '<div id="allData">'.$allData.'</div>' ;
+        //dnd($output);
+       echo($output);
+
+}
+
+
+public function sendMessageAction() {
+    $data = [
+
+      'id' =>  $_GET['id'],
+      'email' => $_GET['email'],
+      'name' => $_GET['name']
+
+    ];
+  //  dnd($data);
+   
+    //$email = $_GET[];
+  //  dnd($data['id']);
+   
+    if($_POST){
+
+      $message = $_POST['message'];
+      $this->StaffModel->sendMessage($data['email'],$message,$data['name']);
+
+
+     
+    }else{
+      //dnd('error');
+    }
+       $this->view->data = $data;
+
+      $this->view->render('staff/sendMessage');
+     
+}
+
+public function viewFormAction($id) {
+  
+   $formModel = new Form();
+    $formData = $formModel->getDonorData($id);
+
+    $this->view->data = $formData;
+     $this->view->render('staff/viewForm');
+}
+
+
+public function staffProfileAction() {
+
+  $staffData = staff();
+
+  $this->view->staffData = $staffData;
+   $this->view->render('staff/staffProfile');
+
+}
+
+public function editProfileAction($id = NULL) {
+
+  if($id == NULL) {
+    Router::redirect('');
+  }else{
+
+$validation = new Validate();
+  $data = $this->StaffModel->findById($id);
+
+  //dnd($_POST);
+      if ($_POST) {
+
+
+        
+              
+      $validation->check($_POST, [
+        
+        
+      ],false);
+
+      if ($validation->passed()) {
+          $targetDir = "app/views/staff/pro_img/";
+ 
+          $fileName = basename($_FILES["file"]["name"]);
+          $file = explode('.', $fileName);
+          $ext = $file[count($file)-1];
+          //dnd($ext);
+          $fileName = $data->username.'-'.hash('md5', $fileName). '.' . $ext;
+          $fileName_ar = array('pro_img' => $fileName);
+          //dnd($fileName_ar);
+          $targetFilePath = $targetDir . $fileName;
+          $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+         // dnd($fileType);
+         
+          $allowTypes = array('jpg','png','jpeg','gif','pdf');
+             $updateFields = $_POST;
+
+           if(!empty($_FILES["file"]["name"])) {
+          if(in_array($fileType, $allowTypes)){ 
+            
+       
+
+            if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
+
+                 $updateFields = array_merge($_POST,$fileName_ar);
+
+            }else{
+                $validation->addError("File did not uploaded");
+            }
+              
+            
+                }else{
+                  $validation->addError("Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.");
+                }
+              }
+                  
+       
+        $this->StaffModel->update($id,$updateFields);
+      //dnd($validation->displayErrors());
+        Router::redirect('staff/staffProfile');
+
+
+      
+      }
+        
+      }
+
+
+$this->view->displayErrors = $validation->displayErrors();
+
+  $this->view->data = $data;
+   $this->view->render('staff/editProfile');
+    }
 
 }
 

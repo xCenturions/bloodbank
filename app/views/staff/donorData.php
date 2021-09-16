@@ -12,7 +12,9 @@ if(!$this->donation == null): ?>
 $d = $this->donation[0]->date;
 
 $date = new DateTime($d);
-$date->add(new DateInterval('P3M'));
+$date = $date->add(new DateInterval('P3M'));
+$newDate = (array) $date;
+$newDate = str_replace("00:00:00.000000","",$newDate['date']) ;
 
 ?>
 <script language="JavaScript">
@@ -31,6 +33,8 @@ FinishMessage = "You are available to donate blood again";
 
 
 <?php endif; ?>
+
+
 <script type="text/javascript" src="<?=PROOT?>app/lib/Google Maps/js/googlemap.js"></script>
 	<style type="text/css">
 		
@@ -71,7 +75,7 @@ FinishMessage = "You are available to donate blood again";
           <div class="row">
             <div class="col-lg-8 entries"> 
 				<article class="entry">
-					<h2 class="entry-title"> <?= $this->data->displayName() ?>  </h2>
+					<h2 class="entry-title"> <?= $this->data->donor_name ?>  </h2>
 				
 
             <div class="entry-content">
@@ -82,8 +86,10 @@ FinishMessage = "You are available to donate blood again";
             <p style="padding-top:10px"><strong>Email : </strong> <?= $this->data->donor_email ?></p>
 
             <p style="padding-top:10px"><strong>NIC Number : </strong> <?= $this->data->nic ?></p>
-            <p style="padding-top:10px"><strong>Mobile Number : </strong> <?= $this->data->donor_mobile ?></p>
-            <p style="padding-top:10px"><strong>Blood Group : </strong> <?= $this->data->donor_bloodgroup ?></p>
+			<?php if ($this->data->form == 'submitted'): ?>
+            <p style="padding-top:10px"><strong>Mobile Number : </strong> <?= $this->data->mobile ?></p>
+            <p style="padding-top:10px"><strong>Blood Group : </strong> <?= $this->data->bloodgroup ?></p>
+			<?php endif; ?>
             <p style="padding-top:10px"><strong>Date of Birth : </strong> <?= $this->data->dob ?></p>
             <p style="padding-top:10px"><strong>Nearest City : </strong> <?=$this->data->donor_city ?></p>
 		   </div>
@@ -169,13 +175,26 @@ FinishMessage = "You are available to donate blood again";
 		
 		
 								<h3 class="sidebar-title">Actions</h3>
-		<div class="row" >
+		<div class="row"  >
+		
+           
+		<a href="<?= PROOT ?>donor/edit_profile/<?= $this->data->id?>"class="btn-get-started animate__animated animate__fadeInUp scrollto"><button type="button" class="btn btn-danger btn-rounded" style="width:70%">Edit My Profile</button></a>
+            <a href="<?= PROOT ?>Appo/index"class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" style="width:70%">My Appoitments</button></a>
+			
+           <?php if ($this->data->form == 'submitted'): ?>
+            <a href="<?= PROOT ?>staff/viewForm/<?= $this->data->id?>"class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" style="width:70%">View Donor Form</button></a>
+			<a href="<?= PROOT ?>donor/pdfForm/<?=$this->data->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded"style="width:70%" >Download Donor's Form</button></a>
+			<?php else: ?>
+			<a href="<?= PROOT ?>donor/form" class="btn-get-started animate__animated animate__fadeInUp scrollto " style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" style="width:70%"><span>Donor Should Fill The Form</span></button></a>
+			<?php endif; ?>
             
-		<a href="<?= PROOT ?>donor/edit_profile/<?= $this->data->id?>"class="btn-get-started animate__animated animate__fadeInUp scrollto"><button type="button" class="btn btn-danger btn-rounded" >Edit My Profile</button></a>
-            <a href="<?= PROOT ?>Appo/index"class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" >My Appoitments</button></a>
-            <a href="<?= PROOT ?>donor/pdfForm/<?=$this->data->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" >Donor's Form</button></a>
-            <a href="<?= PROOT ?>donor/qrcode/<?=$this->data->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded"  >Generate QR Code</button></a>
-            <a href="<?= PROOT ?>staff/donateBlood/<?= $this->data->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded">Add donor's blood to stock</button></a>
+			
+            <a href="<?= PROOT ?>donor/qrcode/<?=$this->data->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" style="width:70%" >Generate QR Code</button></a>
+			<?php if(!isset($newDate)): ?>
+			 <a href="<?= PROOT ?>staff/donateBlood/<?= $this->data->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button  type="button"  class="btn btn-danger btn-rounded" style="width:70%">Add donor's blood to stock</button></a>
+			 <?php else: ?>
+            <a  class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button href="<?= PROOT ?>staff/donateBlood/<?= $this->data->id?>" type="button" <?php if( !($newDate == date('Y-m-d'))) print "disabled"?> class="btn btn-danger btn-rounded" style="width:70%">Add donor's blood to stock</button></a>
+			<?php endif; ?>
 		</div>
 		
 		<div style="padding-top:30px"></div>

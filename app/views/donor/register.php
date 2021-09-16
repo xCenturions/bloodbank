@@ -2,102 +2,103 @@
 
 <?php $this->start('body'); ?>
 <!-- MATERIAL DESIGN ICONIC FONT -->
-		<link rel="stylesheet" href="<?-PROOT?>fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-
-		<!-- STYLE CSS -->
-		<link rel="stylesheet" href="<?=PROOT?>css/donor_reg_style.css">
-
-
-	<body>
-
-		<div class="wrapper" style="background-image: url(../img/donor/login/bg-registration-form-2.jpg);">
-			<div class="inner">
-				<form action="" method="post">
-					<?= FH::csrfInput() ?>
-					<div style="font-size:18px"><?= $this->displayErrors ?></div>
-					<h3>Donor Registration Form</h3>
-					<div class="form-group">
-						<div class="form-wrapper">
-							<label for="donor_fname">First Name</label>
-							<input type="text" id="donor_fname" name="donor_fname" class="form-control" value="">
-						</div>
-						<div class="form-wrapper">
-							<label for="donor_lname">Last Name</label>
-							<input type="text" id="donor_lname" name="donor_lname" class="form-control" >
-						</div>
-					</div>
-					<div class="form-wrapper">
-						<label for="donor_email">Email</label>
-						<input type="email" id="donor_email" name="donor_email" class="form-control" >
-					</div>
-					<div class="form-group">
-						<div class="form-wrapper">
-							<label for="donor_mobile">Contact Number</label>
-							<input type="text" id="donor_mobile" name="donor_mobile" class="form-control" >
-						</div>
-						<div class="form-wrapper">
-							<label for="nic">National Identity Card No:</label>
-							<input type="text" id="nic" name="nic" class="form-control" >
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="form-wrapper">
-							<label for="dob">Date of Birthday</label>
-							<input type="date" id="dob" name="dob" class="form-control" >
-						</div>
-						<div class="form-wrapper">
-							<label for="donor_age">Age</label>
-							<input type="text" id="donor_age" name="donor_age" class="form-control" >
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="form-wrapper">
-							<label for="donor_sex">Gender</label>
-							<select name="donor_sex" class="form-control" id="donor_sex" name="donor_sex" >
-								<option value="none" selected> </option>
-								<option value="male">Male</option>
-								<option value="female">Female</option>
-								<option value="other">other</option>
-							</select>
-						</div>
-						<div class="form-wrapper">
-							<label for="donor_bloodgroup">Blood Group</label>
-							<select name="donor_bloodgroup" class="form-control" id="donor_bloodgroup" name="donor_bloodgroup"  >
-								<option value="none" selected> </option>
-								<option value="A+">A+</option>
-								<option value="A-">A-</option>
-								<option value="B+">B+</option>
-								<option value="B-">B-</option>
-								<option value="AB+">AB+</option>
-								<option value="AB-">AB-</option>
-								<option value="O+">O+</option>
-								<option value="O-">O-</option>
-								<option value="Other">Other</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-wrapper">
-						<label for="donor_city">City</label>
-						<select name="donor_city" class="form-control" id="donor_city" name="donor_city"  value="">
-							<option value="" selected="" disabled="" >Select Your City</option>
-							<?php foreach($this->cities as $ci): ?>
-								<option value="<?= $ci->name ?>" ><?= $ci->name?></option>
-							<?php endforeach; ?>
-						</select>
-					</div>
-					<div class="form-wrapper">
-						<label for="">Password</label>
-						<input type="password" id="password" name="password" class="form-control" >
-					</div>
-					<div class="form-wrapper">
-						<label for="">Confirm Password</label>
-						<input type="password" id="confirm" name="confirm" class="form-control" >
-					</div>
-
-					<button type="submit">Register Now</button>
-				</form>
+			<link rel="stylesheet" type="text/css" href="<?=PROOT?>css/roboto-font.css">
+	<link rel="stylesheet" type="text/css" href="<?=PROOT?>fonts/line-awesome/css/line-awesome.min.css">
+	<!-- Jquery -->
+	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="<?=PROOT?>css/pt_style.css"/>
+</head>
+<body class="form-v2">
+	<div class="page-content">
+		<div class="form-v2-content">
+			<div class="form-left">
+				<img src="<?=PROOT?>img/donor/pt.jpg" alt="form">
+				<div class="text-1">
+					<p>Register From Here</p>
+				</div>
+				
 			</div>
+			<form class="form-detail" action="" method="post">
+				<h2>Donor Registration Form</h2>
+				<div ><?=$this->displayErrors ?></div>
+				<?= FH::csrfInput(); ?>
+				<div class="form-row">
+					<label for="donor_name">Full Name:</label>
+					<input type="text" name="donor_name" id="donor_name" class="input-text" placeholder="ex: Lindsey Wilson" value="<?=$this->post['donor_name']?>"required>
+				</div>
+				<div class="form-row">
+					<label for="pt_nic">Your NIC Number:</label>
+					<input type="text" name="nic" id="nic" class="input-text" value="<?=$this->post['nic']?>" required>
+				</div>
+				
+				<div class="form-row">
+					<label for="dob">Your Email :</label>
+					<input type="email" name="donor_email" id="donor_email" class="input-text" value="<?=$this->post['donor_email']?>" required>
+				</div>
+					<div class="form-row">
+					<label for="dob">Date of Birth:</label>
+					<input type="date" name="dob" id="dob" class="input-text" value="<?=$this->post['dob']?>" required>
+				</div>
+                <div class="form-row">
+					<label for="pt_city">Nearest City:</label>
+					<select class="form-control" id="donor_city" name="donor_city" value="<?=$this->post['donor_city']?>" >
+						<option value="" selected="" disabled="" >Select City</option>
+							<?php foreach($this->cities as $value): ?>
+							<option value="<?= $value->name ?>" ><?= $value->name?></option>
+							<?php endforeach; ?>
+					</select>
+				</div>
+				<div class="form-row">
+					<label for="dob">Enter A Password :</label>
+					<input type="password" name="password" id="password" class="input-text" required>
+				</div>
+				<div class="form-row">
+					<label for="dob">Confirm Your Password :</label>
+					<input type="password" name="confirm" id="confirm" class="input-text" required>
+				</div>
+                
+				
+				<div class="form-row-last">
+					<input type="submit" name="register Now" class="register" value="Register Now">
+				</div>
+			</form>
 		</div>
-
-	</body>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<script>
+		// just for the demos, avoids form submit
+		jQuery.validator.setDefaults({
+		  	debug: true,
+		  	success:  function(label){
+        		label.attr('id', 'valid');
+   		 	},
+		});
+		$( "#myform" ).validate({
+		  	rules: {
+		    	password: "required",
+		    	confirm_password: {
+		      		equalTo: "#password"
+		    	}
+		  	},
+		  	messages: {
+		  		full_name: {
+		  			required: "Please provide an username"
+		  		},
+		  		your_email: {
+		  			required: "Please provide an email"
+		  		},
+		  		password: {
+	  				required: "Please provide a password"
+		  		},
+		  		confirm_password: {
+		  			required: "Please provide a password",
+		      		equalTo: "Wrong Password"
+		    	}
+		  	}
+		});
+	</script>
+</body>
 <?php $this->end(); ?>

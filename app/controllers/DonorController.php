@@ -75,20 +75,16 @@
   {
     $validation = new Validate();
    
-    $posted_values = ['donor_fname'=>'','donor_lname'=>'', 'nic'=>'', 'donor_email'=>'', 'password'=>'', 'confirm'=>'', 'donor_age'=>'','donor_sex'=>'','donor_mobile'=>'',
-                        'donor_city'=>'', 'donor_bloodgroup'=>'','dob'=>''];
+    $posted_values = ['donor_name'=>'','nic'=>'', 'donor_email'=>'', 'password'=>'', 'confirm'=>'','donor_city'=>'','dob'=>''];
     if ($_POST) {
       $posted_values = posted_values($_POST);
 
       $validation->check($_POST, [
-        'donor_fname' => [
+        'donor_name' => [
           'display' => 'First Name',
           'required' => true
         ],
-        'donor_lname' => [
-          'display' => 'Last Name',
-          'required' => true
-        ],
+       
 
         'nic' => [
           'display' => 'National Identity Card Number',
@@ -117,11 +113,7 @@
           'matches' => 'password',
         ],
 
-        'donor_mobile' => [
-          'display' => 'Donor Mobile',
-          'required' => true ,
-          'valid_mobile' => true,
-        ],
+        
 
         'dob' => [
           'display' => 'Donor Age',
@@ -142,9 +134,9 @@
 
        
         $newUser->registerNewUser($_POST);
-        $newUser->verification($newUser->donor_email,$newUser->verification_code,$newUser->donor_fname);
+        $newUser->verification($newUser->donor_email,$newUser->verification_code,$newUser->donor_name);
         //$newUser->login();
-        Router::redirect('donor/login');
+        Router::redirect('home/thankyou');
 
       }
     }
@@ -166,21 +158,24 @@
   // $this->view->render('donor/details');
   // }
 
+ 
 
   public function detailsAction(){
     
    
-      $donorData = currentUser();
+      
      //dnd($donorData);
       $donationModel = new Donation();
+      $formData = new Form();
+      $donorData = $formData->getDonorData(currentUser()->id);
       $donation = $donationModel->findDonorById(currentUser()->id);
       $map = $this->DonorModel->findDonorMapData(currentUser()->donor_city);
       
-      //dnd($donation);
+      //dnd($map[0]);
      
-      $this->view->donor =  $map;
+      $this->view->donor =  $map[0];
       $this->view->donation = $donation;
-     
+      $this->view->data = $donorData;
       $this->view->render('donor/details');
   }
 
@@ -199,10 +194,10 @@
          }
     }
 
-   
-
-
     $donor = $this->DonorModel->findDonorById($id);
+    $formModel = new Form();
+    $formData = $formModel->getDonorData($id);
+    //dnd($formData->name);
     
     $validation = new Validate();
   
@@ -231,13 +226,15 @@
         $updateFields = $_POST;
 
         $this->DonorModel->update($id,$updateFields);
+        $formModel->update($id,$updateFields);
         Router::redirect('donor/details');
       }
         
-      
       }
    
     $this->view->donor = $donor;
+    $this->view->donorForm = $formData;
+    //dnd($donor->donor_email);
    // $this->view->postAction = PROOT . 'donor' . DS . 'edit_profile' . DS . currentUser()->id;
     $this->view->displayErrors = $validation->displayErrors();
 
@@ -264,7 +261,7 @@
    // $details = new Donor();
     $details = $this->DonorModel->findDonorById($id);
      
-    $details = 'Donor Name : ' . $details->donor_fname . ' ' . $details->donor_lname . "<br />" . ' ' . 'Donor NIC : ' . $details->nic . "<br />" ;
+    $details = 'Donor Name : ' . $details->donor_name .  "<br />" . ' ' . 'Donor NIC : ' . $details->nic . "<br />" ;
     // $details .= 
     // $details .= 'Donor Mobile Number  : ' . $details->donor_mobile;
   //dnd($details);
@@ -306,7 +303,7 @@
         }
     }
   
-  $this->view->render('donor/verify');
+  $this->view->render('home/success');
 
   }
 
@@ -351,7 +348,8 @@
 
         'dob' => [
           'display' => 'Date of Birth ',
-          'required' => true
+          'required' => true,
+          'valid_age' => true
         ],
 
         'age' => [
@@ -371,7 +369,7 @@
       ]);
 
    
-   
+     if ($validation->passed()) {
     $form = new Form();
     
     $form->submit($_POST);
@@ -383,17 +381,91 @@
           
           $donor[0]->form = "submitted";
            $this->DonorModel->update(currentUser()->id, $donor[0]);
-            
- }
-   dnd($form);   
+        }   
+    }
+  // dnd($form);   
 }
   //dnd($_POST);
     $this->view->displayErrors = $validation->displayErrors();
     $this->view->render('donor/form');
   }
 
+  // -----------------------edit Form---------------------------------------------
 
-//////////////////Form PDF
+    public function editFormAction($id) {
+
+      $validation = new Validate();
+      $formModel = new Form();
+    $formData = $formModel->getDonorData($id);
+     //dnd($_POST);
+      if ($_POST) {
+     
+      $validation->check($_POST, [
+        'name' => [
+          'display' => 'Name',
+          'required' => true
+        ],
+
+          'email' => [
+          'display' => 'Email',
+         
+          'valid_email' =>true
+          
+          ],
+       
+
+          'mobile' => [
+          'display' => 'Mobile',
+         
+          'valid_mobil' =>true
+          
+          ],
+
+
+        
+
+        'dob' => [
+          'display' => 'Date of Birth ',
+          'required' => true,
+          'valid_age' => true
+        ],
+
+        'age' => [
+          'display' => 'Age ',
+          'required' => true,
+          'valid_number'=>true
+        ],
+        'address' => [
+          'display' => 'Address ',
+          'required' => true
+        ],
+        'nic' => [
+          'display' => 'NIC ',
+          'required' => true
+        ],
+      
+      ]);
+
+   
+    if ($validation->passed()) {
+    
+    $updateFields = $_POST;
+    
+    $formModel->update($formData->id,$updateFields);
+    
+    }
+         
+  // dnd($form);   
+}
+  //dnd($_POST);
+    $this->view->displayErrors = $validation->displayErrors();
+    $this->view->data = $formData;
+    $this->view->render('donor/editForm');
+  }
+
+
+
+//********************************* PDF Form Generating *****************************//
 
     public function pdfFormAction($id) {
 
@@ -407,7 +479,7 @@
 
         $donorForm = new Form();
 
-        $form = $donorForm->getDonorForm($id);
+        $form = $donorForm->getDonorData($id);
 
        // dnd($nw['']_1_1);
 
@@ -791,7 +863,38 @@ $pdf->Text(30, 270, 'w;aik');
 $pdf->Text(155, 265, '---------------------');
 $pdf->Text(170, 270, 'Èkh');
 
-$pdf->Output('Donor Form.pdf');
+$pdf->addPage();
+$pdf->SetFont('helvetica','',12);
+$pdf->writeHTML('	<div  class="menu" >
+				<h6>REGISTRATION</h6>
+				<p> &nbsp;&nbsp;&nbsp;Above Donor name and ID card number verified?
+					Yes<input type="radio"  id="verified" name="verified" value="1" required>&nbsp;
+					No<input type="radio" id="verified" name="verified" value="0">
+				</p>
+				<p> &nbsp;&nbsp;&nbsp;DIN issuing officers Signature: <input class="din" type="text" name="din_name" size="10" value="<?= $this->staff->staff_name?>"></p>
+			</div>
+
+			<div class="box">
+				<h6>QR Code</h6>
+				<img id="img1" style="width:100px" src="data:image/png;base64, <?= $this->qr_image; ?>" alt="">
+				
+			</div>
+			
+
+			<div class="medical">
+				<h6>MEDICAL ASSESSMENT</h6>
+			</div>
+
+		<div class="mosignature">
+			<p>(Medical Officers Signature<input type="text" id="mo_name" name="mo_name" size="40"placeholder=".............................................................................................................................................">)</p>
+		</div>
+		<div class="box1">
+			<label><b>Weight(kg):</b></label>
+			<input type="text" id="weight" name="weight"  placeholder="" maxlength="" size="5">
+		</div>
+');
+
+$pdf->Output('Donor Form.pdf','D');
         
 
     }

@@ -2133,6 +2133,7 @@ section {
   margin: auto;
   font-size: 18px;
   position: relative;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .text-block {

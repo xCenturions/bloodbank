@@ -60,7 +60,7 @@ FinishMessage = "You are available to donate blood again";
           <div class="row">
             <div class="col-lg-8 entries"> 
 				<article class="entry">
-					<h2 class="entry-title"> <?= currentUser()->displayName() ?>  </h2>
+					<h2 class="entry-title"> <?= $this->donor->donor_name ?>  </h2>
 				
 
             <div class="entry-content">
@@ -70,10 +70,11 @@ FinishMessage = "You are available to donate blood again";
            <div class="read-more">You can Donate blood after<br><p  style="margin-right:95px"><script language="JavaScript" src="https://rhashemian.github.io/js/countdown.js"></script></p>	</div></div>
 		   <?php endif; ?>
             <p style="padding-top:10px"><strong>Email : </strong> <?= currentUser()->donor_email ?></p>
-
             <p style="padding-top:10px"><strong>NIC Number : </strong> <?= currentUser()->nic ?></p>
-            <p style="padding-top:10px"><strong>Mobile Number : </strong> <?= currentUser()->donor_mobile ?></p>
-            <p style="padding-top:10px"><strong>Blood Group : </strong> <?= currentUser()->donor_bloodgroup ?></p>
+		<?php if(currentUser()->form == 'submitted'): ?>
+            <p style="padding-top:10px"><strong>Mobile Number : </strong> <?= $this->data->mobile ?></p>
+            <p style="padding-top:10px"><strong>Blood Group : </strong> <?= $this->data->bloodgroup ?></p>
+		<?php endif; ?>
             <p style="padding-top:10px"><strong>Date of Birth : </strong> <?= currentUser()->dob ?></p>
             <p style="padding-top:10px"><strong>Nearest City : </strong> <?= currentUser()->donor_city ?></p>
 		
@@ -158,14 +159,14 @@ FinishMessage = "You are available to donate blood again";
 								<h3 class="sidebar-title ">Actions</h3>
 		<div class="row" >
             
-		<a href="<?= PROOT ?>donor/edit_profile/<?= currentUser()->id?>"class="btn-get-started animate__animated animate__fadeInUp scrollto"><button type="button" class="btn btn-danger btn-rounded" >Edit My Profile</button></a>
-            <a href="<?= PROOT ?>Appo/index"class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" >My Appoitments</button></a>
+		<a href="<?= PROOT ?>donor/edit_profile/<?= currentUser()->id?>"class="btn-get-started animate__animated animate__fadeInUp scrollto"><button type="button" class="btn btn-danger btn-rounded" style="width:70%">Edit My Profile</button></a>
+            <a href="<?= PROOT ?>Appo/index"class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" style="width:70%">My Appoitments</button></a>
 			<?php if (currentUser()->form == 'submitted'): ?>
-            <a href="<?= PROOT ?>donor/pdfForm/<?= currentUser()->id?>"class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" >My Donor Form</button></a>
+            <a href="<?= PROOT ?>donor/editForm/<?= currentUser()->id?>"class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" style="width:70%">View Donor Form</button></a>
 			<?php else: ?>
-			<a href="<?= PROOT ?>donor/form"class="btn-get-started animate__animated animate__fadeInUp scrollto " style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" ><span>Fill Donor Form</span></button></a>
+			<a href="<?= PROOT ?>donor/form"class="btn-get-started animate__animated animate__fadeInUp scrollto " style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" style="width:70%"><span>Fill Donor Form</span></button></a>
 			<?php endif; ?>
-            <a href="<?= PROOT ?>donor/qrcode/<?= currentUser()->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded"  >Generate QR Code</button></a>
+            <a href="<?= PROOT ?>donor/qrcode/<?= currentUser()->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded"  style="width:70%">Generate QR Code</button></a>
 		</div>
 		
 		<div style="padding-top:30px"></div>

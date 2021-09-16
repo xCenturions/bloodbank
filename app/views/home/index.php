@@ -126,7 +126,7 @@
   </section><!-- End Clients Section -->
 
   <!-- ======= Services Section ======= -->
-  
+  <?php if (currentUser()): ?>
   
     <div class="homes">
 
@@ -194,6 +194,8 @@
     </div>
     </div>
     </div>
+
+    <?php endif ?>
 
       
  

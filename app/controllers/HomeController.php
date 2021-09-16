@@ -59,4 +59,12 @@ public function contactusAction(){
     $this->view->render('home/contactus');
   }
 
+   public function thankyouAction(){
+     $this->view->render('home/thankyou');
+  }
+
+   public function successAction(){
+     $this->view->render('home/success');
+  }
+
  }

@@ -1,9 +1,12 @@
 {
   "Home": "home",
 
+  "Services Menu": "staff",
+
   "Patients": "staff/patientRegister",
 
   "Donors": {
+    "Search Donors": "staff/searchDonors",
     "Registered Donors": "staff/donorDetails",
     "Add a new Donor": "donor/register"
   },
@@ -18,7 +21,5 @@
     "Blood Donation Details": "staff/bloodStockDetails"
   },
 
-  "Login": "home/login",
-
-  "Logout": "staff/logout"
+  "Login": "home/login"
 }

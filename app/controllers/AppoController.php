@@ -13,7 +13,7 @@ class AppoController extends Controller{
   public function indexAction()
   {
      $appoint = $this->AppoModel->findAllByDonorId(currentUser()->id);
-     dnd($appoint);
+    // dnd($appoint);
      $this->view->appoint = $appoint;
     $this->view->render('appo/index');
   }

@@ -27,16 +27,17 @@ $idColumnName = 'id'; //store the name of the user ID column in the above table.
 $confirmationHashColumnName = 'verification_code'; //store the name of the column used to store confirmation hashes.
 $verificationStatusColumnName = 'is_active';//store the name of the column used to store verification status (unverified/confirmed/etc.).
 //Settings for the confirmatory email to be sent:
-$fromEmailID = 'xxxxxxxxxxxx@gmail.com'; //confirmation email will be sent from this email.
+$fromEmailID = 'tharindumaduranga977@gmail.com'; //confirmation email will be sent from this email.
 $fromName = 'Blood bank Management System'; //name that will dispay as the sender of confirmation email.
 $subject = 'Verify Your Account'; //subject for the confrimation email.
+$subject2 = 'Request To Donate Blood'; //subject for the confrimation email.
 
 //you can modify the body of the email address in the script 'signup.php'.
 
 //LOGIN DETAILS FOR FROM Email ID: Settings to be taken from Email Provider.
 $mailHost = 'smtp.gmail.com'; //specify main and backup SMTP mail servers.
-$mailUsername = 'xxxxxxxxxxx@gmail.com'; //usually the email address, but check with Email provider.
-$mailPassword = '########'; //password used to login to email ID.
+$mailUsername = 'tharindumaduranga977@gmail.com'; //usually the email address, but check with Email provider.
+$mailPassword = 'Madu9663*'; //password used to login to email ID.
 $mailEncryptionType = 'tls'; //enter ssl or tsl.
 $mailPortNumber = 587; //usually 587 for TSL. But find the recommended settings from your email provider.
 

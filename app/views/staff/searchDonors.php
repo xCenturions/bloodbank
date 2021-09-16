@@ -42,38 +42,48 @@
 </section>
 
 
-
-	<?php  
-
-		 $allData = $this->allData;
 			
-			    $allData= json_encode($allData, true);
-	
 			
-			echo '<div id="allData">' . $allData . '</div>';			
-		 ?>
-
+			<div id="maps"></div>			
+		
 <div class="row">
     <form action="<?=PROOT?>staff/searchDonors" method="post" style="margin-top:20px;text-align: center">
+		
+				<div class="row" style="">
 
-
-
-					
-						<center><select name="donor_city" class="form-control" id="donor_city" name="donor_city"  value="" style="width: 400px ; height: 50px;">
+					<div class="col-md-3">
+						<select name="donor_city" class="form-control" id="donor_city" name="donor_city"  value="" style="width: 400px ; height: 50px;">
 							<option value="" selected="" disabled="" >Select City</option>
 							<?php foreach($this->cities as $ci): ?>
 								<option value="<?= $ci->name ?>" ><?= $ci->name?></option>
 							<?php endforeach; ?>
-						</select></center>
-
-					 <div>
-        <input type="submit" class="btn btn-primary btn-danger" value="search" >
-      </div>
-
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select name="donor_bloodgroup" class="form-control" id="donor_bloodgroup" style="width: 400px ; height: 50px;">
+							<option value="" selected="" disabled="" >Select Blood Group</option>
+							
+								<option value="A+">A+</option>
+								<option value="A-">A-</option>
+								<option value="B+">B+</option>
+								<option value="B-">B-</option>
+								<option value="AB+">AB+</option>
+								<option value="AB-">AB-</option>
+								<option value="O+">O+</option>
+								<option value="O-">O-</option>
+								<option value="Other">Other</option>
+						</select>
+					</div>
+							
+						<div class="col-md-1">
+					<button type="button" id="refresh" class="btn btn-danger">Reset</button>
+						</div>
+				</div>
+	  
 </form>
 
 
-<div  id="map" style="margin-left: 50px;width: 800px ; height: 800px;margin-top: 40px"></div>
+<!-- <div  id="map" style="margin-left: 50px;width: 800px ; height: 800px;margin-top: 40px"></div> -->
 
 
 
@@ -87,40 +97,18 @@
 								<tr class="row100 head">
 									<th class="cell100 column1">Donor Name </th>
 									<th class="cell100 column2">NIC</th>
-									<th class="cell100 column3">Email</th>
+									<th class="cell100 column3">Blood Group</th>
 									<th class="cell100 column4">City</th>
 									<th class="cell100 column4">Mobile </th>
+									<th class="cell100 column5">Contact </th>
 
 								</tr>
 							</thead>
 						</table>
 					</div>
 
-					<div class="table100-body js-pscroll">
-						<table>
-							<tbody>
-                            
-                                
-								<?php foreach($this->allData as $donor): ?>
-                                   
-                                        
-                                    <td class="cell100 column1">
-                                        <a href="<?=PROOT?>staff/donorData/<?= $donor->id ?>" >
-                                            <?= $donor->donor_fname.' '.$donor->donor_lname; ?>
-                                        </a>
-                                        </td>
-									<td class="cell100 column2"><?= $donor->nic;?></td>
-									<td class="cell100 column3"><?= $donor->donor_email;?></td>
-									<td class="cell100 column4"><?= $donor->donor_city;?></td>
-									<td class="cell100 column4"><?= $donor->donor_mobile;?></td>
-
-
-
-								</tr>
-
-								  <?php endforeach; ?>
-							</tbody>
-						</table>
+					<div  class="table100-body js-pscroll" id="search" name="search">
+						
 					</div>
 				</div>
 </div>
@@ -161,5 +149,48 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-dFHYjTqEVLndbN2gdvXsx09jfJHmNc8&callback=loadMap">
 </script>
 
+<script>
+
+		$(document).ready(function(){
+			$("#search").load("http://localhost/bloodbank/staff/searchLocation");
+			$("#refresh").click(function(){
+				$("#search").load("http://localhost/bloodbank/staff/searchLocation");
+			});
+			$("#maps").load("http://localhost/bloodbank/staff/allDonors" );
+			
+			$("#donor_city").change(function(){
+				var check=$(this).val();
+				console.log(check);
+				$.ajax({
+					url:"http://localhost/bloodbank/staff/searchLocation",
+					method:"POST",
+					data:{donor_city:check},
+					success:function(data){
+						console.log("This data", data); 
+						$("#search").html(data);
+					}
+					
+					
+				});
+			});
+			$("#donor_bloodgroup").change(function(){
+				var check=$(this).val();
+				console.log(check);
+				$.ajax({
+					url:"http://localhost/bloodbank/staff/searchLocation",
+					method:"POST",
+					data:{donor_bloodgroup:check},
+					success:function(data){
+						console.log("This data", data); 
+						$("#search").html(data);
+					}
+					
+					
+				});
+			});
+		});
+	</script>
+
+	
 
 <?php $this->end(); ?>

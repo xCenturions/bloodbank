@@ -44,9 +44,9 @@
 								<div class="form-group">
 									<div class=" mt-2">
 										<label for="location">Nearest Location</label>
-										<div class="input-group has-validation mt-2">
+										<div class="input-group has-validation mt-2" >
 											<select class="form-control" id="location" name="location" value="<?= $this->appoint->location ?>">
-												
+												<div id="location" name="location"></div>
 											</select>
 										</div>
 									</div>

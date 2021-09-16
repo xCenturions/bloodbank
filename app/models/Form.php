@@ -23,9 +23,13 @@ public $deleted = 0;
 
   }
 
+  // public function donorData(){
+  //   return $this->findFromTable('');
+  // }
+
    
 
-    public function getDonorForm($id){
+    public function getDonorData($id){
 
     $conditions = [
       'conditions' => 'donor_id = ?',

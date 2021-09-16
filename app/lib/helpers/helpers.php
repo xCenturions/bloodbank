@@ -58,12 +58,12 @@ function getObjectProperties($obj){
   return get_object_vars($obj);
 }
 
-function get_times ($default = '19:00', $interval = '+30 minutes') {
+function get_times ($default = '08:00', $interval = '+60 minutes') {
 
     $output = '';
 
-    $current = strtotime('00:00');
-    $end = strtotime('23:59');
+    $current = strtotime('08:00');
+    $end = strtotime('18:59');
 
     while ($current <= $end) {
         $time = date('H:i', $current);
@@ -214,4 +214,50 @@ function countMessage(){
     }else{
       return $results[0]->count;
     }
- }
+
+  }
+
+
+    function sendMail($toEmail, $emailBody, $emailAltBody)
+{
+  include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
+  include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS  .'vendor' . DS . 'autoload.php');
+
+  //dnd($toEmail);
+
+  $mail = new PHPMailer();
+  $mail->isSMTP();
+  $mail->Host = $mailHost;
+  
+ 
+  $mail->SMTPAuth = true;
+  $mail->Username = $mailUsername;
+  $mail->Password = $mailPassword;
+  $mail->SMTPSecure = $mailEncryptionType;
+  $mail->Port = $mailPortNumber;
+
+  $mail->setFrom($fromEmailID, $fromName);
+  $mail->addAddress($toEmail);
+
+  if($replyToEmailID)
+  $mail->addReplyTo($replyToEmailID);
+
+  if($BCCEmailID)
+  $mail->addBCC($BCCEmailID);
+
+
+
+  $mail->isHTML(true);
+
+  $mail->Subject = $subject2;
+  $mail->Body    = $emailBody;
+  $mail->AltBody = $emailAltBody;
+
+  if(!$mail->send()) {
+      echo 'Message could not be sent.';
+      echo 'Mailer Error: ' . $mail->ErrorInfo;
+  } else {
+      //echo 'Message has been sent. Please check your inbox and spam folder.';
+  }
+}
+ 
