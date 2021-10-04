@@ -34,7 +34,7 @@
   <div class="container">
 
     <div class="d-flex justify-content-between align-items-center">
-      <h2 style="text-align: center">Search Donors By City</h2>
+      <h2 style="text-align: center">Search Donors </h2>
     
     </div>
 
@@ -44,23 +44,28 @@
 
 			
 			
-			<div id="maps"></div>			
 		
-<div class="row">
+
     <form action="<?=PROOT?>staff/searchDonors" method="post" style="margin-top:20px;text-align: center">
 		
-				<div class="row" style="">
+			
+			<div class="row" style="margin-left:400px"> 
 
+				<div class="col-md-3" >
+						<input  class="form-control" id="nic" name="nic"  value="" style="width: 300px ; height: 50px;" placeholder="Enter Name or NIC ">
+							
+						</select>
+					</div>
 					<div class="col-md-3">
-						<select name="donor_city" class="form-control" id="donor_city" name="donor_city"  value="" style="width: 400px ; height: 50px;">
+						<select name="donor_city" class="form-control" id="donor_city" name="donor_city"  value="" style="width: 300px ; height: 50px;">
 							<option value="" selected="" disabled="" >Select City</option>
 							<?php foreach($this->cities as $ci): ?>
 								<option value="<?= $ci->name ?>" ><?= $ci->name?></option>
 							<?php endforeach; ?>
 						</select>
 					</div>
-					<div class="col-md-3">
-						<select name="donor_bloodgroup" class="form-control" id="donor_bloodgroup" style="width: 400px ; height: 50px;">
+					<div class="col-md-3"  >
+						<select name="donor_bloodgroup" class="form-control" id="donor_bloodgroup" style="width: 300px ; height: 50px;">
 							<option value="" selected="" disabled="" >Select Blood Group</option>
 							
 								<option value="A+">A+</option>
@@ -74,20 +79,28 @@
 								<option value="Other">Other</option>
 						</select>
 					</div>
-							
-						<div class="col-md-1">
-					<button type="button" id="refresh" class="btn btn-danger">Reset</button>
+
+				
+					
+				
+					<div class="col-md-1">
+					
+						<button type="button" id="refresh" class="btn btn-danger">Reset</button>
 						</div>
-				</div>
+						
+					</div>
 	  
 </form>
 
 
-<!-- <div  id="map" style="margin-left: 50px;width: 800px ; height: 800px;margin-top: 40px"></div> -->
+	<!-- <div id="allData"></div>
+
+
+<div  id="map" style="margin-left: 50px;width: 800px ; height: 800px;margin-top: 40px"></div> -->
 
 
 
-		<div class="container-table100"   style="width: 1000px ; height: 800px;">
+		<div class="container-table100"   >
 			<div class="wrap-table100">
 
 				<div class="table100 ver2 m-b-110">
@@ -146,7 +159,7 @@
                               
 
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-dFHYjTqEVLndbN2gdvXsx09jfJHmNc8&callback=loadMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDShTgmiNPXaMdP7sTepyLZSSiFJmb5MvE&callback=loadMap">
 </script>
 
 <script>
@@ -155,39 +168,83 @@
 			$("#search").load("http://localhost/bloodbank/staff/searchLocation");
 			$("#refresh").click(function(){
 				$("#search").load("http://localhost/bloodbank/staff/searchLocation");
+				$("#donor_city").val("");
+				$("#donor_bloodgroup").val("");
+				$("#nic").val("");
 			});
-			$("#maps").load("http://localhost/bloodbank/staff/allDonors" );
+
 			
-			$("#donor_city").change(function(){
-				var check=$(this).val();
-				console.log(check);
-				$.ajax({
-					url:"http://localhost/bloodbank/staff/searchLocation",
-					method:"POST",
-					data:{donor_city:check},
-					success:function(data){
-						console.log("This data", data); 
-						$("#search").html(data);
-					}
-					
-					
-				});
-			});
+			// $("#allData").load("http://localhost/bloodbank/staff/allDonors" );
+			// var data1=$("#data").val();
+		
+			// $.ajax({
+			// 		url:"http://localhost/bloodbank/staff/allDonors",
+			// 		method:"POST",
+			// 		// dataType:"html",
+			// 		data:{allData:data1},
+			// 		success:function(data1){
+			// 			console.log("This data", data1); 
+			// 			$("#allData").html(data1);
+			// 		}
+			// 		});
+			
 			$("#donor_bloodgroup").change(function(){
-				var check=$(this).val();
+			
+					var name =$("#donor_city").val();
+				var check =$("#donor_bloodgroup").val();
 				console.log(check);
 				$.ajax({
 					url:"http://localhost/bloodbank/staff/searchLocation",
 					method:"POST",
-					data:{donor_bloodgroup:check},
+					data:{donor_bloodgroup:check , donor_city:name},
 					success:function(data){
 						console.log("This data", data); 
 						$("#search").html(data);
+						check.reset();
+						name.reset();
 					}
 					
 					
 				});
 			});
+
+			$("#donor_city").change(function(){
+					var check =$("#donor_bloodgroup").val();
+				var name =$("#donor_city").val();
+				console.log(check);
+				$.ajax({
+					url:"http://localhost/bloodbank/staff/searchLocation",
+					method:"POST",
+					data:{donor_city:name , donor_bloodgroup:check},
+					success:function(data){
+						console.log("This data", data); 
+						$("#search").html(data);
+						
+					}
+					
+					
+				});
+			});
+
+			$("#nic").keyup(function(){
+				var nic = $("#nic").val();
+					var check =$("#donor_bloodgroup").val();
+				var name =$("#donor_city").val();
+				console.log(check);
+				$.ajax({
+					url:"http://localhost/bloodbank/staff/searchLocation",
+					method:"POST",
+					data:{donor_city:name , donor_bloodgroup:check,nic:nic},
+					success:function(data){
+						console.log("This data", data); 
+						$("#search").html(data);
+						
+					}
+					
+					
+				});
+			});
+			
 		});
 	</script>
 

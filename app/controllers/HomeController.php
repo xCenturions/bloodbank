@@ -7,6 +7,20 @@
 
    public function indexAction(){
 
+    $stockModel = new Stock();
+
+    // if(isset(staff()){
+
+    $results = $stockModel->bloodAlert();
+
+
+
+
+
+    // }
+
+
+
 
 //dnd(staff());
      $this->view->render('home/index');
@@ -61,6 +75,11 @@ public function contactusAction(){
 
    public function thankyouAction(){
      $this->view->render('home/thankyou');
+  }
+   public function mailSentAction(){
+     $mail = base64_decode($_GET['email']);
+      $this->view->email = $mail;
+     $this->view->render('home/mailSent');
   }
 
    public function successAction(){

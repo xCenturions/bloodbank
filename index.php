@@ -8,6 +8,8 @@
   require_once(ROOT . DS . 'config' . DS . 'config.php');
   require_once(ROOT . DS . 'app' . DS . 'lib' . DS . 'helpers' . DS . 'functions.php');
    require_once(ROOT . DS . 'app' . DS . 'lib' . DS . 'QR' . DS . 'autoload.php');
+   require_once(ROOT . DS . 'app' . DS . 'lib' . DS . 'NIC' . DS . 'autoload.php');
+   
 
   
 

@@ -86,7 +86,7 @@ class StaffController extends Controller{
      
       
       
-     // dnd($data);
+      //dnd($data[0]);
      
       $this->view->donor =  $map;
       $this->view->donation = $donation;
@@ -255,32 +255,256 @@ class StaffController extends Controller{
    public function bloodDonationReportAction(){
 
 
-     $donationModel = new Donation('stock');
+     $donationModel = new Donation();
      $stock =  $donationModel->piechart(); 
      $donate = $donationModel->barchart();
+ 
       
   //
-      
+       $banks = $this->StaffModel->getAllBloodBanks();
+ $this->view->banks = $banks;
    $this->view->result = $stock;
    $this->view->results = $donate;
-    
-   //dnd( $donate);
 
+
+    
        $this->view->render('staff/bloodDonationReport');
   }
 
-  public function bloodStockDetailsAction(){
+  public function bloodDonationAction(){
+    $donationModel = new Donation();
+       
+         if( isset($_POST['bld_bank'])){
+         $bank=  $_POST['bld_bank'];
+         
+            $pie =  $donationModel->piechartBank($bank); 
+           $bar =  $donationModel->barchartBank($bank); 
+           //dnd($bar);
+
+           }else{
+              $pie =  $donationModel->piechart(); 
+           $bar =  $donationModel->barchart();
+           }
+          
+          
+            $results = [
+    'pie' => $pie,
+    'bar' => $bar,
+   
+    
+];
+
+         echo json_encode($results);
+    
+  }
+
+   public function bloodDonationDetailsAction(){
 
 
-     $stockModel = new Stock();
-     $stock =  $stockModel->getAllFromStock(); 
-      
+     $donationModel = new Donation();
+     $stock =  $donationModel->piechart(); 
+     $donate = $donationModel->barchart();
  
       
-   $this->view->stock = $stock;
+  //
+       $banks = $this->StaffModel->getAllBloodBanks();
+ $this->view->banks = $banks;
+   $this->view->result = $stock;
+   $this->view->results = $donate;
+
+
     
+       $this->view->render('staff/bloodDonationDetails');
+  }
+
+   public function donationDetailsAction() {
+    
+     $donationModel = new Donation();
+    // $stock =  $stockModel->getAllFromStock(); 
+  
+        $output ='';
+     $result = '';
+  
+    if((isset($_POST["bld_banks"] ) && $_POST['bld_banks'] != '') && (isset($_POST["from_date"]   , $_POST['to_date'] ) && $_POST['to_date'] != '')){
+      $banks = $_POST["bld_banks"];
+     
+
+         $donation = $donationModel->sortByBldAndDate($banks,$_POST["from_date"], $_POST['to_date']);
+       // dnd($donation);
+        
+    }
+     elseif(isset($_POST["from_date"]) && $_POST['to_date'] ){
+    
+     
+      
+      $donation = $donationModel->sortByDate($_POST["from_date"],$_POST['to_date']);
+       // dnd($stock);
+      }elseif(isset($_POST["bld_banks"]) && $_POST['bld_banks'] != ''){
+        //$donor_city = '';
+         $bank = $_POST["bld_banks"];
+      $donation = $donationModel->findFromBank($bank);
+  //    dnd($donation);
+      
+}elseif(isset($_POST["nic"] ) && $_POST['nic'] != ''){
+   $nic = $_POST["nic"];
+     $donation = $donationModel->findFromNic($nic);
+    // dnd($donation);
+     //
+}
+else{
+         $donation =  $donationModel->getAllDonations(); 
+          //dnd($stock);
+    }
+      
+      
+
+  
+$all ="allData";
+     
+      $class = "cell100 column2";
+      //dnd($value);
+       if(empty($donation)){
+           $output = "No records found";
+         }
+      
+      foreach($donation as $v){
+
+      
+        
+           $output .= '<table>
+							<tbody>
+
+
+                  <td class="cell100 column1"> <a href="'.PROOT.'staff/donorData/'.$v->id.'"> '.$v->donor_name.'</a></td>                
+									<td class="cell100 column2"> '.$v->nic.'</td>
+									<td class="cell100 column3"> '.$v->bld_banks.'</td>
+									<td class="cell100 column8"> '.$v->bld_grp.'</td>
+									<td class="cell100 column4"> '.$v->date.'</td>
+                  
+								
+
+
+
+								</tr>
+
+								 
+							</tbody>
+						</table>';
+
+
+
+      }
+    
+    echo($output);
    
+
+
+  }
+
+  
+
+  public function bloodStockDetailsAction(){
+
+ 
+
+ 
+    // $stock =  $stockModel->getAllFromStock(); 
+  $banks = $this->StaffModel->getAllBloodBanks();
+ $this->view->banks = $banks;
+    
        $this->view->render('staff/bloodStockDetails');
+  }
+
+
+  public function stockDetailsAction() {
+    
+     $stockModel = new Stock();
+    // $stock =  $stockModel->getAllFromStock(); 
+  
+        $output ='';
+     $result = '';
+  
+    if((isset($_POST["bld_banks"] ) && $_POST['bld_banks'] != '') && (isset($_POST["bld_grps"] )  && $_POST['bld_grps'] != '')){
+      $banks = $_POST["bld_banks"];
+       $blood = $_POST["bld_grps"];
+         $stock = $stockModel->sortByBldAndBank($blood,$banks);
+        
+    }
+     elseif(isset($_POST["bld_banks"]) && $_POST['bld_banks'] != ''){
+     $banks = $_POST["bld_banks"];
+      //$blood = '';
+     
+      
+      $stock = $stockModel->bloodBankSort($banks);
+       // dnd($stock);
+      }elseif(isset($_POST["bld_grps"]) && $_POST['bld_grps'] != ''){
+        //$donor_city = '';
+         $blood = $_POST["bld_grps"];
+       $stock = $stockModel->findFromBlood($blood);
+      
+}elseif(isset($_POST["nic"] ) && $_POST['nic'] != ''){
+   $nic = $_POST["nic"];
+     $stock = $stockModel->searchByNic($nic);
+     //
+}
+else{
+         $stock =  $stockModel->getAllFromStock(); 
+          //dnd($city);
+    }
+      function icons($val){
+
+        if($val == 1){
+          return '<i class="bi bi-check-lg"></i>';
+        }else{
+           return '<i class="bi bi-dash-lg"></i>';
+        }
+      }
+      
+
+  
+$all ="allData";
+     
+      $class = "cell100 column2";
+      //dnd($value);
+       if(empty($stock)){
+           $output = "No records found";
+         }
+      
+      foreach($stock as $v){
+
+      
+        
+           $output .= '<table>
+							<tbody>
+
+
+                  <td class="cell100 column1"> <a href="'.PROOT.'staff/donorData/'.$v->id.'"> '.$v->donor_nic.'</a></td>                
+									<td class="cell100 column2"> '.$v->bld_grps.'</td>
+									<td class="cell100 column3"> '.$v->bld_banks.'</td>
+									<td class="cell100 column8"> '.$v->date.'</td>
+									<td class="cell100 column4"> '.icons($v->bld_rbc).'</td>
+                  
+									<td class="cell100 column5"> '.icons($v->bld_wbc).'</td>
+									<td class="cell100 column6"> '.icons($v->bld_plasma).'</td>
+									<td class="cell100 column7"> '.icons($v->bld_plates).'</td>
+									
+
+
+
+								</tr>
+
+								 
+							</tbody>
+						</table>';
+
+
+
+      }
+    
+    echo($output);
+   
+
+
   }
 
 
@@ -350,15 +574,22 @@ public function bloodStockReportAction(){
      $stockModel = new Stock();
    
      $stock =  $stockModel->piechart(); 
-     $donate = $stockModel->barchart();
-     // dnd($stock);
-  //
-      
+     $bank = "Jaffna";
+    $bar =  $stockModel->barchartBank($bank); 
+     $banks = $this->StaffModel->getAllBloodBanks();
+    // dnd($bar);
+  $currentBnk = staff()->assigned;
+
+       $this->view->banks = $banks;
+       $this->view->currentBank = $currentBnk;
+      // dnd($currentBnk);
    $this->view->result = $stock;
-   $this->view->results = $donate;
+ //  $this->view->bar = $bar;
+
+
     
    //dnd( $donate);
-      
+     // echo json_encode($currentBnk);
        $this->view->render('staff/bloodStockReport');
   }
 
@@ -366,23 +597,38 @@ public function bloodStockReportAction(){
   public function bloodStockAction(){
     $stockModel = new Stock();
        
-          $bank = $_POST['bld_bank'];
-            $stock =  $stockModel->piechartBank($bank); 
-          
-            $this->view->data = $stock;
+         if( isset($_POST['bld_bank'])){
+         $bank=  $_POST['bld_bank'];
+            $pie =  $stockModel->piechartBank($bank); 
+           $bar =  $stockModel->barchartBank($bank); 
+        
 
-         echo json_encode($stock);
+           }else{
+              $pie =  $stockModel->piechartBank(staff()->assigned); 
+           $bar =  $stockModel->barchartBank(staff()->assigned); 
+             //dnd($bar);
+           }
+          
+          
+            $results = [
+    'pie' => $pie,
+    'bar' => $bar,
+   
+    
+];
+
+         echo json_encode($results);
     
   }
-
+  // public function bloodStockBarAction(){
+  
 
   public function searchDonorsAction(){
 
-  //  $allData = $this->StaffModel->findDonorWithMapData();
-  //  $allData= json_encode($allData , true);
-    $cities = $this->StaffModel->getAllCities();
+   $cities = $this->StaffModel->getAllCities();
+ 
     $this->view->cities = $cities;
-   // $this->view->allData = $allData;
+   //$this->view->allData = $allData;
     $this->view->render('staff/searchDonors');
   }
 
@@ -478,37 +724,70 @@ public function messagesAction() {
   public function searchLocationAction(){
      $output ='';
      $result = '';
-    //dnd($_POST["donor_bloodgroup"]);
+  // dnd($_POST);
     
     //dnd($city);
-    if(isset($_POST["donor_city"])){
+    // if(isset($_POST["donor_city"]) && $_POST['donor_city'] != ''){
+    //   $donor_city = $_POST["donor_city"];
+    //   //$blood = '';
+     
+      
+    //   $city = $this->StaffModel->searchDonorsByCity($donor_city);
+    //     //dnd($city);
+    //   }elseif(isset($_POST["donor_bloodgroup"]) && $_POST['donor_bloodgroup'] != ''){
+    //     //$donor_city = '';
+    //      $blood = $_POST["donor_bloodgroup"];
+    //    $city = $this->StaffModel->findFromBlood($blood);
+    //   //dnd($city);
+    // }
+    if((isset($_POST["donor_city"] ) && $_POST['donor_city'] != '') && (isset($_POST["donor_bloodgroup"] )  && $_POST['donor_bloodgroup'] != '')){
+      $donor_city = $_POST["donor_city"];
+       $blood = $_POST["donor_bloodgroup"];
+          $city = $this->StaffModel->sortBy($blood,$donor_city);
+        
+    }
+     elseif(isset($_POST["donor_city"]) && $_POST['donor_city'] != ''){
       $donor_city = $_POST["donor_city"];
       //$blood = '';
      
       
       $city = $this->StaffModel->searchDonorsByCity($donor_city);
         //dnd($city);
-      }elseif(isset($_POST["donor_bloodgroup"])){
+      }elseif(isset($_POST["donor_bloodgroup"]) && $_POST['donor_bloodgroup'] != ''){
         //$donor_city = '';
          $blood = $_POST["donor_bloodgroup"];
        $city = $this->StaffModel->findFromBlood($blood);
-      //dnd($city);
-    }elseif(isset($_POST["donor_city"]) && isset($_POST["donor_bloodgroup"])){
-      $donor_city = $_POST["donor_city"];
-       $blood = $_POST["donor_bloodgroup"];
-          $city = $this->StaffModel->findFromBloodAndCity($blood,$donor_city);
-          dnd($city);
+      
+}elseif(isset($_POST["nic"] ) && $_POST['nic'] != ''){
+   $nic = $_POST["nic"];
+     $city = $this->StaffModel->searchByNameNic($nic);
+     //
+}
+else{
+          $city = $this->StaffModel->getAllDonors();
+          //dnd($city);
     }
-      else{
-        $city = $this->StaffModel->findDonorWithMapData();
-      }
-     // $allData= json_encode($city, true);
+      
+
+
+
+
+
+
+
+     
+      
+     //$allData= json_encode($city, true);
    //  $allData - $city->
        //dnd($allData);
 $all ="allData";
       // $output2= "<vdiv id=".$all."> ". $allData ." </div>";
       $class = "cell100 column2";
       //dnd($value);
+       if(empty($city)){
+           $output = "No records found";
+         }
+      
       foreach($city as $v){
         
            $output .= '<table>
@@ -518,7 +797,7 @@ $all ="allData";
 								
                                    
                                         
-                   <td class="cell100 column1"> '.$v->donor_name.'</td>                
+                   <td class="cell100 column1"> <a href="'.PROOT.'staff/donorData/'.$v->id.'"> '.$v->donor_name.'</a></td>                
 									<td class="cell100 column2"> '.$v->nic.'</td>
 									<td class="cell100 column3"> '.$v->donor_bloodgroup.'</td>
 									<td class="cell100 column4"> '.$v->donor_city.'</td>
@@ -544,12 +823,12 @@ $all ="allData";
 
 public function allDonorsAction() {
 
-  $output ='';
+ 
   $allData = $this->StaffModel->findDonorWithMapData();
 
    $allData= json_encode($allData, true);
 
-      $output .=  '<div id="allData">'.$allData.'</div>' ;
+      $output =   $allData ;
         //dnd($output);
        echo($output);
 
@@ -605,6 +884,8 @@ public function staffProfileAction() {
 }
 
 public function editProfileAction($id = NULL) {
+
+ $id = base64_decode($id);
 
   if($id == NULL) {
     Router::redirect('');
@@ -678,6 +959,77 @@ $this->view->displayErrors = $validation->displayErrors();
    $this->view->render('staff/editProfile');
     }
 
+}
+
+public function forgetPasswordAction(){
+$validation = new Validate();
+
+  if($_POST){
+
+  $validation->check($_POST, [
+        
+         'staff_email' => [
+          'display' => 'Email',
+          'not_exists'=> 'staff',
+          'valid_email' =>true
+          
+          ]
+      ],false);
+
+       if ($validation->passed()) {
+        
+        $staff = $this->StaffModel->findByEmail($_POST['staff_email']);
+        $staff->hash = getToken(32);
+      // dnd($staff->id);
+        $this->StaffModel->update($staff->id, $staff);
+       $this->StaffModel->forgetPassword($_POST['staff_email'],$staff->hash,$staff->id);
+
+        Router::redirect("home/mailSent?email=".base64_encode($_POST['staff_email'])."");
+
+       }
+
+ // $staff = $this->StaffModel->findbyEmail($_POST['email']);
+  }
+$this->view->displayErrors = $validation->displayErrors();
+  $this->view->render('staff/forgetPassword');
+}
+
+public function resetPasswordAction(){
+  $id = $_GET['id'];
+  $hash = $_GET['hash'];
+   $staff = $this->StaffModel->findByID($id);
+   $validation = new Validate();
+  if($hash == $staff->hash ){
+
+  if($_POST){
+
+    $validation->check($_POST, [
+        
+        'password' => [
+          'display' => 'Password',
+          'required' => true ,
+          'min' => 6,
+        ],
+        'confirm' => [
+          'display' => 'nic',
+          'required' => true ,
+          'matches' => 'password',
+        ]
+      ],false);
+
+       if ($validation->passed()) {
+
+  $staff->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+  $staff->hash = NULL;
+    $this->StaffModel->update($staff->id, $staff);
+    }
+  }
+}else{
+  $validation->addError("Something wrong! You can not Change Password Right Now. Please try again Later");
+}
+
+$this->view->displayErrors = $validation->displayErrors();
+   $this->view->render('staff/resetPassword');
 }
 
 

@@ -18,7 +18,7 @@
 
   "Blood Donations ": {
     "Blood Donation Report": "staff/bloodDonationReport",
-    "Blood Donation Details": "staff/bloodStockDetails"
+    "Blood Donation Details": "staff/bloodDonationDetails"
   },
 
   "Login": "home/login"

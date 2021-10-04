@@ -55,6 +55,14 @@
                  }
                  break;
 
+              case 'not_exists';
+                 $check = $this->_db->query("SELECT {$item} FROM {$rule_value} WHERE {$item} = ?", [$value]);
+                 if (!$check->count()) {
+                   $this->addError(["Email Does Not Exist", $item]);
+
+                 }
+                 break;
+
                  case 'unique_update';
                   $t = explode(',', $rule_value);
                   $table = $t[0];
@@ -90,8 +98,10 @@
                     break;
 
                   case 'valid_nic';
-                    if (!preg_match('/^[V]{10}+$/', $value)) {
-                      $this->addError(["{$display} must be a valid nic number", $item]);
+                  if(validNIC($value)  ){
+                      $msg = validNIC($value); 
+                    $this->addError(["NIC Number is not valid. ".$msg, $item]);
+                   
                     }
                     break;
 

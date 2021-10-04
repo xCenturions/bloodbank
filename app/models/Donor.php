@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\PHPMailer;
     private $_isLoggedIn, $_sessionName, $_cookieName;
     public static $currentLoggedInUser = null;
     public $id,$password,$nic,$donor_email,$donor_name,$donor_lname,$donor_city,$donor_mobile,$donor_bloodgroup,$donor_age,$tested_diseases,$donor_sex,$dob,
-     $verification_code,$is_active,$form,$acl,$deleted = 0;
+     $verification_code,$is_active,$form,$acl,$hash,$deleted = 0;
     public function __construct($user='')
     {
       $table = 'donor';
@@ -128,12 +128,16 @@ use PHPMailer\PHPMailer\PHPMailer;
       'conditions' => 'donor_id = ?',
       
     ];
-    $result = $this->query('SELECT * FROM donor LEFT JOIN cities on 
+    $result = $this->query('SELECT * FROM cities LEFT JOIN donor on 
     donor.donor_city = cities.name where donor_city = ? ',[$donor_city]);
     // dnd($result);
     return $result->results();
 
   }
+   public function findByEmail($email)
+    {
+      return $this->findFirst(['conditions'=>"staff_email = ?", 'bind'=>[$email]]);
+    }
 
   public function findDonorData($id)
   {
@@ -210,6 +214,26 @@ public function verification($email,$confirmation,$name){
       $results = $this->query($query,[])->results();
        
          return $results;
+
+  }
+  public function forgetPassword($email,$hash,$id){
+       include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
+    //constructing email.
+    $subject = "Change Password";
+  $link = $siteURL."donor/resetPassword?id=".$id."&hash=".$hash."";
+    //change the HTML code of the mailer here. Be sure to include the confirmation link!
+    $body = "<html>
+              <body>
+
+                <p> Click <a href=\"".$link."\">here</a> to reset your password.</p>
+
+              </body>
+            </html>";
+  //This will display if the mail client cannot display HTML.
+    $altBody = "";
+
+    //sending mail:
+      sendMail($email, $body, $altBody,$subject);
 
   }
 

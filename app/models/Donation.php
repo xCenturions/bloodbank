@@ -49,6 +49,26 @@ class Donation extends Model
 
     }
 
+    public function piechartBank($bank){
+
+         $stock = $this->query('SELECT bld_grp,bld_banks,  count(*) as count FROM donation where bld_banks = ? GROUP BY bld_grp  ',[$bank]);  
+        //  $db = DB::getInstance();
+         $results = $stock->results();
+        //dnd($results);
+         return $results;
+
+    }
+
+public function barchartBank($banks){
+
+         $stock =  $this->query("SELECT COUNT(id) as count,MONTHNAME(date) as month_name FROM donation WHERE bld_banks = ? AND  YEAR(date) = '" . date('Y') ."'  GROUP BY YEAR(date),MONTH(date)  ",[$banks]);  
+         //$db = DB::getInstance();
+         $results = $stock->results();
+
+         return $results;
+
+    }
+
      public function findDonorById($id)
   {
     $conditions = [
@@ -58,6 +78,60 @@ class Donation extends Model
     $conditions = array_merge($conditions);
     return $this->find($conditions);
   }
+public function bloodBankSort($bank)
+    {
+      return $this->find(['conditions'=>"bld_banks = ?", 'bind'=>[$bank]]);
+    }
 
+public function getAllDonations(){
+   $stock = $this->query('SELECT *  FROM donation INNER JOIN donor on 
+    donation.donor_id = donor.id   ',[]);  
+
+      $results = $stock->results();
+
+         return $results;
+
+}
+
+public function sortByBldAndDate($bank,$toDate,$fromDate){
+
+   $stock = $this->query('SELECT *  FROM donation INNER JOIN donor on 
+    donation.donor_id = donor.id where bld_banks = ? AND date BETWEEN ? and ?   ',[$bank,$toDate,$fromDate]);  
+
+      $results = $stock->results();
+
+         return $results;
+
+}
+public function sortByDate($toDate,$fromDate){
+
+   $stock = $this->query('SELECT *  FROM donation INNER JOIN donor on 
+    donation.donor_id = donor.id where  date BETWEEN ? and ?   ',[$toDate,$fromDate]);  
+
+      $results = $stock->results();
+
+         return $results;
+
+}
+public function findFromBank($bank){
+
+   $stock = $this->query('SELECT *  FROM donation INNER JOIN donor on 
+    donation.donor_id = donor.id where  bld_banks = ? ',[$bank]);  
+
+      $results = $stock->results();
+
+         return $results;
+
+}
+public function findFromNic($nic){
+
+   $stock = $this->query('SELECT *  FROM donation INNER JOIN donor on 
+    donation.donor_id = donor.id where  nic = ?  ',[$nic]);  
+
+      $results = $stock->results();
+
+         return $results;
+
+}
 
 }

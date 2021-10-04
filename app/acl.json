@@ -2,10 +2,17 @@
   "Guest": {
     "denied": {},
     "Home": ["*"],
-    "Donor": ["login", "register", "verify", "contactus"],
+    "Donor": [
+      "login",
+      "register",
+      "verify",
+      "contactus",
+      "forgetPassword",
+      "resetPassword"
+    ],
     "Admin": ["index"],
     "Restricted": ["*"],
-    "Staff": ["login"]
+    "Staff": ["login", "forgetPassword", "resetPassword"]
   },
   "LoggedIn": {
     "denied": {

@@ -297,9 +297,9 @@
           
           $donor[0]->is_active = "confirm";
            $this->DonorModel->update($id, $donor[0]);
-           
 
-
+        }else{
+          //////Account already verified *********************add a page to this
         }
     }
   
@@ -898,5 +898,78 @@ $pdf->Output('Donor Form.pdf','D');
         
 
     }
+
+
+    public function forgetPasswordAction(){
+$validation = new Validate();
+
+  if($_POST){
+
+  $validation->check($_POST, [
+        
+         'donor_email' => [
+          'display' => 'Email',
+          'not_exists'=> 'donor',
+          'valid_email' =>true
+          
+          ]
+      ],false);
+
+       if ($validation->passed()) {
+        
+        $donor = $this->DonorModel->findByEmail($_POST['donor_email']);
+        $donor->hash = getToken(32);
+      // dnd($staff->id);
+        $this->DonorModel->update($donor->id, $donor);
+       $this->DonorModel->forgetPassword($_POST['donor_email'],$donor->hash,$donor->id);
+
+        Router::redirect("home/mailSent?email=".base64_encode($_POST['donor_email'])."");
+
+       }
+
+ // $staff = $this->StaffModel->findbyEmail($_POST['email']);
+  }
+$this->view->displayErrors = $validation->displayErrors();
+  $this->view->render('donor/forgetPassword');
+}
+
+public function resetPasswordAction(){
+  $id = $_GET['id'];
+  $hash = $_GET['hash'];
+   $donor = $this->DonorModel->findByID($id);
+   $validation = new Validate();
+  if($hash == $donor->hash ){
+
+  if($_POST){
+
+    $validation->check($_POST, [
+        
+        'password' => [
+          'display' => 'Password',
+          'required' => true ,
+          'min' => 6,
+        ],
+        'confirm' => [
+          'display' => 'nic',
+          'required' => true ,
+          'matches' => 'password',
+        ]
+      ],false);
+
+       if ($validation->passed()) {
+
+  $donor->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+  $donor->hash = NULL;
+    $this->StaffModel->update($donor->id, $donor);
+    }
+  }
+}else{
+  $validation->addError("Something wrong! You can not Change Password Right Now. Please try again Later");
+}
+
+$this->view->displayErrors = $validation->displayErrors();
+   $this->view->render('donor/resetPassword');
+}
+
 
 }

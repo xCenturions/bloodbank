@@ -1,4 +1,5 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
   class Model{
     protected $_db, $_table, $_modelName, $_softDelete = false;
     public $id;
@@ -142,6 +143,49 @@
         $this->$key = $val ;
       }
     }
+
+public function sendMail($toEmail, $emailBody, $emailAltBody,$sub)
+{
+  include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
+  include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS  .'vendor' . DS . 'autoload.php');
+
+  //dnd($toEmail);
+
+  $mail = new PHPMailer();
+  $mail->isSMTP();
+  $mail->Host = $mailHost;
+  
+ 
+  $mail->SMTPAuth = true;
+  $mail->Username = $mailUsername;
+  $mail->Password = $mailPassword;
+  $mail->SMTPSecure = $mailEncryptionType;
+  $mail->Port = $mailPortNumber;
+
+  $mail->setFrom($fromEmailID, $fromName);
+  $mail->addAddress($toEmail);
+
+  if($replyToEmailID)
+  $mail->addReplyTo($replyToEmailID);
+
+  if($BCCEmailID)
+  $mail->addBCC($BCCEmailID);
+
+
+
+  $mail->isHTML(true);
+
+  $mail->Subject = $sub;
+  $mail->Body    = $emailBody;
+  $mail->AltBody = $emailAltBody;
+
+  if(!$mail->send()) {
+      echo 'Message could not be sent.';
+      echo 'Mailer Error: ' . $mail->ErrorInfo;
+  } else {
+      //echo 'Message has been sent. Please check your inbox and spam folder.';
+  }
+}
   }
 
 

@@ -1,5 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
+use SLWDC\NICParser\Parser;
+use SLWDC\NICParser\Exception\InvalidArgumentException;
 function dnd($data){
   echo '<pre>';
   var_dump($data);
@@ -218,7 +220,7 @@ function countMessage(){
   }
 
 
-    function sendMail($toEmail, $emailBody, $emailAltBody)
+    function sendMail($toEmail, $emailBody, $emailAltBody,$sub)
 {
   include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
   include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS  .'vendor' . DS . 'autoload.php');
@@ -249,7 +251,7 @@ function countMessage(){
 
   $mail->isHTML(true);
 
-  $mail->Subject = $subject2;
+  $mail->Subject = $sub;
   $mail->Body    = $emailBody;
   $mail->AltBody = $emailAltBody;
 
@@ -260,4 +262,20 @@ function countMessage(){
       //echo 'Message has been sent. Please check your inbox and spam folder.';
   }
 }
- 
+
+function validNIC($nic) {
+  
+//dnd($nic);
+        try {
+          $parser = new Parser($nic);
+         
+        }
+        catch (\SLWDC\NICParser\Exception\InvalidArgumentException $exception) {
+           if($exception->getMessage()){
+             $msg = $exception->getMessage();
+             return $msg;
+          
+           } // "Birthday indicator is invalid."
+        }
+}
+

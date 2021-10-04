@@ -211,6 +211,9 @@ td {
   width: 13%;
   padding-right: 40px;
 }
+.column8 {
+  width: 13%;
+}
 
 .table100-head th {
   padding-top: 18px;

@@ -32,16 +32,59 @@
 
     <div class="d-flex justify-content-between align-items-center">
       <h2>Blood Stock Details</h2>
-      <ol>
-        <li><a href="index.html">Home</a></li>
-        <li>Team</li>
-      </ol>
+      
     </div>
 
   </div>
 </section>
+<form action="<?=PROOT?>staff/searchDonors" method="post" style="margin-top:20px;text-align: center">
+		
+			
+			<div class="row" style="margin-left:400px"> 
 
-<div class="limiter">
+				<div class="col-md-3" >
+						<input  class="form-control" id="nic" name="nic"  value="" style="width: 300px ; height: 50px;" placeholder="Enter Name or NIC ">
+							
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select name="donor_city" class="form-control" id="bld_banks" name="bld_banks"  value="" style="width: 300px ; height: 50px;">
+							<option value="" selected="" disabled="" >Select Blood bank</option>
+							<?php foreach($this->banks as $ci): ?>
+								<option value="<?= $ci->bloodbank ?>" ><?= $ci->bloodbank?></option>
+							<?php endforeach; ?>
+						</select>
+					</div>
+					<div class="col-md-3"  >
+						<select name="bld_grps" class="form-control" id="bld_grps" style="width: 300px ; height: 50px;">
+							<option value="" selected="" disabled="" >Select Blood Group</option>
+							
+								<option value="A+">A+</option>
+								<option value="A-">A-</option>
+								<option value="B+">B+</option>
+								<option value="B-">B-</option>
+								<option value="AB+">AB+</option>
+								<option value="AB-">AB-</option>
+								<option value="O+">O+</option>
+								<option value="O-">O-</option>
+								<option value="Other">Other</option>
+						</select>
+					</div>
+
+				
+					
+				
+					<div class="col-md-1">
+					
+						<button type="button" id="refresh" class="btn btn-danger">Reset</button>
+						</div>
+						
+					</div>
+	  
+</form>
+
+
+
 		<div class="container-table100">
 			<div class="wrap-table100">
 
@@ -53,6 +96,7 @@
 									<th class="cell100 column1">Donor NIC</th>
 									<th class="cell100 column2">Blood Group</th>
 									<th class="cell100 column3">Blood Bank Name</th>
+									<th class="cell100 column8">Added Date</th>
 									<th class="cell100 column4">RBC</th>
 									<th class="cell100 column5">WBC </th>
 									<th class="cell100 column6">Plasma </th>
@@ -63,55 +107,8 @@
 						</table>
 					</div>
 
-					<div class="table100-body js-pscroll">
-						<table>
-							<tbody>
-                                
-								<?php foreach($this->stock as $stock): ?>
-                                   
-                                        
-                                    <td class="cell100 column1">
-                                        <!-- <a href="<?=PROOT?>staff/stockData/<?= $stock->id ?>" > -->
-                                            <?= $stock->donor_nic; ?>
-                                        <!-- </a> -->
-                                        </td>
-									<td class="cell100 column2"><?= $stock->bld_grps;?></td>
-									<td class="cell100 column3"><?= $stock->bld_banks;?></td>
-
-									<?php if($stock->bld_rbc == 1): ?>
-									<td class="cell100 column4"><i class="bi bi-check-lg"></i></td>
-									<?php else: ?>
-										<td class="cell100 column4"><i class="bi bi-dash-lg"></i></td>
-									<?php endif; ?>
-
-									<?php if($stock->bld_wbc == 1): ?>
-									<td class="cell100 column5"><i class="bi bi-check-lg"></i></td>
-									<?php else: ?>
-										<td class="cell100 column5"><i class="bi bi-dash-lg"></i></td>
-									<?php endif; ?>
-
-									<?php if($stock->bld_plasma == 1): ?>
-									<td class="cell100 column6"><i class="bi bi-check-lg"></i></td>
-									<?php else: ?>
-										<td class="cell100 column6"><i class="bi bi-dash-lg"></i></td>
-									<?php endif; ?>
-
-									<?php if($stock->bld_plates == 1): ?>
-									<td class="cell100 column7"><i class="bi bi-check-lg"></i></td>
-									<?php else: ?>
-										<td class="cell100 column7"><i class="bi bi-dash-lg"></i></td>
-									<?php endif; ?>
-
-
-
-
-
-								</tr>
-
-								  <?php endforeach; ?>
-							</tbody>
-						</table>
-					</div>
+						<div  class="table100-body js-pscroll" id="search" name="search">
+				</div>
 				</div>
 </div>
 </div>
@@ -141,6 +138,102 @@
         	</script>
         <!--===============================================================================================-->
         	<script src="<?=PROOT?>js/appo_tb_main.js"></script>
+
+			<script>
+
+		$(document).ready(function(){
+
+		
+			$("#bld_grps").change(function(){
+				loadData();
+			});
+			$("#bld_banks").change(function(){
+				loadData();
+			});
+
+			$("#search").load("http://localhost/bloodbank/staff/stockDetails");
+			$("#refresh").click(function(){
+				$("#search").load("http://localhost/bloodbank/staff/stockDetails");
+				$("#bld_grps").val("");
+				$("#bld_banks").val("");
+				$("#nic").val("");
+			});
+
+			
+			// $("#allData").load("http://localhost/bloodbank/staff/allDonors" );
+			// var data1=$("#data").val();
+		
+			// $.ajax({
+			// 		url:"http://localhost/bloodbank/staff/allDonors",
+			// 		method:"POST",
+			// 		// dataType:"html",
+			// 		data:{allData:data1},
+			// 		success:function(data1){
+			// 			console.log("This data", data1); 
+			// 			$("#allData").html(data1);
+			// 		}
+			// 		});
+			
+		function loadData(){
+			
+					var name =$("#bld_banks").val();
+				var check =$("#bld_grps").val();
+				console.log(check);
+				$.ajax({
+					url:"http://localhost/bloodbank/staff/stockDetails",
+					method:"POST",
+					data:{bld_grps:check , bld_banks:name},
+					success:function(data){
+						console.log("This data", data); 
+						$("#search").html(data);
+						check.reset();
+						name.reset();
+					}
+					
+					
+				});
+			};
+
+			// $("#bld_grps").change(function(){
+			// 		var check =$("#bld_grps").val();
+			// 	var name =$("#bld_banks").val();
+			// 	console.log(check);
+			// 	$.ajax({
+			// 		url:"http://localhost/bloodbank/staff/stockDetails",
+			// 		method:"POST",
+			// 		data:{bld_banks:name , bld_grps:check},
+			// 		success:function(data){
+			// 			console.log("This data", data); 
+			// 			$("#search").html(data);
+						
+			// 		}
+					
+					
+			// 	});
+			// });
+
+			$("#nic").keyup(function(){
+				var nic = $("#nic").val();
+					var check =$("#bld_grps").val();
+				var name =$("#bld_banks").val();
+				console.log(check);
+				$.ajax({
+					url:"http://localhost/bloodbank/staff/stockDetails",
+					method:"POST",
+					data:{bld_banks:name , bld_grps:check,nic:nic},
+					success:function(data){
+						console.log("This data", data); 
+						$("#search").html(data);
+						
+					}
+					
+					
+				});
+			});
+			
+		});
+	</script>
+
 
 
 <?php $this->end(); ?>

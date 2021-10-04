@@ -3,7 +3,7 @@
   class Staff extends Model {
     private $_isLoggedIn, $_sessionName, $_cookieName;
     public static $currentLoggedInUser = null;
-    public $id,$password,$username,$staff_email,$staff_name,$staff_mobile,$staff_address,$acl,$pro_img,$file,$deleted = 0;
+    public $id,$password,$username,$staff_email,$staff_name,$staff_mobile,$staff_address,$acl,$pro_img,$designation,$hash,$nic,$deleted = 0;
     public function __construct($user='')
     {
       $table = 'staff';
@@ -78,13 +78,16 @@
 
     public function registerNewUser($params)
     {
+      
       $this->assign($params);
-       // $this->id = $params['id'];
+      
         if ($params['acl']){
             $this->acl = htmlspecialchars_decode($params['acl'],ENT_QUOTES);
         }
-      $this->deleted = 0 ;
+       // dnd($this->acl);
+     
       $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+      $this->deleted = 0 ;
       $this->save();
     }
 
@@ -95,6 +98,10 @@
      public function findById($id)
     {
       return $this->findFirst(['conditions'=>"id = ?", 'bind'=>[$id]]);
+    }
+     public function findByEmail($email)
+    {
+      return $this->findFirst(['conditions'=>"staff_email = ?", 'bind'=>[$email]]);
     }
 
     public function acls()
@@ -111,7 +118,7 @@
       'conditions' => 'donor_id = ?',
       
     ];
-    $result = $this->query('SELECT * FROM donor LEFT JOIN cities  on donor.donor_city = cities.name ',[]);
+    $result = $this->query('SELECT * FROM cities LEFT JOIN donor  on donor.donor_city = cities.name ',[]);
     // dnd($result);
     return $result->results();
 
@@ -120,7 +127,7 @@
   public function searchDonorsByCity($donor_city){
     //dnd($donor_city);
 
-      $result = $this->query('SELECT * FROM donor LEFT JOIN cities on donor.donor_city = cities.name where donor_city = ?',[$donor_city]);
+      $result = $this->query('SELECT * FROM cities LEFT JOIN donor on donor.donor_city = cities.name where donor_city = ?',[$donor_city]);
      // dnd($result->results());
 
     return $result->results();
@@ -129,6 +136,12 @@
 
     public function getAllCities(){
         return $this->findFromTable('cities');
+    }
+    public function getAllDonors(){
+        return $this->findFromTable('donor');
+    }
+    public function getAllBloodBanks(){
+        return $this->findFromTable('bloodbanks');
     }
 
 
@@ -144,6 +157,7 @@
 
    return $sql;
   }
+
 
   public function findFromBlood($bld){
     $conditions = [
@@ -177,7 +191,7 @@
     include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
     //constructing email.
    
-   
+   $sub = "Request To Donate Blood";
 
     //change the HTML code of the mailer here. Be sure to include the confirmation link!
     $body = "<html>
@@ -193,10 +207,71 @@
     $altBody = "";
 
     //sending mail:
-    sendMail($email, $body, $altBody);
+    sendMail($email, $body, $altBody,$sub);
 
   }
 
+  public function sendAccountDetails($email,$name,$username,$password){
+    $subject = "Your Account Details";
 
+    //change the HTML code of the mailer here. Be sure to include the confirmation link!
+    $body = "<html>
+              <body>
+
+                <p>Hi,".$name."</p>
+                
+                <p>Your Account Has been successfully created</p>
+                <p>Here's your Username : ".$username."</p>
+                <p>Here's your Password : ". $password."</p>
+
+              </body>
+            </html>";
+  //This will display if the mail client cannot display HTML.
+    $altBody = "";
+
+    //sending mail:
+      sendMail($email, $body, $altBody,$subject);
+
+  }
+  public function forgetPassword($email,$hash,$id){
+       include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
+    //constructing email.
+    $subject = "Change Password";
+  $link = $siteURL."staff/resetPassword?id=".$id."&hash=".$hash."";
+    //change the HTML code of the mailer here. Be sure to include the confirmation link!
+    $body = "<html>
+              <body>
+
+                <p> Click <a href=\"".$link."\">here</a> to reset your password.</p>
+
+              </body>
+            </html>";
+  //This will display if the mail client cannot display HTML.
+    $altBody = "";
+
+    //sending mail:
+      sendMail($email, $body, $altBody,$subject);
+
+  }
+
+  public function sortBy($bld,$city){
+
+     $result = $this->query('SELECT * FROM donor where donor_bloodgroup = ? AND donor_city =?',[$bld,$city]);
+     //dnd($result);
+    return $result->results();
+
+  }
+
+ 
+
+
+
+
+  
+  public function searchByNameNic($nic){
+     $result = $this->query('SELECT * FROM donor where donor_name = ? OR nic  =?  ',[$nic,$nic]);
+  //dnd($result->results());
+   return $result->results();
+  }
 
 }    

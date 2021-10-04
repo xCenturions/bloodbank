@@ -1,4 +1,6 @@
 <?php
+use SLWDC\NICParser\Parser;
+use SLWDC\NICParser\Exception\InvalidArgumentException;
 
 class AdminController extends Controller{
 
@@ -81,21 +83,43 @@ class AdminController extends Controller{
 
   public function staffRegisterAction()
   {
+    $this->view->username = '';
+      $posted_values = ['staff_name'=>'','staff_email'=>'', 'username'=>'',  'staff_address'=>'','staff_mobile'=>'' ,'nic'=>'','designation'=>'','assigned'=>'','acl'=>'','password'=>''];
+        
+  //  if(isset($_POST['staff_name'])){
+  //    $string=$_POST['staff_name'];
+  //    $pattern = " ";
+  //     $firstPart = strstr(strtolower($string), $pattern, true);
+  //     $secondPart = substr(strstr(strtolower($string), $pattern, false), 0,3);
+  //     $nrRand = rand(0, 100);
+
+  //     $username = trim($firstPart).trim($secondPart).trim($nrRand);
+  //   //dnd($username);
+  //    
+  //   $this->view->post = $posted_values;
+   
+    
+  //  }
+    
     $validation = new Validate();
-    $posted_values = ['staff_name'=>'','staff_email'=>'', 'username'=>'', 'password'=>'', 'confirm'=>'', 'staff_address'=>'','staff_mobile'=>''];
-                  
+    
+        //dnd($_POST);    
     if ($_POST) {
+    
       $posted_values = posted_values($_POST);
       //dnd($_POST);       
-      $validation->check($_POST, [
+      $validation->check($posted_values, [
         'staff_name' => [
           'display' => 'Name',
           'required' => true
         
         ],
 
+        
+        
+
         'username' => [
-          'display' => 'National Identity Card Number',
+          'display' => 'Username',
           'required' => true ,
           'unique' => 'staff',
           'min' => 6,
@@ -109,27 +133,54 @@ class AdminController extends Controller{
           'max' => 150,
           'valid_email' => true
         ],
-        'password' => [
-          'display' => 'Password',
-          'required' => true ,
-          'min' => 6,
-        ],
-        'confirm' => [
-          'display' => 'nic',
-          'required' => true ,
-          'matches' => 'password',
-          ]
+
+        'nic' => [
+          'display' => 'NIC',
+           'required' => true ,
+          'valid_nic' => true
+        ]
+      
       ],true);
+      
      
       if ($validation->passed()) {
+
         $newUser = new Staff();
-        $newUser->registerNewUser($_POST);
+
+          $pattern = " ";
+      $firstPart = strstr(strtolower($posted_values['staff_name']), $pattern, true);
+      $secondPart = substr(strstr(strtolower($posted_values['staff_name']), $pattern, false), 0,3);
+      $nrRand = rand(0, 100);
+
+      $posted_values['password'] = trim($firstPart).trim($secondPart).trim($nrRand);
+      //dnd( $posted_values['password']);
+     
+    //constructing email.
+   
+ 
+        $newUser->sendAccountDetails($posted_values['staff_email'],$posted_values['staff_name'],$posted_values['username'],$posted_values['password']);
+        $newUser->registerNewUser($posted_values);
+       // dnd($newUser->password);
        
         //$newUser->login();
         Router::redirect('');
 
       }
     }
+
+    $bloodbanks = $this->AdminModel->getAllBloodbanks();
+
+    $this->view->banks = $bloodbanks;
+ 
+
+
+
+
+/* This is an invalid ID number because 499 here is not indicating a valid
+birth date */
+  
+     
+
     $this->view->post = $posted_values;
     $this->view->displayErrors = $validation->displayErrors();
     $this->view->render('admin/staffRegister');

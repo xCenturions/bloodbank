@@ -92,5 +92,12 @@ class Admin extends Model {
     return $this->donor_fname . ' ' . $this->donor_lname;
   }
 
+   public function getAllBloodbanks(){
+        return $this->findFromTable('bloodbanks');
+    }
+
+
+   
+
 
 }

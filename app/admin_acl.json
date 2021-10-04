@@ -6,10 +6,14 @@
     "Staff Members": "admin/staffDetails"
   },
 
-  "Donor": {
-    "Registered Donors": "admin/donorDetails",
+  "Patients": "staff/patientRegister",
+
+  "Donors": {
+    "Search Donors": "staff/searchDonors",
+    "Registered Donors": "staff/donorDetails",
     "Add a new Donor": "donor/register"
   },
+
   "Blood Stock ": {
     "Blood Stock Report": "staff/bloodStockReport",
     "Blood Stock Details": "staff/bloodStockDetails"

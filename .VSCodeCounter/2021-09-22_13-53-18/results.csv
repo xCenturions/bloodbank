@@ -1,0 +1,8 @@
+"filename", "language", "PHP", "comment", "blank", "total"
+"c:\xampp\htdocs\bloodbank\app\controllers\AdminController.php", "PHP", 109, 22, 58, 189
+"c:\xampp\htdocs\bloodbank\app\controllers\AppoController.php", "PHP", 56, 10, 20, 86
+"c:\xampp\htdocs\bloodbank\app\controllers\DonorController.php", "PHP", 589, 114, 273, 976
+"c:\xampp\htdocs\bloodbank\app\controllers\HomeController.php", "PHP", 49, 1, 26, 76
+"c:\xampp\htdocs\bloodbank\app\controllers\RestrictedController.php", "PHP", 9, 0, 5, 14
+"c:\xampp\htdocs\bloodbank\app\controllers\StaffController.php", "PHP", 425, 61, 274, 760
+"Total", "-", 1237, 208, 656, 2101
