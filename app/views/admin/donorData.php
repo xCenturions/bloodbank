@@ -22,23 +22,23 @@
     <div class="row">
 
       <!-- <div class="col-lg-6"> -->
-        <div class="member d-flex align-items-start">
-          <!-- <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div> -->
-          <div class="member-info">
-            <h4><?= $this->data->displayName();  ?></h4>
-            <span></span>
+      <div class="member d-flex align-items-start">
+        <!-- <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div> -->
+        <div class="member-info">
+          <h4><?= $this->data->displayName();  ?></h4>
+          <span></span>
 
-            <p><strong>Email : </strong> <?= $this->data->donor_email ?></p>
-            
+          <p><strong>Email : </strong> <?= $this->data->donor_email ?></p>
 
-            
-            <a href="<?= PROOT ?>donor/qrcode/<?= $this->data->id?>" class="getstarted">Generate QR Code</a>
-          </div>
+
+
+          <a href="<?= PROOT ?>donor/qrcode/<?= $this->data->id ?>" class="getstarted">Generate QR Code</a>
         </div>
       </div>
+    </div>
 
-     
-      
-      
 
-      <?php $this->end(); ?>
+
+
+
+    <?php $this->end(); ?>

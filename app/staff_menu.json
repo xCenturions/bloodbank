@@ -7,18 +7,23 @@
 
   "Donors": {
     "Search Donors": "staff/searchDonors",
-    "Registered Donors": "staff/donorDetails",
+    "Registered Donors": "reports/donorDetails",
     "Add a new Donor": "donor/register"
   },
 
   "Blood Stock ": {
-    "Blood Stock Report": "staff/bloodStockReport",
-    "Blood Stock Details": "staff/bloodStockDetails"
+    "Blood Stock Report": "reports/bloodStockReport",
+    "Blood Stock Details": "reports/bloodStockDetails"
   },
 
   "Blood Donations ": {
-    "Blood Donation Report": "staff/bloodDonationReport",
-    "Blood Donation Details": "staff/bloodDonationDetails"
+    "Blood Donation Report": "reports/bloodDonationReport",
+    "Blood Donation Details": "reports/bloodDonationDetails"
+  },
+
+  "Lab ": {
+    "Unchecked Blood": "mlt/checkDonations",
+    "Checked Blood": "mlt/checkedBlood"
   },
 
   "Login": "home/login"

@@ -8,34 +8,32 @@
 
 
 
-  
-	<script>
-const buttons = document.querySelectorAll("button");
 
-function buttonHandler() {
-  const imgId = this.querySelector("img").getAttribute("id");
+<script>
+  const buttons = document.querySelectorAll("button");
 
-  document.querySelector('style').textContent =
-    `@media print {
+  function buttonHandler() {
+    const imgId = this.querySelector("img").getAttribute("id");
+
+    document.querySelector('style').textContent =
+      `@media print {
         img { display: none; }
         #${imgId} { display: block; }
       }`;
 
-  if (window.print) {
-    window.print();
+    if (window.print) {
+      window.print();
+    }
   }
-}
 
-buttons.forEach(button => {
-  button.addEventListener("click", buttonHandler);
-});
-	</script>
-  <div style="text-align: center; padding-top: 50px;">
+  buttons.forEach(button => {
+    button.addEventListener("click", buttonHandler);
+  });
+</script>
+<div style="text-align: center; padding-top: 50px;">
 
-<button><img id="img1" src="data:image/png;base64, <?= $this->qr_image; ?>" alt=""></button>
-  </div>
+  <button><img id="img1" src="data:image/png;base64, <?= $this->qr_image; ?>" alt=""></button>
+</div>
 
 
 <?php $this->end(); ?>
-
-

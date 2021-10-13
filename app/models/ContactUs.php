@@ -28,6 +28,3 @@ public $deleted = 0;
   
 
 }
-
-
-?>

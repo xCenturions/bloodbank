@@ -14,10 +14,9 @@ class Location extends Model
     }
 
     // Get all locations
-    public function getAllLocations( $params = [])
+    public function getAllLocations($params = [])
     {
-        $conditions = [
-        ];
+        $conditions = [];
         $conditions = array_merge($conditions, $params);
 
         return $this->findWithoutSoftDelete($conditions);
@@ -35,7 +34,8 @@ class Location extends Model
     }
 
     //Get all types from type table without model direct access to DB
-    public function getAllTypes(){
+    public function getAllTypes()
+    {
         return $this->findFromTable('type');
     }
 
@@ -43,6 +43,4 @@ class Location extends Model
     {
         return $this->fname . ' ' . $this->lname;
     }
-
-   
 }

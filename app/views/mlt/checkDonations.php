@@ -23,9 +23,6 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/appo_tb_util.css">
 <link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/appo_tb_main.css">
-<link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/check.css">
-<link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/add.css">
-
 
 <!--===============================================================================================-->
 
@@ -34,7 +31,7 @@
 	<div class="container">
 
 		<div class="d-flex justify-content-between align-items-center">
-			<h2> Checked Blood Samples</h2>
+			<h2> Unchecked Blood Samples</h2>
 
 		</div>
 
@@ -103,6 +100,8 @@
 
 <script src="<?= PROOT ?>vendor/jquery/jquery-3.2.1.min.js"></script>
 
+
+
 <div class='container'>
 	<div class="modal fade" style="top:20%;" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -117,7 +116,32 @@
 						</div>
 					</div>
 					<div>
-						<h1>Successfully Added! </h1>
+						<h1>Succesfully Approved! </h1>
+					</div>
+				</div>
+				<div class="modal-header border-0 mb-2">
+
+				</div>
+				<div class="modal-body"> <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button> </div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class='container'>
+	<div class="modal fade" style="top:20%;" id="rejectedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content p-4" style="align-items: center;border-radius: 30px;">
+				<div class='top'>
+					<div class="success-checkmark">
+						<div class="check-icon">
+							<span class="icon-line line-tip"></span>
+							<span class="icon-line line-long"></span>
+							<div class="icon-circle"></div>
+							<div class="icon-fix"></div>
+						</div>
+					</div>
+					<div>
+						<h1>Succesfully Rejected! </h1>
 					</div>
 				</div>
 				<div class="modal-header border-0 mb-2">
@@ -129,8 +153,11 @@
 	</div>
 </div>
 
-<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-notify modal-success" role="document">
+
+
+<!-- Central Modal Medium Danger -->
+<div class="modal fade" id="centralModalDanger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-notify modal-danger" role="document">
 		<!--Content-->
 		<div class="modal-content">
 			<!--Header-->
@@ -144,69 +171,26 @@
 
 			<!--Body-->
 			<div class="modal-body">
+				<div class="text-center">
+					<i class="fas fa-ban fa-4x mb-3 animated rotateIn"></i>
+					<div>
+						<h3>CM Number : <span id="d_id"></span> </h3>
+					</div>
+					<textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+					<label for="message">Your message</label>
 
-
-				<div>
-					<h4>CM Number : <span id="cm"></span> </h4>
-					<h4>NIC Number : <span id="nic"></span> </h4>
-					<h4>Blood Group : <span id="bld_grp"></span> </h4>
 				</div>
-				<hr>
-
-
-				<strong>Please Select Blood Cells</strong><br>
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="checkbox" id="bld_rbc" value="1" />
-					<label class="form-check-label" for="inlineCheckbox1">RBC</label>
-				</div>
-
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="checkbox" id="bld_wbc" value="1" />
-					<label class="form-check-label" for="inlineCheckbox2">WBC</label>
-				</div>
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="checkbox" id="bld_plates" value="1" />
-					<label class="form-check-label" for="inlineCheckbox1">Platlets</label>
-				</div>
-
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="checkbox" id="bld_plasma" value="1" />
-					<label class="form-check-label" for="inlineCheckbox2">Plasma</label>
-				</div>
-
-
-
 			</div>
 
 			<!--Footer-->
 			<div class="modal-footer justify-content-center">
-				<a id="add" data-toggle="modal" data-target="#exampleModal" data-dismiss="modal" type="button" class="btn btn-success">Submit <i class="fa fa-check ml-1 text-white"></i></a>
+				<a id="reject" data-toggle="modal" data-target="#rejectedModal" data-dismiss="modal" type="button" class="btn btn-danger">Submit <i class="fa fa-check ml-1 text-white"></i></a>
 
 			</div>
 		</div>
 		<!--/.Content-->
 	</div>
 </div>
-
-<div id="error" class="modal fade">
-	<div class="modal-dialog modal-confirm">
-		<div class="modal-content">
-			<div class="modal-header justify-content-center">
-				<div class="icon-box">
-					<i class="fas fa-times fa-4x mb-3 animated rotateIn"></i>
-				</div>
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body text-center">
-				<h4>Ooops!</h4>
-				<p>Something went wrong. Blood not uploaded</p>
-				<button class="btn btn-success" data-dismiss="modal">Try Again</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-
 <!-- Central Modal Medium Danger-->
 
 
@@ -240,18 +224,15 @@
 			loadData();
 		});
 
-		$("#add").click(function() {
-			addToStock();
-			$('#bld_rbc').val('');
-			$('#bld_wbc').val('');
-			$('#bld_plates').val('');
-			$('#bld_plasma').val('');
-			loadData();
+		$("#reject").click(function() {
+			rejected();
+			$("#message").val("");
+
 		});
 
-		$("#search").load("http://localhost/bloodbank/staff/approvedBlood");
+		$("#search").load("http://localhost/bloodbank/mlt/check");
 		$("#refresh").click(function() {
-			$("#search").load("http://localhost/bloodbank/staff/approvedBlood");
+			$("#search").load("http://localhost/bloodbank/mlt/check");
 			$("#bld_banks").val("");
 			$("#from_date").val("");
 			$("#to_date").val("");
@@ -270,7 +251,7 @@
 
 			console.log(cm_no);
 			$.ajax({
-				url: "http://localhost/bloodbank/staff/approvedBlood",
+				url: "http://localhost/bloodbank/mlt/check",
 				method: "POST",
 				data: {
 					from_date: from_date,
@@ -300,7 +281,7 @@
 
 		console.log(to_date);
 		$.ajax({
-			url: "http://localhost/bloodbank/staff/approvedBlood",
+			url: "http://localhost/bloodbank/mlt/check",
 			method: "POST",
 			data: {
 				bld_banks: name,
@@ -322,28 +303,21 @@
 
 
 
-	function add(id) {
+
+	function approve(id) {
 
 		var cm = id;
-
-
 		//console.log(donor_id);
 		$.ajax({
-			url: "http://localhost/bloodbank/staff/add",
+			url: "http://localhost/bloodbank/mlt/approved",
 			method: "POST",
-			dataType: "JSON",
 			data: {
 				cm_no: cm
 			},
 			success: function(data) {
-				console.log("This data", data.nic);
+				console.log("This data", data);
 
-				$('#nic').html(data.nic);
-				$('#cm').html(data.cm);
-				$('#bld_grp').html(data.bld_grp);
-
-
-				//loadData();
+				loadData();
 
 			}
 
@@ -351,66 +325,26 @@
 
 	};
 
-	function addToStock() {
+	function rejected(id) {
 
-		var cm = document.getElementById("cm").innerHTML;
+		var text = $('#message').val();
+		var donor_id = id;
+		$('#d_id').html(id);
 
-		var x = $("#bld_rbc").is(":checked");
-
-		if (x) {
-			var rbc = $('#bld_rbc').val();
-		} else {
-			var rbc = 0;
-		}
-
-		var y = $("#bld_wbc").is(":checked");
-
-		if (y) {
-			var wbc = $('#bld_wbc').val();
-		} else {
-			var wbc = 0;
-		}
-
-
-		var z = $("#bld_plates").is(":checked");
-
-		if (z) {
-			var plates = $('#bld_plates').val();
-		} else {
-			var plates = 0;
-		}
-
-		var z = $("#bld_plasma").is(":checked");
-
-		if (z) {
-			var plasma = $('#bld_plasma').val();
-		} else {
-			var plasma = 0;
-		}
-
+		var d_id = document.getElementById("d_id").innerHTML;
+		console.log(d_id);
 		$.ajax({
-			url: "http://localhost/bloodbank/staff/addToStock",
+			url: "http://localhost/bloodbank/mlt/rejected",
 			method: "POST",
-
 			data: {
-				cm_no: cm,
-				rbc: rbc,
-				wbc: wbc,
-				plates: plates,
-				plasma: plasma,
-
+				text: text,
+				cm_no: d_id
 			},
 			success: function(data) {
-				console.log("yes", data);
+				console.log("text", text);
+				console.log("id", d_id);
 
-				if (data == 0) {
-
-					$('#error').modal('show');
-				}
-
-
-
-				//loadData();
+				loadData();
 
 			}
 

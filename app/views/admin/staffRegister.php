@@ -1,79 +1,78 @@
-
-
 <?php $this->start('body'); ?>
 <!-- MATERIAL DESIGN ICONIC FONT -->
-			<link rel="stylesheet" type="text/css" href="<?=PROOT?>css/roboto-font.css">
-	<link rel="stylesheet" type="text/css" href="<?=PROOT?>fonts/line-awesome/css/line-awesome.min.css">
-	<!-- Jquery -->
-	<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
-	<!-- Main Style Css -->
-    <link rel="stylesheet" href="<?=PROOT?>css/pt_style.css"/>
+<link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/roboto-font.css">
+<link rel="stylesheet" type="text/css" href="<?= PROOT ?>fonts/line-awesome/css/line-awesome.min.css">
+<!-- Jquery -->
+<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+<!-- Main Style Css -->
+<link rel="stylesheet" href="<?= PROOT ?>css/pt_style.css" />
 </head>
+
 <body class="form-v2">
 	<div class="page-content">
 		<div class="form-v2-content">
 			<div class="form-left">
-				<img src="<?=PROOT?>img/donor/pt.jpg" alt="form">
+				<img src="<?= PROOT ?>img/donor/pt.jpg" alt="form">
 				<div class="text-1">
 					<p>Register From Here</p>
 				</div>
-				
+
 			</div>
 			<form class="form-detail" action="" method="post">
 				<h2>Staff Registration Form</h2>
-				<div ><?=$this->displayErrors ?></div>
+				<div><?= $this->displayErrors ?></div>
 				<?= FH::csrfInput(); ?>
-				 <div class="form-row">
+				<div class="form-row">
 					<label for="acl">User Role</label>
-					<select class="form-control" id="acl" name="acl" value="<?=$this->post['acl']?>" required>
-						<option value="" selected="" disabled="" >Select User Role</option>
-						
-							<option value=["Doctor"] >Doctor</option>
-							<option value=["Nurse"] >Nurse</option>
-						
+					<select class="form-control" id="acl" name="acl" value="<?= $this->post['acl'] ?>" required>
+						<option value="" selected="" disabled="">Select User Role</option>
+
+						<option value=["Doctor"]>Doctor</option>
+						<option value=["Nurse"]>Nurse</option>
+
 					</select>
 				</div>
 				<div class="form-row">
 					<label for="donor_name">Full Name:</label>
-					<input type="text" name="staff_name" id="staff_name" class="input-text" placeholder="ex: Lindsey Wilson" value="<?=$this->post['staff_name']?>"required>
+					<input type="text" name="staff_name" id="staff_name" class="input-text" placeholder="ex: Lindsey Wilson" value="<?= $this->post['staff_name'] ?>" required>
 				</div>
 				<div class="form-row">
 					<label for="pt_nic">NIC Number:</label>
-					<input type="text" name="nic" id="nic" class="input-text" value="<?=$this->post['nic']?>">
+					<input type="text" name="nic" id="nic" class="input-text" value="<?= $this->post['nic'] ?>">
 				</div>
 				<div class="form-row">
 					<label for="dob">Username :</label>
-					<input type="text" name="username" id="username" class="input-text" value="<?=$this->username?>" >
+					<input type="text" name="username" id="username" class="input-text" value="<?= $this->username ?>">
 				</div>
-				
+
 				<div class="form-row">
 					<label for="dob">Email :</label>
-					<input type="email" name="staff_email" id="staff_email" class="input-text" value="<?=$this->post['staff_email']?>" >
+					<input type="email" name="staff_email" id="staff_email" class="input-text" value="<?= $this->post['staff_email'] ?>">
 				</div>
-					
-                <div class="form-row">
+
+				<div class="form-row">
 					<label for="pt_city">Assigned Blood bank</label>
-					<select class="form-control" id="assigned" name="assigned" value="<?=$this->post['assigned']?>" required >
-						<option value="" selected="" disabled="" >Select City</option>
-							<?php foreach($this->banks as $value): ?>
-							<option value="<?= $value->bloodbank ?>" ><?= $value->bloodbank?></option>
-							<?php endforeach; ?>
+					<select class="form-control" id="assigned" name="assigned" value="<?= $this->post['assigned'] ?>" required>
+						<option value="" selected="" disabled="">Select City</option>
+						<?php foreach ($this->banks as $value) : ?>
+							<option value="<?= $value->bloodbank ?>"><?= $value->bloodbank ?></option>
+						<?php endforeach; ?>
 					</select>
 				</div>
 
-				 <div class="form-row">
+				<div class="form-row">
 					<label for="designation">User Role</label>
-					<select class="form-control" id="designation" name="designation" value="<?=$this->post['designation']?>" >
-						<option value="" selected="" disabled="" >Designation</option>
-						
-							<option value="["Doctor"]" >Doctor</option>
-							<option value="["Nurse"]" >Nurse</option>
-						
+					<select class="form-control" id="designation" name="designation" value="<?= $this->post['designation'] ?>">
+						<option value="" selected="" disabled="">Designation</option>
+
+						<option value="[" Doctor"]">Doctor</option>
+						<option value="[" Nurse"]">Nurse</option>
+
 					</select>
 				</div>
-				
-                
-				
+
+
+
 				<div class="form-row-last">
 					<input type="submit" name="register Now" class="register" value="Register Now">
 				</div>
@@ -86,33 +85,33 @@
 	<script>
 		// just for the demos, avoids form submit
 		jQuery.validator.setDefaults({
-		  	debug: true,
-		  	success:  function(label){
-        		label.attr('id', 'valid');
-   		 	},
+			debug: true,
+			success: function(label) {
+				label.attr('id', 'valid');
+			},
 		});
-		$( "#myform" ).validate({
-		  	rules: {
-		    	password: "required",
-		    	confirm_password: {
-		      		equalTo: "#password"
-		    	}
-		  	},
-		  	messages: {
-		  		full_name: {
-		  			required: "Please provide an username"
-		  		},
-		  		your_email: {
-		  			required: "Please provide an email"
-		  		},
-		  		password: {
-	  				required: "Please provide a password"
-		  		},
-		  		confirm_password: {
-		  			required: "Please provide a password",
-		      		equalTo: "Wrong Password"
-		    	}
-		  	}
+		$("#myform").validate({
+			rules: {
+				password: "required",
+				confirm_password: {
+					equalTo: "#password"
+				}
+			},
+			messages: {
+				full_name: {
+					required: "Please provide an username"
+				},
+				your_email: {
+					required: "Please provide an email"
+				},
+				password: {
+					required: "Please provide a password"
+				},
+				confirm_password: {
+					required: "Please provide a password",
+					equalTo: "Wrong Password"
+				}
+			}
 		});
 	</script>
 </body>

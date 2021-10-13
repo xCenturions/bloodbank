@@ -68,7 +68,13 @@ FinishMessage = "You are available to donate blood again";
   </div>
 </section>
 <?php if(!$this->data->form == 'submitted'): ?>
-<div class="example-right"><a href="<?=PROOT?>donor/form?>">Donor didn't Fill the form Please ask him to fill the donor form</a></div>
+     <div class="col-sm-12">
+        <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+         
+     <center>      <i class="start-icon far fa-times-circle faa-flash animated"></i>
+          <strong class="font__weight-semibold"style="color:red ">Attention!</strong><span style="color:red "> Donor did not fill the Donor's Form. Please ask him to fill the form before donating blood!</span>
+        </div></center>
+      </div>
 <?php endif; ?>
 <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">

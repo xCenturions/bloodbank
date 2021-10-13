@@ -15,7 +15,7 @@
         <div class="container" data-aos="fade-up">
           <div class="row">
             <div class="col-lg-8 entries">
-                  <?php foreach ($this->messages as $mes): ?>
+                  <?php foreach ($this->message as $mes): ?>
               <article class="entry">
                 
               

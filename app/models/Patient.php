@@ -3,10 +3,10 @@
 class Patient extends Model
 {
 
-    public $id, $pt_name,$dob,$pt_mobile,$pt_city,$qty,$pt_nic,$sex,$date;
+    public $id, $pt_name, $dob, $pt_mobile, $pt_city, $qty, $pt_nic, $sex, $date;
     public $deleted = 0;
 
- public function __construct()
+    public function __construct()
     {
         $table = 'patient';
         parent::__construct($table);
@@ -14,41 +14,39 @@ class Patient extends Model
     }
 
 
- public function register($params)
+    public function register($params)
     {
 
-      $this->assign($params);
-     
-      $this->deleted = 0 ;
-     
-      $this->save();
+        $this->assign($params);
+
+        $this->deleted = 0;
+
+        $this->save();
     }
 
 
-public function piechart(){
+    public function piechart()
+    {
 
-         $stock = "SELECT bld_grps, count(*) as count FROM stock GROUP BY bld_grps ";  
+        $stock = "SELECT bld_grps, count(*) as count FROM stock GROUP BY bld_grps ";
         //  $db = DB::getInstance();
-         $results = $this->query($stock,[])->results();
-        
-         return $results;
+        $results = $this->query($stock, [])->results();
 
+        return $results;
     }
 
-public function barchart(){
+    public function barchart()
+    {
 
-         $stock = "SELECT COUNT(id) as count,MONTHNAME(date) as month_name FROM stock WHERE YEAR(date) = '" . date('Y') ."'  GROUP BY YEAR(date),MONTH(date)";  
-         $db = DB::getInstance();
-         $results = $db->query($stock)->results();
+        $stock = "SELECT COUNT(id) as count,MONTHNAME(date) as month_name FROM stock WHERE YEAR(date) = '" . date('Y') . "'  GROUP BY YEAR(date),MONTH(date)";
+        $db = DB::getInstance();
+        $results = $db->query($stock)->results();
 
-         return $results;
-
+        return $results;
     }
 
- public function getAllFromStock(){
+    public function getAllFromStock()
+    {
         return $this->findFromTable('stock');
     }
-
-
-
 }

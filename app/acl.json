@@ -49,6 +49,31 @@
     },
     "Staff": ["*"],
     "Donor": ["*"],
+    "Reports": ["*"],
+
+    "Home": ["*"]
+  },
+
+  "Nurse": {
+    "denied": {
+      "Staff": ["login"],
+      "Home": ["login"]
+    },
+    "Staff": ["*"],
+    "Reports": ["*"],
+    "Donor": ["*"],
+    "Home": ["*"]
+  },
+
+  "MLT": {
+    "denied": {
+      "Staff": ["login", "patientRegister"],
+      "Home": ["login"]
+    },
+    "Staff": ["*"],
+    "Reports": ["*"],
+    "Donor": ["*"],
+    "Mlt": ["*"],
     "Home": ["*"]
   }
 }

@@ -3,123 +3,123 @@
 class Stock extends Model
 {
 
-    public $id, $bld_rbc,$bld_wbc,$bld_plasma,$bld_plates,$bld_grps,$bld_banks,$donor_id,$donor_nic,$date;
-    public $deleted = 0;
+  public $id, $bld_rbc, $bld_wbc, $bld_plasma, $bld_plates, $bld_grps, $bld_banks, $cm_no, $donor_nic, $date;
+  public $deleted = 0;
 
- public function __construct()
-    {
-        $table = 'stock';
-        parent::__construct($table);
-        $this->_softDelete = true;
-    }
-
-
- public function addToStock($params)
-    {
-
-      $this->assign($params);
-     
-      $this->deleted = 0 ;
-     
-      $this->save();
-    }
+  public function __construct()
+  {
+    $table = 'stock';
+    parent::__construct($table);
+    $this->_softDelete = true;
+  }
 
 
-public function piechart(){
+  public function addToStock($params)
+  {
 
-         $stock = "SELECT bld_grps,bld_banks, count(*) as count FROM stock GROUP BY bld_grps ";  
-        //  $db = DB::getInstance();
-         $results = $this->query($stock,[])->results();
-        //dnd($results);
-         return $results;
+    $this->assign($params);
 
-    }
-public function piechartBank($bank){
+    $this->deleted = 0;
 
-         $stock = $this->query('SELECT bld_grps,bld_banks,  count(*) as count FROM stock where bld_banks = ? GROUP BY bld_grps  ',[$bank]);  
-        //  $db = DB::getInstance();
-         $results = $stock->results();
-        //dnd($results);
-         return $results;
+    $this->save();
+    return true;
+  }
 
-    }
-public function countBlood($bank){
 
-         $stock = $this->query('SELECT bld_grps,bld_banks,  count(*)  * 100.0 /  (100 ) as precentage FROM stock where bld_banks = ? GROUP BY bld_grps  ',[$bank]);  
-        //  $db = DB::getInstance();
-         $results = $stock->results();
-        //dnd($results);
-         return $results;
+  public function piechart()
+  {
 
-    }
+    $stock = "SELECT bld_grps,bld_banks, count(*) as count FROM stock GROUP BY bld_grps ";
+    //  $db = DB::getInstance();
+    $results = $this->query($stock, [])->results();
+    //dnd($results);
+    return $results;
+  }
+  public function piechartBank($bank)
+  {
 
-public function barchartBank($banks){
+    $stock = $this->query('SELECT bld_grps,bld_banks,  count(*) as count FROM stock where bld_banks = ? GROUP BY bld_grps  ', [$bank]);
+    //  $db = DB::getInstance();
+    $results = $stock->results();
+    //dnd($results);
+    return $results;
+  }
+  public function countBlood($bank)
+  {
 
-         $stock =  $this->query("SELECT COUNT(id) as count,MONTHNAME(date) as month_name FROM stock WHERE bld_banks = ? AND  YEAR(date) = '" . date('Y') ."'  GROUP BY YEAR(date),MONTH(date)  ",[$banks]);  
-         //$db = DB::getInstance();
-         $results = $stock->results();
+    $stock = $this->query('SELECT bld_grps,bld_banks,  count(*)  * 100.0 /  (100 ) as precentage FROM stock where bld_banks = ? GROUP BY bld_grps  ', [$bank]);
+    //  $db = DB::getInstance();
+    $results = $stock->results();
+    //dnd($results);
+    return $results;
+  }
 
-         return $results;
+  public function barchartBank($banks)
+  {
 
-    }
+    $stock =  $this->query("SELECT COUNT(id) as count,MONTHNAME(date) as month_name FROM stock WHERE bld_banks = ? AND  YEAR(date) = '" . date('Y') . "'  GROUP BY YEAR(date),MONTH(date)  ", [$banks]);
+    //$db = DB::getInstance();
+    $results = $stock->results();
 
- public function getAllFromStock(){
-        return $this->findFromTable('stock');
-    }
+    return $results;
+  }
 
-// public function findFromBlood($bld){
-    
+  public function getAllFromStock()
+  {
+    return $this->findFromTable('stock');
+  }
 
-//      $result = $this->query('SELECT * FROM stock where bld_grps = ? ',[$bld]);
-//      //dnd($result);
-//     return $result->results();
+  // public function findFromBlood($bld){
 
-//   }
 
-    public function findFromBlood($bld)
-    {
-      return $this->find(['conditions'=>"bld_grps = ?", 'bind'=>[$bld]]);
-    }
-    public function bloodBankSort($bank)
-    {
-      return $this->find(['conditions'=>"bld_banks = ?", 'bind'=>[$bank]]);
-    }
-    public function sortByBldAndBank($bld,$bank)
-    {
-       $result = $this->query('SELECT * FROM stock where bld_grps = ? AND bld_banks =?',[$bld,$bank]);
-     //dnd($result);
+  //      $result = $this->query('SELECT * FROM stock where bld_grps = ? ',[$bld]);
+  //      //dnd($result);
+  //     return $result->results();
+
+  //   }
+
+  public function findFromBlood($bld)
+  {
+    return $this->find(['conditions' => "bld_grps = ?", 'bind' => [$bld]]);
+  }
+  public function bloodBankSort($bank)
+  {
+    return $this->find(['conditions' => "bld_banks = ?", 'bind' => [$bank]]);
+  }
+  public function sortByBldAndBank($bld, $bank)
+  {
+    $result = $this->query('SELECT * FROM stock where bld_grps = ? AND bld_banks =?', [$bld, $bank]);
+    //dnd($result);
     return $result->results();
+  }
+  public function searchByNic($nic)
+  {
+    return $this->find(['conditions' => "donor_nic = ? ", 'bind' => [$nic]]);
+  }
 
-    }
-    public function searchByNic($nic)
-    {
-      return $this->find(['conditions'=>"donor_nic = ? ", 'bind'=>[$nic]]);
-    }
 
+  public function bloodAlert()
+  {
 
-    public function bloodAlert(){
+    $bank = 'Jaffna';
+    $results = '';
 
-      $bank = 'Jaffna';
-      $results = [];
+    $count = $this->countBlood($bank);
 
-     $count = $this->countBlood($bank);
-
-     for($i = 0; $i < count($count); $i++){
-      if ($count[$i]->precentage < 20.0){
-          $results[] = $count[$i]->bld_grps;
+    for ($i = 0; $i < count($count); $i++) {
+      if ($count[$i]->precentage < 20.0) {
+        $results .= $count[$i]->bld_grps . ',';
       }
-     }
-      $alert = new Alerts();
-     $alert->addAlert($results);
-
-      return $results ;
+    }
+    $alert = new Alerts();
+    $alerts = $alert->getAllAlerts($bank);
 
 
-
+    if (empty($alerts) || $alerts[0]->alert != $results) {
+      //dnd('asd');
+      $alert->addAlert($results, $bank);
     }
 
-    
-
-
-
+    return $results;
+  }
 }

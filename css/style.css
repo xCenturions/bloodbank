@@ -2156,12 +2156,6 @@ section {
 }
 
 .chart {
-  float: center;
-  position: relative;
-  margin: 60px 0px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  border: 10px solid rgb(255, 255, 255);
-  width: auto;
-  background: rgb(255, 255, 255);
   height: 600px;
+  margin-top: 50px !important;
 }

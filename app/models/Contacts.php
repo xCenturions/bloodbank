@@ -1,9 +1,10 @@
 <?php
 
-class Contacts extends Model {
+class Contacts extends Model
+{
 
-public $id,$user_id,$fname,$lname,$email,$address,$address1,$city,$zip,$cell_phone;
-public $deleted = 0;
+  public $id, $user_id, $fname, $lname, $email, $address, $address1, $city, $zip, $cell_phone;
+  public $deleted = 0;
 
   public function __construct()
   {
@@ -28,16 +29,15 @@ public $deleted = 0;
 
 
 
-  public function findAllByUserId($user_id, $params=[])
+  public function findAllByUserId($user_id, $params = [])
   {
     $conditions = [
       'conditions' => 'user_id = ?',
       'bind' => [$user_id]
     ];
-    $conditions = array_merge($conditions,$params);
+    $conditions = array_merge($conditions, $params);
 
     return $this->find($conditions);
-
   }
 
   public function displayName()
@@ -45,13 +45,13 @@ public $deleted = 0;
     return $this->fname . ' ' . $this->lname;
   }
 
-  public function findByIdAndUserId($contact_id,$user_id)
+  public function findByIdAndUserId($contact_id, $user_id)
   {
     $conditions = [
       'conditions' => 'id = ? AND user_id = ?',
       'bind' => [$contact_id, $user_id]
     ];
-    $conditions = array_merge($conditions,$params=[]);
+    $conditions = array_merge($conditions, $params = []);
     return $this->findFirst($conditions);
   }
 
@@ -59,13 +59,13 @@ public $deleted = 0;
   {
     $address = '';
     if (!empty($this->address)) {
-      $address .= $this->address .'<br>';
+      $address .= $this->address . '<br>';
     }
     if (!empty($this->address1)) {
-      $address .= $this->address1 .'<br>';
+      $address .= $this->address1 . '<br>';
     }
     if (!empty($this->city)) {
-      $address .= $this->city .',';
+      $address .= $this->city . ',';
     }
     $address .= $this->zip;
     return $address;

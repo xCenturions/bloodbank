@@ -1,19 +1,38 @@
 <?php
 
- class HomeController extends Controller {
-   public function __construct($controller, $action){
-     parent::__construct($controller, $action);
-   }
+class HomeController extends Controller
+{
+  public function __construct($controller, $action)
+  {
+    parent::__construct($controller, $action);
+  }
 
-   public function indexAction(){
+  public function indexAction()
+  {
 
     $stockModel = new Stock();
+    $alertModel = new Alerts();
+
+    $bank = 'Jaffna';
+    $stockModel->bloodAlert();
 
     // if(isset(staff()){
+    $alerts = $alertModel->getAllAlerts($bank);
 
-    $results = $stockModel->bloodAlert();
+
+    if (!empty($alerts) && $alerts[0]->status == 'unopened') {
+      $this->view->alert = $alerts[0];
+      // dnd($alerts[0]) ;
+    }
 
 
+
+
+
+
+
+
+    //dnd($alerts);
 
 
 
@@ -22,25 +41,33 @@
 
 
 
-//dnd(staff());
-     $this->view->render('home/index');
-   }
-
-   
-   public function loginAction(){
+    //dnd(staff());
+    $this->view->render('home/index');
+  }
 
 
-     $this->view->render('home/login');
-   }
+  public function loginAction()
+  {
+
+
+    $this->view->render('home/login');
+  }
+  public function testAction()
+  {
+
+
+    $this->view->render('home/test');
+  }
 
 
 
-public function contactusAction(){
-     
+  public function contactusAction()
+  {
+
     $validation = new Validate();
 
-      if ($_POST) {
-     
+    if ($_POST) {
+
       $validation->check($_POST, [
         'name' => [
           'display' => 'Name',
@@ -53,37 +80,38 @@ public function contactusAction(){
 
         'email' => [
           'display' => 'Email',
-          'required'=> true,
-          'valid_email' =>true
-          
+          'required' => true,
+          'valid_email' => true
+
         ]
-      
+
       ]);
-         if ($validation->passed()) {
+      if ($validation->passed()) {
 
-    $contact = new ContactUs();
+        $contact = new ContactUs();
 
-     $contact->addMessage($_POST);
+        $contact->addMessage($_POST);
       }
-
     }
- 
-      $this->view->displayErrors = $validation->displayErrors();
-    
+
+    $this->view->displayErrors = $validation->displayErrors();
+
     $this->view->render('home/contactus');
   }
 
-   public function thankyouAction(){
-     $this->view->render('home/thankyou');
+  public function thankyouAction()
+  {
+    $this->view->render('home/thankyou');
   }
-   public function mailSentAction(){
-     $mail = base64_decode($_GET['email']);
-      $this->view->email = $mail;
-     $this->view->render('home/mailSent');
-  }
-
-   public function successAction(){
-     $this->view->render('home/success');
+  public function mailSentAction()
+  {
+    $mail = base64_decode($_GET['email']);
+    $this->view->email = $mail;
+    $this->view->render('home/mailSent');
   }
 
- }
+  public function successAction()
+  {
+    $this->view->render('home/success');
+  }
+}

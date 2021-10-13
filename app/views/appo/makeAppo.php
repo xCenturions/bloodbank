@@ -7,6 +7,7 @@
 <!-- Custom stlylesheet -->
 <link type="text/css" rel="stylesheet" href="<?= PROOT ?>css/appo_style.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 <body>
 	<div id="booking" class="section">
 		<div class="section-center">
@@ -32,9 +33,9 @@
 										<label for="location">Select Location Type</label>
 										<div class="input-group has-validation mt-2">
 											<select class="form-control" id="location_type" name="location_type" value="<?= $this->appoint->location_type ?>">
-												<option value="" selected="" disabled="" >Select Location type</option>
-												<?php foreach($this->location_types as $value): ?>
-													<option value="<?= $value->id ?>" ><?= $value->location_type?></option>
+												<option value="" selected="" disabled="">Select Location type</option>
+												<?php foreach ($this->location_types as $value) : ?>
+													<option value="<?= $value->id ?>"><?= $value->location_type ?></option>
 												<?php endforeach; ?>
 											</select>
 										</div>
@@ -44,7 +45,7 @@
 								<div class="form-group">
 									<div class=" mt-2">
 										<label for="location">Nearest Location</label>
-										<div class="input-group has-validation mt-2" >
+										<div class="input-group has-validation mt-2">
 											<select class="form-control" id="location" name="location" value="<?= $this->appoint->location ?>">
 												<div id="location" name="location"></div>
 											</select>
@@ -78,21 +79,22 @@
 	</div>
 
 	<script>
-
-		$(document).ready(function(){
-			$("#location_type").change(function(){
-				var check=$(this).val();
+		$(document).ready(function() {
+			$("#location_type").change(function() {
+				var check = $(this).val();
 				console.log(check);
 				$.ajax({
-					url:"http://localhost/bloodbank/appo/getLocation",
-					method:"GET",
-					data:{typeID:check},
-					success:function(data){
-						console.log("This data", data); 
+					url: "http://localhost/bloodbank/appo/getLocation",
+					method: "GET",
+					data: {
+						typeID: check
+					},
+					success: function(data) {
+						console.log("This data", data);
 						$("#location").html(data);
 					}
-					
-					
+
+
 				});
 			});
 		});

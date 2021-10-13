@@ -1,45 +1,52 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use SLWDC\NICParser\Parser;
 use SLWDC\NICParser\Exception\InvalidArgumentException;
-function dnd($data){
+
+function dnd($data)
+{
   echo '<pre>';
   var_dump($data);
   echo '</pre>';
   die();
 }
 
-function sanitize($dirty){
+function sanitize($dirty)
+{
   return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
 }
 
 function currentUser()
 {
-  
+
   return Donor::currentLoggedInUser();
-  
 }
 
-function admin() {
+function admin()
+{
 
   return Admin::currentLoggedInUser();
 }
 
-function staff() {
+function staff()
+{
 
   return Staff::currentLoggedInUser();
 }
 
-function displayRole(){
+function displayRole()
+{
 
-    if(Session::exists(STAFF_SESSION_NAME)){
+  if (Session::exists(STAFF_SESSION_NAME)) {
 
-      return 'Hello Doctor';
-    }
+    return 'Hello Doctor';
   }
+}
 
 
-function posted_values($post){
+function posted_values($post)
+{
   $clean_ary = [];
   foreach ($post as $key => $value) {
     $clean_ary[$key] = sanitize($value);
@@ -47,55 +54,56 @@ function posted_values($post){
   return $clean_ary;
 }
 
-function currentPage(){
+function currentPage()
+{
   $currentPage = $_SERVER['REQUEST_URI'];
-  if ($currentPage == PROOT || $currentPage == PROOT.'home/index') {
+  if ($currentPage == PROOT || $currentPage == PROOT . 'home/index') {
     $currentPage = PROOT . 'home';
   }
   return $currentPage;
 }
 
-function getObjectProperties($obj){
-  
+function getObjectProperties($obj)
+{
+
   return get_object_vars($obj);
 }
 
-function get_times ($default = '08:00', $interval = '+60 minutes') {
+function get_times($default = '08:00', $interval = '+60 minutes')
+{
 
-    $output = '';
+  $output = '';
 
-    $current = strtotime('08:00');
-    $end = strtotime('18:59');
+  $current = strtotime('08:00');
+  $end = strtotime('18:59');
 
-    while ($current <= $end) {
-        $time = date('H:i', $current);
-        $sel = ($time == $default) ? ' selected' : '';
+  while ($current <= $end) {
+    $time = date('H:i', $current);
+    $sel = ($time == $default) ? ' selected' : '';
 
-        $output .= "<option value=\"{$time}\"{$sel}>" . date('h.i A', $current) .'</option>';
-        $current = strtotime($interval, $current);
-    }
+    $output .= "<option value=\"{$time}\"{$sel}>" . date('h.i A', $current) . '</option>';
+    $current = strtotime($interval, $current);
+  }
 
-    return $output;
+  return $output;
 }
 
- function validateAge($then)
-                              {
-                                  // $then will first be a string-date
-                                  $then = strtotime($then);
-                                  //The age to be over, over +18
-                                  $min = strtotime('+18 years', $then);
-                                  //echo $min;
-                                   if(time() < $min)   {
-                                      return true;
-                                  }
-                               
-                                  
-                              }
+function validateAge($then)
+{
+  // $then will first be a string-date
+  $then = strtotime($then);
+  //The age to be over, over +18
+  $min = strtotime('+18 years', $then);
+  //echo $min;
+  if (time() < $min) {
+    return true;
+  }
+}
 
 
 
 
- 
+
 // function locTypeDrop()
 // {
 //   $output = '';
@@ -106,7 +114,7 @@ function get_times ($default = '08:00', $interval = '+60 minutes') {
 //   //while ($row = mysqli_fetch_array($result)) {
 //     $output .= '<option value="' . $row["id"] . '">' . $row['nearest_location'] . '</option>';
 //   // }//
-  
+
 
 //   return $output;
 // }
@@ -124,51 +132,51 @@ function get_times ($default = '08:00', $interval = '+60 minutes') {
 // //                     }
 
 // //                     return $output;
-								 
+
 // // }
 
 
 function getToken($length)
 {
-    $token = "";
-    $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
-    $codeAlphabet.= "0123456789";
-    $max = strlen($codeAlphabet) - 1;
-    for ($i=0; $i < $length; $i++) {
-        $token .= $codeAlphabet[crypto_rand_secure(0, $max)];
-    }
-    return $token;
+  $token = "";
+  $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  $codeAlphabet .= "abcdefghijklmnopqrstuvwxyz";
+  $codeAlphabet .= "0123456789";
+  $max = strlen($codeAlphabet) - 1;
+  for ($i = 0; $i < $length; $i++) {
+    $token .= $codeAlphabet[crypto_rand_secure(0, $max)];
+  }
+  return $token;
 }
 
 function crypto_rand_secure($min, $max)
 {
-    $range = $max - $min;
-    if ($range < 1) return $min; // not so random...
-    $log = ceil(log($range, 2));
-    $bytes = (int) ($log / 8) + 1; // length in bytes
-    $bits = (int) $log + 1; // length in bits
-    $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
-    do {
-        $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
-        $rnd = $rnd & $filter; // discard irrelevant bits
-    } while ($rnd >= $range);
-    return $min + $rnd;
+  $range = $max - $min;
+  if ($range < 1) return $min; // not so random...
+  $log = ceil(log($range, 2));
+  $bytes = (int) ($log / 8) + 1; // length in bytes
+  $bits = (int) $log + 1; // length in bits
+  $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+  do {
+    $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+    $rnd = $rnd & $filter; // discard irrelevant bits
+  } while ($rnd >= $range);
+  return $min + $rnd;
 }
 
 
 function sendConfirmationMail($toEmail, $emailBody, $emailAltBody)
 {
   include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
-  include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS  .'vendor' . DS . 'autoload.php');
+  include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS  . 'vendor' . DS . 'autoload.php');
 
   //dnd($toEmail);
 
   $mail = new PHPMailer();
   $mail->isSMTP();
   $mail->Host = $mailHost;
-  
- 
+
+
   $mail->SMTPAuth = true;
   $mail->Username = $mailUsername;
   $mail->Password = $mailPassword;
@@ -178,11 +186,11 @@ function sendConfirmationMail($toEmail, $emailBody, $emailAltBody)
   $mail->setFrom($fromEmailID, $fromName);
   $mail->addAddress($toEmail);
 
-  if($replyToEmailID)
-  $mail->addReplyTo($replyToEmailID);
+  if ($replyToEmailID)
+    $mail->addReplyTo($replyToEmailID);
 
-  if($BCCEmailID)
-  $mail->addBCC($BCCEmailID);
+  if ($BCCEmailID)
+    $mail->addBCC($BCCEmailID);
 
 
 
@@ -192,46 +200,43 @@ function sendConfirmationMail($toEmail, $emailBody, $emailAltBody)
   $mail->Body    = $emailBody;
   $mail->AltBody = $emailAltBody;
 
-  if(!$mail->send()) {
-      echo 'Message could not be sent.';
-      echo 'Mailer Error: ' . $mail->ErrorInfo;
+  if (!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
   } else {
-      echo 'Message has been sent. Please check your inbox and spam folder.';
+    echo 'Message has been sent. Please check your inbox and spam folder.';
   }
-
-  
 }
 
-function countMessage(){
+function countMessage()
+{
 
-        $message = "SELECT status  , count(*) as count FROM contactus WHERE status = 'unopened' GROUP BY status   ";  
-         $db = DB::getInstance();
-         $results = $db->query($message,[])->results();
-     // dnd($results);
+  $message = "SELECT status  , count(*) as count FROM contactus WHERE status = 'unopened' GROUP BY status   ";
+  $db = DB::getInstance();
+  $results = $db->query($message, [])->results();
+  // dnd($results);
 
-    if(empty($results)){
+  if (empty($results)) {
 
-         return null;
-       
-    }else{
-      return $results[0]->count;
-    }
-
+    return null;
+  } else {
+    return $results[0]->count;
   }
+}
 
 
-    function sendMail($toEmail, $emailBody, $emailAltBody,$sub)
+function sendMail($toEmail, $emailBody, $emailAltBody, $sub)
 {
   include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
-  include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS  .'vendor' . DS . 'autoload.php');
+  include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS  . 'vendor' . DS . 'autoload.php');
 
   //dnd($toEmail);
 
   $mail = new PHPMailer();
   $mail->isSMTP();
   $mail->Host = $mailHost;
-  
- 
+
+
   $mail->SMTPAuth = true;
   $mail->Username = $mailUsername;
   $mail->Password = $mailPassword;
@@ -241,11 +246,11 @@ function countMessage(){
   $mail->setFrom($fromEmailID, $fromName);
   $mail->addAddress($toEmail);
 
-  if($replyToEmailID)
-  $mail->addReplyTo($replyToEmailID);
+  if ($replyToEmailID)
+    $mail->addReplyTo($replyToEmailID);
 
-  if($BCCEmailID)
-  $mail->addBCC($BCCEmailID);
+  if ($BCCEmailID)
+    $mail->addBCC($BCCEmailID);
 
 
 
@@ -255,27 +260,72 @@ function countMessage(){
   $mail->Body    = $emailBody;
   $mail->AltBody = $emailAltBody;
 
-  if(!$mail->send()) {
-      echo 'Message could not be sent.';
-      echo 'Mailer Error: ' . $mail->ErrorInfo;
+  if (!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
   } else {
-      //echo 'Message has been sent. Please check your inbox and spam folder.';
+    //echo 'Message has been sent. Please check your inbox and spam folder.';
   }
 }
 
-function validNIC($nic) {
-  
-//dnd($nic);
-        try {
-          $parser = new Parser($nic);
-         
-        }
-        catch (\SLWDC\NICParser\Exception\InvalidArgumentException $exception) {
-           if($exception->getMessage()){
-             $msg = $exception->getMessage();
-             return $msg;
-          
-           } // "Birthday indicator is invalid."
-        }
+function validNIC($nic)
+{
+
+  //dnd($nic);
+  try {
+    $parser = new Parser($nic);
+  } catch (\SLWDC\NICParser\Exception\InvalidArgumentException $exception) {
+    if ($exception->getMessage()) {
+      $msg = $exception->getMessage();
+      return $msg;
+    } // "Birthday indicator is invalid."
+  }
 }
 
+function alert($bank)
+{
+
+  $sql = "SELECT * FROM alerts WHERE status = 'unopened' AND bank = ?   ";
+  $db = DB::getInstance();
+  $results = $db->query($sql, [$bank])->results();
+  // dnd($results);
+
+  if (empty($results)) {
+
+    return false;
+  } else {
+    return true;
+  }
+}
+
+
+function unchecked($bank)
+{
+
+  $message = "SELECT status  , count(*) as count FROM donation_record WHERE status = 'unchecked' GROUP BY status   ";
+  $db = DB::getInstance();
+  $results = $db->query($message, [])->results();
+  // dnd($results);
+
+  if (!empty($results)) {
+
+    return $results[0]->count;
+  } else {
+    return NULL;
+  }
+}
+function unAdded($bank)
+{
+
+  $message = "SELECT is_added  , count(*) as count FROM donation_record WHERE is_added = 'No' GROUP BY is_added   ";
+  $db = DB::getInstance();
+  $results = $db->query($message, [])->results();
+  // dnd($results);
+
+  if (!empty($results)) {
+
+    return $results[0]->count;
+  } else {
+    return NULL;
+  }
+}
