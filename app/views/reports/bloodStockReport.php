@@ -29,32 +29,32 @@
 
 
 <body>
-  <div class="row">
-    <center>
-      <h3 style="margin-top: 20px;"> Select Blood bank </h3>
-      <div class="col-md-3">
 
-        <select name="bld_bank" class="form-control" id="bld_bank" value="" style="width: 400px ; height: 50px;">
-          <option value="<?= $this->currentBank ?>"><?= $this->currentBank ?></option>
-          <?php foreach ($this->banks as $banks) : ?>
-            <option value="<?= $banks->bloodbank ?>"><?= $banks->bloodbank ?></option>
-          <?php endforeach; ?>
+  <center>
+    <h3 style="margin-top: 20px;"> Select Blood bank </h3>
+    <div class="col-md-3">
+
+      <select name="bld_bank" class="form-control" id="bld_bank" value="" style="width: 400px ; height: 50px;">
+        <option value="<?= $this->currentBank ?>"><?= $this->currentBank ?></option>
+        <?php foreach ($this->banks as $banks) : ?>
+          <option value="<?= $banks->bloodbank ?>"><?= $banks->bloodbank ?></option>
+        <?php endforeach; ?>
 
 
-        </select>
+      </select>
 
-      </div>
-    </center>
+    </div>
+  </center>
+
+
+  <div class="container" style="justify-content:center">
+    <div class="row">
+
+      <div id="piechart_3d" class="chart col-md-6"></div>
+
+      <div id="top_x_div" class="chart col-md-6"></div>
+    </div>
   </div>
-
-
-  <div class="row" style="margin-left:100px">
-
-    <div id="piechart_3d" class="chart col-md-6"></div>
-
-    <div id="top_x_div" class="chart col-md-6"></div>
-  </div>
-
 
 
 </body>
