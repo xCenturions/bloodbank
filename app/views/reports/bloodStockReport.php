@@ -47,15 +47,15 @@
     </center>
   </div>
 
-  <div class="col-12" style="justify-content:center ;display: grid">
-    <div class="row">
 
-      <div id="piechart_3d" class="chart col-md-6"></div>
+  <div class="row" style="margin-left:100px">
 
-      <div id="top_x_div" class="chart col-md-6"></div>
-    </div>
+    <div id="piechart_3d" class="chart col-md-6"></div>
 
+    <div id="top_x_div" class="chart col-md-6"></div>
   </div>
+
+
 
 </body>
 <script src="<?= PROOT ?>vendor/jquery/jquery-3.2.1.min.js"></script>

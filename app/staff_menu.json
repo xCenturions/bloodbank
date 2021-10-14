@@ -12,6 +12,7 @@
   },
 
   "Blood Stock ": {
+    "Add Blood to Stock": "stock/addBloodToStock",
     "Blood Stock Report": "reports/bloodStockReport",
     "Blood Stock Details": "reports/bloodStockDetails"
   },

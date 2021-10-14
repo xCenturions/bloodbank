@@ -75,5 +75,18 @@
     "Donor": ["*"],
     "Mlt": ["*"],
     "Home": ["*"]
+  },
+
+  "BSK": {
+    "denied": {
+      "Staff": ["login", "patientRegister"],
+      "Home": ["login"]
+    },
+    "Staff": ["*"],
+    "Reports": ["*"],
+    "Donor": ["*"],
+
+    "Stock": ["*"],
+    "Home": ["*"]
   }
 }

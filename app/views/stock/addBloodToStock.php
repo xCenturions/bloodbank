@@ -249,9 +249,9 @@
 			loadData();
 		});
 
-		$("#search").load("http://localhost/bloodbank/staff/approvedBlood");
+		$("#search").load("http://localhost/bloodbank/stock/approvedBlood");
 		$("#refresh").click(function() {
-			$("#search").load("http://localhost/bloodbank/staff/approvedBlood");
+			$("#search").load("http://localhost/bloodbank/stock/approvedBlood");
 			$("#bld_banks").val("");
 			$("#from_date").val("");
 			$("#to_date").val("");
@@ -270,7 +270,7 @@
 
 			console.log(cm_no);
 			$.ajax({
-				url: "http://localhost/bloodbank/staff/approvedBlood",
+				url: "http://localhost/bloodbank/stock/approvedBlood",
 				method: "POST",
 				data: {
 					from_date: from_date,
@@ -300,7 +300,7 @@
 
 		console.log(to_date);
 		$.ajax({
-			url: "http://localhost/bloodbank/staff/approvedBlood",
+			url: "http://localhost/bloodbank/stock/approvedBlood",
 			method: "POST",
 			data: {
 				bld_banks: name,
@@ -329,7 +329,7 @@
 
 		//console.log(donor_id);
 		$.ajax({
-			url: "http://localhost/bloodbank/staff/add",
+			url: "http://localhost/bloodbank/stock/add",
 			method: "POST",
 			dataType: "JSON",
 			data: {
@@ -389,7 +389,7 @@
 		}
 
 		$.ajax({
-			url: "http://localhost/bloodbank/staff/addToStock",
+			url: "http://localhost/bloodbank/stock/addToStock",
 			method: "POST",
 
 			data: {

@@ -67,7 +67,7 @@
         <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
 
           <center><i class="start-icon fa fa-exclamation-triangle faa-flash animated"></i>
-            <a style="color:red " href="<?= PROOT ?>staff/alerts"> <strong class="font__weight-semibold">Warning!</strong> Low Blood Count. Click Here for more information</a>
+            <a style="color:red " href="<?= PROOT ?>stock/alerts"> <strong class="font__weight-semibold">Warning!</strong> Low Blood Count. Click Here for more information</a>
           </center>
         </div>
       </div>
@@ -93,7 +93,7 @@
         <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
 
           <center><i class="start-icon fa fa-exclamation-triangle faa-flash animated"></i>
-            <a style="color:red " href="<?= PROOT ?>staff/addBloodToStock"> <strong class="font__weight-semibold">Attention!</strong> You Have <?= unAdded(staff()->assigned) ?> not added blood donations . Click Here for more information</a>
+            <a style="color:red " href="<?= PROOT ?>stock/addBloodToStock"> <strong class="font__weight-semibold">Attention!</strong> You Have <?= unAdded(staff()->assigned) ?> not added blood donations . Click Here for more information</a>
           </center>
         </div>
       </div>
