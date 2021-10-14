@@ -36,10 +36,9 @@
 
 	</div>
 </section>
-<form action="<?= PROOT ?>staff/searchDonors" method="post" style="margin-top:20px;text-align: center">
 
-
-	<div class="row" style="margin-left:400px">
+<div class="container" style="justify-content:center;">
+	<div class="row" >
 
 		<div class="col-md-3">
 			<input class="form-control" id="nic" name="nic" value="" style="width: 300px ; height: 50px;" placeholder="Enter Name or NIC ">
@@ -73,16 +72,16 @@
 
 
 
-		<div class="col-md-1">
+		<div class="col-md-3">
 
 			<button type="button" id="refresh" class="btn btn-danger">Reset</button>
 		</div>
 
 	</div>
 
-</form>
 
 
+				</div>
 
 <div class="container-table100">
 	<div class="wrap-table100">

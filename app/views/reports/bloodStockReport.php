@@ -48,12 +48,12 @@
 
 
   <div class="container" style="justify-content:center;display:flex">
-    <div class="row">
+    
 
       <div id="piechart_3d" class="chart col-md-6"></div>
 
-      <div id="top_x_div" class="chart col-md-6"></div>
-    </div>
+      <div id="top_x_div" class="chart col-md-6" style="width:auto"></div>
+   
   </div>
 
 
