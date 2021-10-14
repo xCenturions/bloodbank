@@ -47,7 +47,7 @@
   </center>
 
 
-  <div class="container" style="justify-content:center">
+  <div class="container" style="justify-content:center;display:flex">
     <div class="row">
 
       <div id="piechart_3d" class="chart col-md-6"></div>
