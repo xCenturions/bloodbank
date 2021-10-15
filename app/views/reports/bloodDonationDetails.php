@@ -23,7 +23,12 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/appo_tb_util.css">
 <link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/appo_tb_main.css">
+<link rel="stylesheet" href="<?= PROOT ?>css/bd_style.css">
 <!--===============================================================================================-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	Launch demo modal
+</button>
+
 
 
 <section id="breadcrumbs" class="breadcrumbs">
@@ -36,10 +41,10 @@
 
 	</div>
 </section>
-<form action="<?= PROOT ?>staff/searchDonors" method="post" style="margin-top:20px;text-align: center">
 
 
-	<div class="row" style="margin-left:400px">
+<div class="container" style="justify-content:center;">
+	<div class="row">
 
 		<div class="col-md-3">
 			<input class="form-control" id="nic" name="nic" value="" style="width: 300px ; height: 50px;" placeholder="Enter Name or NIC ">
@@ -71,7 +76,7 @@
 
 	</div>
 
-</form>
+</div>
 
 
 
@@ -88,6 +93,7 @@
 							<th class="cell100 column3">Donated Location</th>
 							<th class="cell100 column8">Blood Group</th>
 							<th class="cell100 column4">Donated Date</th>
+							<th class="cell100 column4">Donation Record</th>
 
 						</tr>
 					</thead>
@@ -99,7 +105,9 @@
 		</div>
 	</div>
 </div>
-</div>
+
+
+
 
 
 

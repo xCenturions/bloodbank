@@ -103,6 +103,22 @@ class Donation extends Model
   {
     return $this->find(['conditions' => "bld_banks = ?", 'bind' => [$bank]]);
   }
+  public function countRecords()
+  {
+    $stock = $this->query('SELECT COUNT(id) as total FROM donation_record ', []);
+
+    $results = $stock->results();
+
+    return $results;
+  }
+  public function countRecordsBank($bank)
+  {
+    $stock = $this->query('SELECT COUNT(id) as total FROM donation_record where location=? ', [$bank]);
+
+    $results = $stock->results();
+
+    return $results;
+  }
 
   public function getAllDonations()
   {

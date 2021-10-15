@@ -52,10 +52,18 @@ class HomeController extends Controller
 
     $this->view->render('home/login');
   }
+
   public function testAction()
   {
+    $bank = staff()->assigned;
+    $donationModel = new Donation();
 
+    $count = $donationModel->countRecords();
+    $countBank = $donationModel->countRecordsBank($bank);
 
+    //dnd($count);
+    $this->view->total = $count[0]->total;
+    $this->view->totalBank = $count[0]->total;
     $this->view->render('home/test');
   }
 

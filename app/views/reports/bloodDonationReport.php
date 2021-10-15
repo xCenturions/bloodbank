@@ -15,26 +15,29 @@
   </div>
 </section>
 
-<div class="row" style="margin-left:400px ;margin-top:20px;text-align: center">
+<div class="container col-md-6" style="justify-content:center;">
+
+  <div class="row">
 
 
-  <div class="col-md-3">
-    <select name="bld_bank" class="form-control" id="bld_bank" value="" style="width: 400px ; height: 50px;">
-      <option value="" disabled selected>Select Blood bank</option>
-      <?php foreach ($this->banks as $banks) : ?>
-        <option value="<?= $banks->bloodbank ?>"><?= $banks->bloodbank ?></option>
-      <?php endforeach; ?>
+    <div class="col-md-6">
+      <select name="bld_bank" class="form-control" id="bld_bank" value="" style="width: 400px ; height: 50px;">
+        <option value="" disabled selected>Select Blood bank</option>
+        <?php foreach ($this->banks as $banks) : ?>
+          <option value="<?= $banks->bloodbank ?>"><?= $banks->bloodbank ?></option>
+        <?php endforeach; ?>
 
 
-    </select>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+
+      <button type="button" id="refresh" class="btn btn-danger">Reset</button>
+    </div>
+
+
   </div>
-
-  <div class="col-md-2">
-
-    <button type="button" id="refresh" class="btn btn-danger">Reset</button>
-  </div>
-
-
 </div>
 
 <body>
@@ -42,13 +45,11 @@
 
 
 
-  <div class="col-12" style="justify-content:center ;display: grid">
-    <div class="row">
+  <div class="container" style="justify-content:center ;display: flex">
 
-      <div id="piechart_3d" class="chart col-md-6"></div>
+    <div id="piechart_3d" class="chart col-md-6"></div>
 
-      <div id="top_x_div" class="chart col-md-6"></div>
-    </div>
+    <div id="top_x_div" class="chart col-md-6"></div>
 
   </div>
 

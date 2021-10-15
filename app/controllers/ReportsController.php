@@ -94,6 +94,7 @@
 									<td class="cell100 column3"> ' . $v->location . '</td>
 									<td class="cell100 column8"> ' . $v->bld_grp . '</td>
 									<td class="cell100 column4"> ' . $v->date . '</td>
+									<td class="cell100 column4"> <button id="' . $v->cm_no . '" type="button" data-toggle="modal" data-target="#exampleModal" onClick="approve(this.id)" style="width:120px" class=" btn btn-rounded btn-success "><i class="fa fa-check" aria-hidden="true"></i>View</button> <button onClick="rejected(this.id)" id="' . $v->cm_no . '" data-toggle="modal" data-target="#centralModalDanger" type="button" style="width:120px" class="c btn btn-rounded btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></i> Download</button></td></td>
                   
 								
 
@@ -244,6 +245,29 @@
         // dnd($pie); 
         $bar =  $donationModel->barchart();
       }
+
+
+      $results = [
+        'pie' => $pie,
+        'bar' => $bar,
+
+
+      ];
+
+      echo json_encode($results);
+    }
+
+    public function homeChartsAction()
+    {
+      $donationModel = new Donation();
+      $bank = staff()->assigned;
+
+
+
+      $pie =  $donationModel->piechartBank($bank);
+      $bar =  $donationModel->barchartBank($bank);
+      //dnd($bar);
+
 
 
       $results = [

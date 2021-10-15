@@ -13,7 +13,21 @@ class MltController extends Controller
 
     public function checkDonationsAction()
     {
-        //dnd(staff()->acl);
+
+
+        // dnd($_POST['text']);
+
+        if (isset($_POST['cm_no']) && $_POST['cm_no'] != '') {
+            // dnd($donor_id);
+
+            $donationModel = new Donation();
+
+            $donor = $donationModel->findByCM($_POST['cm_no']);
+            //dnd($donor[0]->status);
+
+            echo json_encode($donor[0]);
+            exit;
+        }
 
         $this->view->render('mlt/checkDonations');
     }
@@ -83,6 +97,7 @@ class MltController extends Controller
         <td> ' . $v->donor_name . '</td>
         <td class=" "> ' . $v->bld_grp . '</td>
         <td class=" "> ' . $v->date . '</td>
+        <td class=" "> <button id="' . $v->cm_no . '" type="button" data-toggle="modal" data-target="#donation" onClick="view(this.id)" style="width:100px" class=" btn btn-rounded btn-outline-info" data-mdb-ripple-color="dark"><i class="fa fa-check" aria-hidden="true"></i>View</button> </td>
         <td class=" "> <button id="' . $v->cm_no . '" type="button" data-toggle="modal" data-target="#exampleModal" onClick="approve(this.id)" style="width:120px" class=" btn btn-rounded btn-success "><i class="fa fa-check" aria-hidden="true"></i>Approve</button> <button onClick="rejected(this.id)" id="' . $v->cm_no . '" data-toggle="modal" data-target="#centralModalDanger" type="button" style="width:120px" class="c btn btn-rounded btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></i> Reject</button></td>
 
 
@@ -136,6 +151,10 @@ class MltController extends Controller
 
             $donationModel->update($donor[0]->id, $donor[0]);
         }
+    }
+
+    public function viewRecordAction()
+    {
     }
 
 

@@ -63,7 +63,7 @@
   <?php if (staff() && staff()->designation == 'MO') : ?>
     <?php if (alert(staff()->assigned)) : ?>
 
-      <div class="col-sm-12">
+      <div class="col-sm-12" style="position: relative;">
         <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
 
           <center><i class="start-icon fa fa-exclamation-triangle faa-flash animated"></i>

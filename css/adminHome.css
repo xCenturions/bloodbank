@@ -1,0 +1,514 @@
+@import "https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/dashboard.scss";
+
+p,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+.contain {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #f9fbff;
+  position: relative;
+}
+
+.sidebar {
+  background-color: #1b2431;
+  box-shadow: none;
+}
+.sidebar .nav-link {
+  border-left: 5px solid transparent;
+  color: #738297;
+  padding: 0.5rem 0.75rem;
+}
+.sidebar .nav-link:hover {
+  color: white;
+}
+.sidebar .nav-link.active {
+  border-left: 5px solid #738297;
+  color: white;
+}
+.sidebar .zmdi {
+  display: inline-block;
+  font-size: 1.35rem;
+  margin-right: 5px;
+  min-width: 25px;
+}
+
+.card-list {
+  width: 100%;
+}
+.card-list:before,
+.card-list:after {
+  content: " ";
+  display: table;
+}
+.card-list:after {
+  clear: both;
+}
+
+.card {
+  border-radius: 8px;
+  color: white;
+  padding: 10px;
+  position: relative;
+}
+.card .zmdi {
+  color: white;
+  font-size: 28px;
+  opacity: 0.3;
+  position: absolute;
+  right: 13px;
+  top: 13px;
+}
+.card .stat {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 8px;
+  margin-top: 25px;
+  padding: 10px 10px 0;
+  text-transform: uppercase;
+}
+.card .title {
+  display: inline-block;
+  font-size: 20px;
+  padding: 10px 10px 0;
+  text-transform: uppercase;
+}
+.card .value {
+  font-size: 28px;
+  padding: 0 10px;
+}
+.card.blue {
+  background-color: #2298f1;
+}
+.card.green {
+  background-color: #66b92e;
+}
+.card.orange {
+  background-color: #da932c;
+}
+.card.red {
+  background-color: #d65b4a;
+}
+
+.projects {
+  background-color: #273142;
+  border: 1px solid #313d4f;
+  overflow-x: auto;
+  width: 100%;
+}
+.projects-inner {
+  border-radius: 4px;
+}
+
+.projects-header {
+  color: white;
+  padding: 22px;
+}
+.projects-header .count,
+.projects-header .title {
+  display: inline-block;
+}
+.projects-header .count {
+  color: #738297;
+}
+.projects-header .zmdi {
+  cursor: pointer;
+  float: right;
+  font-size: 16px;
+  margin: 5px 0;
+}
+.projects-header .title {
+  font-size: 21px;
+}
+.projects-header .title + .count {
+  margin-left: 5px;
+}
+
+.projects-table {
+  background: #273142;
+  width: 100%;
+}
+.projects-table td,
+.projects-table th {
+  color: white;
+  padding: 10px 22px;
+  vertical-align: middle;
+}
+.projects-table td p {
+  font-size: 12px;
+}
+.projects-table td p:last-of-type {
+  color: #738297;
+  font-size: 11px;
+}
+.projects-table th {
+  background-color: #313d4f;
+}
+.projects-table tr:hover {
+  background-color: #303d52;
+}
+.projects-table tr:not(:last-of-type) {
+  border-bottom: 1px solid #313d4f;
+}
+.projects-table .member figure,
+.projects-table .member .member-info {
+  display: inline-block;
+  vertical-align: top;
+}
+.projects-table .member figure + .member-info {
+  margin-left: 7px;
+}
+.projects-table .member img {
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
+.projects-table .status > form {
+  float: right;
+}
+.projects-table .status-text {
+  display: inline-block;
+  font-size: 12px;
+  margin: 11px 0;
+  padding-left: 20px;
+  position: relative;
+}
+.projects-table .status-text:before {
+  border: 3px solid;
+  border-radius: 50%;
+  content: "";
+  height: 14px;
+  left: 0;
+  position: absolute;
+  top: 1px;
+  width: 14px;
+}
+.projects-table .status-text.status-blue:before {
+  border-color: #1c93ed;
+}
+.projects-table .status-text.status-green:before {
+  border-color: #66b92e;
+}
+.projects-table .status-text.status-orange:before {
+  border-color: #da932c;
+}
+.projects-table .status-text.status-red:before {
+  border-color: #d65b4a;
+}
+
+.selectric {
+  background-color: transparent;
+  border-color: #313d4f;
+  border-radius: 4px;
+}
+.selectric .label {
+  color: #738297;
+  line-height: 34px;
+  margin-right: 10px;
+  text-align: left;
+}
+.selectric-wrapper {
+  float: right;
+  width: 150px;
+}
+
+.chart {
+  border-radius: 3px;
+  border: 1px solid #313d4f;
+  color: white;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+}
+.chart canvas {
+  height: 400px;
+  margin: 20px 0;
+  width: 100%;
+}
+.chart .actions {
+  margin: 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.chart .actions span {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  margin: 5px;
+  padding: 4px;
+}
+.chart .actions .btn-link {
+  color: white;
+}
+.chart .actions .btn-link i {
+  font-size: 1.75rem;
+}
+.chart .title {
+  font-size: 20px;
+  margin: 0;
+  padding: 15px 0 5px;
+}
+.chart .title + .tagline {
+  margin-top: 10px;
+}
+.chart .tagline {
+  font-size: 12px;
+}
+
+.danger-item {
+  border-left: 4px solid #a84d43;
+}
+
+.zmdi {
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.bar {
+  height: 500px;
+  background-color: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: white;
+  margin-top: 2em;
+}
+p {
+  color: white;
+}
+
+/******************************
+
+Stati - minimal statistical cards
+
+*******************************/
+.stati {
+  background: #fff;
+  height: 6em;
+  padding: 1em;
+  margin: 1em 0;
+  -webkit-transition: margin 0.5s ease, box-shadow 0.5s ease; /* Safari */
+  transition: margin 0.5s ease, box-shadow 0.5s ease;
+  -moz-box-shadow: 0px 0.2em 0.4em rgb(0, 0, 0, 0.8);
+  -webkit-box-shadow: 0px 0.2em 0.4em rgb(0, 0, 0, 0.8);
+  box-shadow: 0px 0.2em 0.4em rgb(0, 0, 0, 0.8);
+}
+.stati:hover {
+  margin-top: 0.5em;
+  -moz-box-shadow: 0px 0.4em 0.5em rgb(0, 0, 0, 0.8);
+  -webkit-box-shadow: 0px 0.4em 0.5em rgb(0, 0, 0, 0.8);
+  box-shadow: 0px 0.4em 0.5em rgb(0, 0, 0, 0.8);
+}
+.stati i {
+  font-size: 2.5em;
+}
+.stati div {
+  width: calc(100% - 3.5em);
+  display: block;
+  float: right;
+  text-align: right;
+}
+.stati div b {
+  font-size: 2.2em;
+  width: 100%;
+  padding-top: 0px;
+  margin-top: -0.2em;
+  margin-bottom: -0.2em;
+  display: block;
+}
+.stati div span {
+  font-size: 1em;
+  width: 100%;
+  color: rgb(0, 0, 0, 0.8) !important;
+  display: block !important;
+}
+
+.stati.left div {
+  float: right;
+  text-align: right;
+}
+
+.stati.bg-turquoise {
+  background: rgb(26, 188, 156);
+  color: white;
+}
+.stati.bg-emerald {
+  background: rgb(46, 204, 113);
+  color: white;
+}
+.stati.bg-peter_river {
+  background: rgb(52, 152, 219);
+  color: white;
+}
+.stati.bg-amethyst {
+  background: rgb(155, 89, 182);
+  color: white;
+}
+.stati.bg-wet_asphalt {
+  background: rgb(52, 73, 94);
+  color: white;
+}
+.stati.bg-green_sea {
+  background: rgb(22, 160, 133);
+  color: white;
+}
+.stati.bg-nephritis {
+  background: rgb(39, 174, 96);
+  color: white;
+}
+.stati.bg-belize_hole {
+  background: rgb(41, 128, 185);
+  color: white;
+}
+.stati.bg-wisteria {
+  background: rgb(142, 68, 173);
+  color: white;
+}
+.stati.bg-midnight_blue {
+  background: rgb(44, 62, 80);
+  color: white;
+}
+.stati.bg-sun_flower {
+  background: rgb(241, 196, 15);
+  color: white;
+}
+.stati.bg-carrot {
+  background: rgb(230, 126, 34);
+  color: white;
+}
+.stati.bg-alizarin {
+  background: rgb(231, 76, 60);
+  color: white;
+}
+.stati.bg-clouds {
+  background: rgb(236, 240, 241);
+  color: white;
+}
+.stati.bg-concrete {
+  background: rgb(149, 165, 166);
+  color: white;
+}
+.stati.bg-orange {
+  background: rgb(243, 156, 18);
+  color: white;
+}
+.stati.bg-pumpkin {
+  background: rgb(211, 84, 0);
+  color: white;
+}
+.stati.bg-pomegranate {
+  background: rgb(192, 57, 43);
+  color: white;
+}
+.stati.bg-silver {
+  background: rgb(189, 195, 199);
+  color: white;
+}
+.stati.bg-asbestos {
+  background: rgb(127, 140, 141);
+  color: white;
+}
+
+.stati.turquoise {
+  color: rgb(26, 188, 156);
+}
+.stati.emerald {
+  color: rgb(46, 204, 113);
+}
+.stati.peter_river {
+  color: rgb(52, 152, 219);
+}
+.stati.amethyst {
+  color: rgb(155, 89, 182);
+}
+.stati.wet_asphalt {
+  color: rgb(52, 73, 94);
+}
+.stati.green_sea {
+  color: rgb(22, 160, 133);
+}
+.stati.nephritis {
+  color: rgb(39, 174, 96);
+}
+.stati.belize_hole {
+  color: rgb(41, 128, 185);
+}
+.stati.wisteria {
+  color: rgb(142, 68, 173);
+}
+.stati.midnight_blue {
+  color: rgb(44, 62, 80);
+}
+.stati.sun_flower {
+  color: rgb(241, 196, 15);
+}
+.stati.carrot {
+  color: rgb(230, 126, 34);
+}
+.stati.alizarin {
+  color: rgb(231, 76, 60);
+}
+.stati.clouds {
+  color: rgb(236, 240, 241);
+}
+.stati.concrete {
+  color: rgb(149, 165, 166);
+}
+.stati.orange {
+  color: rgb(243, 156, 18);
+}
+.stati.pumpkin {
+  color: rgb(211, 84, 0);
+}
+.stati.pomegranate {
+  color: rgb(192, 57, 43);
+}
+.stati.silver {
+  color: rgb(189, 195, 199);
+}
+.stati.asbestos {
+  color: rgb(127, 140, 141);
+}
+
+.wrimagecard {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  position: relative;
+  background: #fff;
+  box-shadow: 12px 15px 20px 0px rgba(46, 61, 73, 0.15);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.wrimagecard .fa {
+  position: relative;
+  font-size: 70px;
+}
+.wrimagecard-topimage_header {
+  padding: 20px;
+}
+a.wrimagecard:hover,
+.wrimagecard-topimage:hover {
+  box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
+}
+.wrimagecard-topimage a {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.wrimagecard-topimage_title {
+  padding: 20px 24px;
+  height: 80px;
+  padding-bottom: 0.75rem;
+  position: relative;
+}
+.wrimagecard-topimage a {
+  border-bottom: none;
+  text-decoration: none;
+  color: #525c65;
+  transition: color 0.3s ease;
+}
