@@ -62,7 +62,7 @@
 
       <?php if (staff()) : ?>
         <?php if (countMessage() == null) : ?>
-          <a href="<?= PROOT ?>staff/messages">Notifications</a>
+          <a href="<?= PROOT ?>staff/messages"><i style="font-size:22px" class="fas fa-bell fa-10x"></i></a>
         <?php else : ?>
           <a href="<?= PROOT ?>staff/messages">
             <div class="notification-box">

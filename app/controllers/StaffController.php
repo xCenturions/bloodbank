@@ -790,4 +790,49 @@ class StaffController extends Controller
       exit;
     }
   }
+
+  public function approvedAction()
+  {
+    //dnd($_POST['c_id']);
+    if (isset($_POST['date']) && $_POST['date'] != '') {
+
+      $campModel = new Camp();
+
+      $camp = $campModel->findById($_POST['c_id']);
+
+
+      $locationModel = new Location();
+
+      $locationModel->cid = 2;
+      //dnd($_POST);
+
+      $locationModel->addCamp($_POST);
+      $camp->status = 'approved';
+      $campModel->update($camp->id, $camp);
+      echo (1);
+
+      //dnd($donor[0]->status);
+
+
+    }
+  }
+  public function rejectAction()
+  {
+    //dnd($_POST['c_id']);
+    if (isset($_POST['id']) && $_POST['id'] != '') {
+
+      $campModel = new Camp();
+
+      $camp = $campModel->findById($_POST['id']);
+
+
+
+      $camp->status = 'rejected';
+      $campModel->update($camp->id, $camp);
+      echo (1);
+    }
+    //dnd($donor[0]->status);
+
+
+  }
 }

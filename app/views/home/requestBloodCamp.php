@@ -39,8 +39,12 @@
                     <input type="text" name="nic" id="nic" class="input-text" required>
                 </div>
                 <div class="form-row">
-                    <label for="pt_nic">Venue</label>
+                    <label for="pt_nic">Location</label>
                     <input type="text" name="location" id="location" class="input-text" required>
+                </div>
+                <div class="form-row">
+                    <label for="pt_nic">Nearest City For The Location</label>
+                    <input type="text" name="city" id="city" class="input-text" required>
                 </div>
 
                 <div class="form-row">
@@ -162,7 +166,8 @@
                 location: $('#location').val(),
                 mobile: $('#mobile').val(),
                 email: $('#email').val(),
-                nst_bank: $('#nst_bank').val()
+                nst_bank: $('#nst_bank').val(),
+                city: $('#city').val()
 
             });
 

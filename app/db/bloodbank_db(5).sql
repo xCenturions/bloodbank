@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2021 at 03:57 PM
+-- Generation Time: Oct 17, 2021 at 10:40 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -2216,8 +2216,8 @@ CREATE TABLE `donation_record` (
 --
 
 INSERT INTO `donation_record` (`id`, `donor_id`, `staff_id`, `verified`, `weight`, `date`, `location`, `donor_name`, `bld_grp`, `din_name`, `mo_name`, `of_name`, `ph_name`, `name`, `history`, `remarks`, `cus`, `bp`, `cue`, `pd`, `hd`, `temporary_deferral`, `permanent_deferral`, `resons_deferral`, `hb_lvl1`, `hb_lvl2`, `Q`, `T`, `D`, `S`, `st_time`, `et_time`, `amount`, `cm_no`, `status`, `tested_disease`, `is_added`, `deleted`) VALUES
-(1, 8, 1, 'Yes', 0, '2021-09-13', 'Jaffna', 'Tharindu Maduranga', 'A+', 'gh', 'Thar', '', '', '', NULL, 'asd', 10, 0, 'X', 'X', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '00:00:00', '00:00:00', 0, 1899, 'rejected', 'hjkhj', 'Yes', 0),
-(2, 7, 1, NULL, NULL, '2021-09-16', 'Jaffna', 'sdf', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1245, 'rejected', 'zxzxzzxxzzxc', 'Yes', 0);
+(1, 8, 1, 'Yes', 0, '2021-09-13', 'Jaffna', 'Tharindu Maduranga', 'A+', 'gh', 'Thar', '', '', '', NULL, 'asd', 10, 0, 'X', 'X', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '00:00:00', '00:00:00', 0, 1899, 'approved', 'hjkhj', 'No', 0),
+(2, 7, 1, NULL, NULL, '2021-09-16', 'Jaffna', 'sdf', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1245, 'approved', 'zxzxzzxxzzxc', 'Yes', 0);
 
 -- --------------------------------------------------------
 
@@ -2341,53 +2341,20 @@ CREATE TABLE `location` (
   `id` int(5) NOT NULL,
   `cid` int(5) DEFAULT NULL,
   `nearest_location` text DEFAULT NULL,
-  `lat` float DEFAULT NULL,
-  `lng` float DEFAULT NULL
+  `city` varchar(100) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `location`
 --
 
-INSERT INTO `location` (`id`, `cid`, `nearest_location`, `lat`, `lng`) VALUES
-(1, 1, 'Avissawella - Avissawella Hospital', 6.9543, 80.2046),
-(2, 1, 'Akkarepattu - Akkarepattu Hospital', NULL, NULL),
-(3, 1, 'Ampara - Ampara Hospital', NULL, NULL),
-(4, 1, 'Anuradhapura -Anuradhapura Hospital', NULL, NULL),
-(5, 1, 'Apeksha Hospital - Maharagama', NULL, NULL),
-(6, 1, 'Apeksha Hospital - AP', NULL, NULL),
-(7, 1, 'Badulla - Badulla Hospital', NULL, NULL),
-(8, 1, 'Balangoda -Balangoda Hospital', NULL, NULL),
-(9, 1, 'Balapitiya - Balapitiya Hospital', NULL, NULL),
-(10, 1, 'Batticaloa - Batticaloa Hospital', NULL, NULL),
-(11, 1, 'Chilaw - Chilaw Hospital', NULL, NULL),
-(12, 1, 'CNTH -Colombo North Teaching Hospital - Ragama', NULL, NULL),
-(13, 1, 'CSTH - Kalubowila Hospital', NULL, NULL),
-(14, 1, 'Dambadeniya - Dambadeniya Hospital', NULL, NULL),
-(15, 1, 'Dambulla - Dambulla Hospital', NULL, NULL),
-(16, 1, 'Dehiattakandiya -Dehiattakandiya Hospital', NULL, NULL),
-(17, 1, 'Diyatalawa - Diyatalawa Hospital', NULL, NULL),
-(18, 1, 'Elpitiya - Elpitiya Hospital', NULL, NULL),
-(19, 1, 'Embilipitiya - Embilipitiya Hospital', NULL, NULL),
-(20, 2, 'Abinawaramaya - Hewagama', NULL, NULL),
-(21, 2, 'Abinawaramaya 2 - Hewagama', NULL, NULL),
-(22, 2, 'Alakamandawa Hotel - Kadawatha', NULL, NULL),
-(23, 2, 'Anuradhapura Municipal Council - Anuradhapura', NULL, NULL),
-(24, 2, 'Anuradhapura Municipal Council 2-  Anuradhapura', NULL, NULL),
-(25, 2, 'Bambukuliya St. Isnawatha Juam Church - Kochchikade', NULL, NULL),
-(26, 2, 'Bird Park - Buthgamuwa', NULL, NULL),
-(27, 2, 'Dammindaramaya - Medial Road - Ratmalana', NULL, NULL),
-(28, 2, 'Damsiri Daham Asapuwa -Kaduwela', NULL, NULL),
-(29, 2, 'Deepaloka Viharaya - Ingiriya', NULL, NULL),
-(30, 2, 'Divisional Forest Office -Gampaha', NULL, NULL),
-(31, 2, 'Gangathilaka Viharaya - Puhuwala ', NULL, NULL),
-(32, 2, 'Handala Purana Viharaya', NULL, NULL),
-(33, 2, 'Jayanthiaramaya -Kaduruwela -Polonnaruwa', NULL, NULL),
-(34, 2, 'Jayanthiaramaya 2 -Kaduruwela -Polonnaruwa', NULL, NULL),
-(35, 2, 'Kurukude Temple -Peradeniya', NULL, NULL),
-(36, 2, 'Lakshi Salon - Ratnapura', NULL, NULL),
-(37, 2, 'Lumbini Viharaya -Dalugama', NULL, NULL),
-(38, 2, 'Makehelwala Kanishta Vidyalaya - Mawanella', NULL, NULL);
+INSERT INTO `location` (`id`, `cid`, `nearest_location`, `city`, `date`, `time`, `deleted`) VALUES
+(3, 1, 'Ampara Hospital', 'Ampara', NULL, NULL, 0),
+(50, 2, 'Horana Hospital', 'horana', '2021-10-20', '06:57:09', 0),
+(51, 2, 'Colombo', 'Colombo', '2021-10-10', '12:58:01', 0);
 
 -- --------------------------------------------------------
 
@@ -2521,6 +2488,7 @@ CREATE TABLE `requestcamp` (
   `email` varchar(100) DEFAULT NULL,
   `nst_bank` varchar(100) DEFAULT NULL,
   `location` varchar(100) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
   `status` varchar(100) NOT NULL DEFAULT 'unchecked',
   `date` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT 0
@@ -2530,8 +2498,9 @@ CREATE TABLE `requestcamp` (
 -- Dumping data for table `requestcamp`
 --
 
-INSERT INTO `requestcamp` (`id`, `name`, `nic`, `mobile`, `email`, `nst_bank`, `location`, `status`, `date`, `deleted`) VALUES
-(1, 'Palle Arachchige Tharindu Maduranga', '973533576V', 762247830, 'maduranga.tharidu@gmail.com', 'Jaffna', 'Sri Palee College - Horana', 'unchecked', '2021-10-17', 0);
+INSERT INTO `requestcamp` (`id`, `name`, `nic`, `mobile`, `email`, `nst_bank`, `location`, `city`, `status`, `date`, `deleted`) VALUES
+(1, 'Palle Arachchige Tharindu Maduranga', '973533576V', 762247830, 'maduranga.tharidu@gmail.com', 'Jaffna', 'Sri Palee College - Horana', 'Horana', 'approved', '2021-10-17', 0),
+(2, 'ssss', '973533576V', 762247830, 'maduranga.tharidu@gmail.com', 'Jaffna', 'dsfsdf', 'Horana', 'approved', '2021-10-17', 0);
 
 -- --------------------------------------------------------
 
@@ -2562,7 +2531,7 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id`, `acl`, `password`, `username`, `staff_mobile`, `staff_office`, `staff_email`, `staff_address`, `staff_name`, `pro_img`, `deleted`, `assigned`, `designation`, `nic`, `hash`) VALUES
-(1, '[\"Doctor\"]', '$2y$10$KygAs9QyfkD66JjlTm.aG.M3bEV3gLoQOmqtP11joDxzP69wiTRYm', 'tharindu1', '1231414', NULL, 'qqweqwewq@gmail.com', 'horana', 'Tharindumss', 'tharindu1-89b0c29226fd927aaddf3fac69513b82.jpeg', 0, 'Jaffna', 'MO', NULL, NULL),
+(1, '[\"Nurse\"]', '$2y$10$KygAs9QyfkD66JjlTm.aG.M3bEV3gLoQOmqtP11joDxzP69wiTRYm', 'tharindu1', '1231414', NULL, 'qqweqwewq@gmail.com', 'horana', 'Tharindumss', 'tharindu1-89b0c29226fd927aaddf3fac69513b82.jpeg', 0, 'Jaffna', 'MO', NULL, NULL),
 (2, '[\"Nurse\"]', '$2y$10$V4LhI1AM2RrOgsKWUHyU0e76CgAYpweoFUTywAp7b4ax.rGPXiSeK', 'sadasdd', '3245235', NULL, 'sadasd@hm.co', 'sdadad', 'madu', '', 0, NULL, NULL, NULL, NULL),
 (3, NULL, '$2y$10$0wQxwZLIvdrBI0Fd7E95lOjLQEAYX/kfbtxGR62iAXNtbvlQJuGSO', '5fgfhfghfh', NULL, NULL, 'qqweqwgewq@gmail.com', NULL, 'fdgdfg', NULL, 0, NULL, NULL, '3435', NULL),
 (4, '[', '$2y$10$H3K4Q5UsS1MW9esC.neLFu6nCymS4e.7thjsjX1EIi/2YWgqsYPm2', 'dddrrrrrr', NULL, NULL, 'dfgfdgdfg@dsf.com', NULL, 'fdgdfg', NULL, 0, NULL, NULL, '97356633576V', NULL),
@@ -2665,6 +2634,13 @@ CREATE TABLE `user_sessions` (
   `user_agent` varchar(255) NOT NULL,
   `acl` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_sessions`
+--
+
+INSERT INTO `user_sessions` (`id`, `user_id`, `session`, `user_agent`, `acl`) VALUES
+(0, 1, '8df707a948fac1b4a0f97aa554886ec8', 'Mozilla (Windows NT 10.0; Win64; x64; rv:93.0) Gecko Firefox', NULL);
 
 --
 -- Indexes for dumped tables
@@ -2857,7 +2833,7 @@ ALTER TABLE `form`
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `patient`
@@ -2875,7 +2851,7 @@ ALTER TABLE `removed`
 -- AUTO_INCREMENT for table `requestcamp`
 --
 ALTER TABLE `requestcamp`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `staff`

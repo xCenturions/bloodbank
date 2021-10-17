@@ -130,6 +130,87 @@ class HomeController extends Controller
   {
     $this->view->render('home/success');
   }
+  public function allBloodCampsAction()
+  {
+    $this->view->render('home/allBloodCamps');
+  }
+  public function allCampsAction()
+  {
+
+
+
+
+
+    $campModel = new Location();
+    // $stock = $stockModel->getAllFromStock();
+
+    $output = '';
+    $result = '';
+
+    if ((isset($_POST["city"]) && $_POST['city'] != '') && (isset($_POST["from_date"], $_POST['to_date']) && $_POST['to_date'] != '')) {
+
+
+
+      $check = $campModel->sortByCItyAndDate($_POST["city"], $_POST["from_date"], $_POST['to_date']);
+      // dnd($donation);
+
+    } elseif (isset($_POST["from_date"]) && $_POST['to_date']) {
+
+
+
+      $check = $campModel->sortByDate($_POST["from_date"], $_POST['to_date']);
+      // dnd($stock);
+    } elseif (isset($_POST["city"]) && $_POST['city'] != '') {
+      //$donor_city = '';
+
+      $check = $campModel->findFromCity($_POST["city"]);
+      // dnd($donation);
+
+    } else {
+      $check = $campModel->getAllCamps();
+      //dnd($stock);
+    }
+
+
+
+
+    $all = "allData";
+
+    $class = "cell100 column2";
+    //dnd($value);
+    if (empty($check)) {
+      $output = "No records found";
+    }
+
+    foreach ($check as $v) {
+
+
+
+      $output .= '<table>
+    <tbody>
+
+
+        <td class=""> ' . $v->nearest_location . '</a></td>
+        <td class=" "> ' . $v->city . '</td>
+        <td> ' . $v->date . '</td>
+        <td class=" "> ' . $v->time . '</td>
+        
+
+
+
+
+
+        </tr>
+
+
+    </tbody>
+</table>';
+    }
+
+    echo ($output);
+  }
+
+
 
 
   public function requestBloodCampAction()
@@ -182,7 +263,14 @@ class HomeController extends Controller
 
           ],
           'location' => [
-            'display' => 'Venue',
+            'display' => 'Location',
+            'required' => true
+
+
+          ],
+
+          'city' => [
+            'display' => 'Nearest City',
             'required' => true
 
 

@@ -114,7 +114,7 @@
                 <div class="text-start">
 
                     <div>
-                        <h3>Location : <span style="font-weight:bold" id="location"></span> </h3><br>
+                        <h3>Location : <span style="font-weight:bold" id="location"></span> - <span style="font-weight:bold" id="city"></span> </h3><br>
                     </div>
 
 
@@ -123,20 +123,89 @@
                     <hr>
 
                     <label for="birthdaytime">Date :</label> <input type="date" id="date">
-                    <label for="birthdaytime">Time :</label> <input type="time" id="date">
-
+                    <label for="birthdaytime">Time :</label> <input type="time" id="time">
+                    <span id="id" style="display:none"></span>
                 </div>
             </div>
 
             <!--Footer-->
             <div class="modal-footer justify-content-center">
-                <a id="reject" data-toggle="modal" data-target="#rejectedModal" data-dismiss="modal" type="button" class="btn btn-success">Approve <i class="fa fa-check ml-1 text-white"></i></a>
+                <a id="submit" data-toggle="modal" data-dismiss="modal" type="button" class="btn btn-success">Approve <i class="fa fa-check ml-1 text-white"></i></a>
 
             </div>
         </div>
         <!--/.Content-->
     </div>
 </div>
+<div class='container'>
+    <div class="modal fade" style="top:20%;" id="rejectedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content p-4" style="align-items: center;border-radius: 30px;">
+                <div class='top'>
+                    <div class="success-checkmark">
+                        <div class="check-icon">
+                            <span class="icon-line line-tip"></span>
+                            <span class="icon-line line-long"></span>
+                            <div class="icon-circle"></div>
+                            <div class="icon-fix"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h1>Succesfully Rejected! </h1>
+                    </div>
+                </div>
+                <div class="modal-header border-0 mb-2">
+
+                </div>
+                <div class="modal-body"> <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button> </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='container'>
+    <div class="modal fade" style="top:20%;" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content p-4" style="align-items: center;border-radius: 30px;">
+                <div class='top'>
+                    <div class="success-checkmark">
+                        <div class="check-icon">
+                            <span class="icon-line line-tip"></span>
+                            <span class="icon-line line-long"></span>
+                            <div class="icon-circle"></div>
+                            <div class="icon-fix"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h1>Succesfully Approved! </h1>
+                    </div>
+                </div>
+                <div class="modal-header border-0 mb-2">
+
+                </div>
+                <div class="modal-body"> <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button> </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="error" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center">
+                <div class="icon-box">
+                    <i class="fas fa-times fa-4x mb-3 animated rotateIn"></i>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <h4>Ooops!</h4>
+                <p>Something went wrong. Blood not uploaded</p>
+                <button class="btn btn-success" data-dismiss="modal">Try Again</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- Central Modal Medium Danger-->
@@ -171,6 +240,9 @@
         $("#to_date").change(function() {
             loadData();
         });
+        $("#submit").click(function() {
+            approved();
+        });
 
 
 
@@ -204,6 +276,90 @@
                 $('#location').html(data.location);
                 $('#mobile').html(data.mobile);
                 $('#email').html(data.email);
+                $('#city').html(data.city);
+                $('#id').html(data.id);
+
+
+
+            }
+
+        });
+
+    };
+
+    function approved() {
+
+        var location = document.getElementById("location").innerHTML;
+
+        var email = document.getElementById("email").innerHTML;
+        var date = $('#date').val();
+        var time = $('#time').val();
+        var id = document.getElementById("id").innerHTML;
+
+        var city = document.getElementById("city").innerHTML;
+
+        //  console.log(c_id);
+        $.ajax({
+            url: "http://localhost/bloodbank/staff/approved",
+            method: "POST",
+
+            data: {
+                nearest_location: location,
+                email: email,
+                city: city,
+                date: date,
+                time: time,
+                c_id: id,
+            },
+            success: function(data) {
+                console.log("This data", data);
+
+                if (data == 1) {
+                    $('#exampleModal').modal('show');
+                    $('#city').val('');
+                    $('#location').val('');
+                    $('#date').val('');
+                    $('#time').val('');
+                    loadData();
+                } else {
+                    $('#error').modal('show');
+                }
+
+
+
+
+            }
+
+        });
+
+    };
+
+    function rejected(id) {
+
+
+        var id = $('#id').val();
+
+
+
+        //  console.log(c_id);
+        $.ajax({
+            url: "http://localhost/bloodbank/staff/reject",
+            method: "POST",
+
+            data: {
+
+                id: id,
+            },
+            success: function(data) {
+                console.log("This data", data);
+
+                if (data == 1) {
+                    $('#rejectedModal').modal('show');
+
+                } else {
+                    $('#error').modal('show');
+                }
+
 
 
 

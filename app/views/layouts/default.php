@@ -86,7 +86,7 @@
       </div>
     <?php endif; ?>
   <?php endif; ?>
-  <?php if (staff() && staff()->acl == '["Nurse"]') : ?>
+  <?php if (staff() && staff()->acl == '["BSK"]') : ?>
     <?php if (unAdded(staff()->assigned) != NULL) : ?>
 
       <div class="col-sm-12">

@@ -3,7 +3,7 @@
 class Location extends Model
 {
 
-    public $id, $cid, $nearest_location;
+    public $id, $cid, $nearest_location, $date, $city, $time;
     public $deleted = 0;
 
     public function __construct()
@@ -20,6 +20,10 @@ class Location extends Model
         $conditions = array_merge($conditions, $params);
 
         return $this->findWithoutSoftDelete($conditions);
+    }
+    public function getAllCamps()
+    {
+        return $this->find(['conditions' => "DATE(date) > CURDATE()", 'bind' => []]);
     }
 
 
@@ -42,5 +46,25 @@ class Location extends Model
     public function displayName()
     {
         return $this->fname . ' ' . $this->lname;
+    }
+
+    public function addCamp($params)
+    {
+        $this->assign($params);
+        $this->deleted = 0;
+        $this->save();
+    }
+
+    public function sortByDate($toDate, $fromDate)
+    {
+        return $this->find(['conditions' => "DATE(date) > CURDATE() AND date BETWEEN ? and ?   ", 'bind' => [$toDate, $fromDate]]);
+    }
+    public function findFromCity($ct)
+    {
+        return $this->find(['conditions' => "DATE(date) > CURDATE() AND city= ?   ", 'bind' => [$ct]]);
+    }
+    public function sortByCItyAndDate($city, $toDate, $fromDate)
+    {
+        return $this->find(['conditions' => "city =? AND DATE(date) > CURDATE() AND date BETWEEN ? and ?   ", 'bind' => [$city, $toDate, $fromDate]]);
     }
 }

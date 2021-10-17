@@ -1,10 +1,14 @@
 {
   "Home": "home",
 
-  "Services Menu": "staff",
+  "Blood Camps": {
+    "Requested Donor Camps": "staff/requestedCamps"
+  },
 
-  "Patients": "staff/patientRegister",
-
+  "Patients": {
+    "Add A Patient": "staff/patientRegister",
+    "Registered Patients": "staff/registeredPatients"
+  },
   "Donors": {
     "Search Donors": "staff/searchDonors",
     "Registered Donors": "reports/donorDetails",
