@@ -188,7 +188,7 @@
                      <img class="card-img d-none" src="img/home/camp.JPG" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
                      <div class="card-img-overlay d-flex flex-column">
                          <div class="card-body">
-                             <h2 class="card-meta mb-2"> <a class="card-meta mb-2" href="<?= PROOT ?>staff">Organize a Blood Camp</h2></a>
+                             <h2 class="card-meta mb-2"> <a class="card-meta mb-2" href="<?= PROOT ?>home/requestBloodCamp">Organize a Blood Camp</h2></a>
 
                              <center> <small>By organizing a blood donation campaign, you can give your society a chance to donate blood. It is not that difficult or expensive to organize a campaign in your area or work place. </small></center>
 
