@@ -8,7 +8,7 @@ class Camp extends Model
 
     public function __construct()
     {
-        $table = 'requestCamp';
+        $table = 'requestcamp';
         parent::__construct($table);
         $this->_softDelete = true;
     }
