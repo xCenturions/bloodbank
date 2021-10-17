@@ -216,11 +216,13 @@ figure {
 
 .chart {
   border-radius: 3px;
-  border: 1px solid #313d4f;
+
   color: white;
   padding: 10px;
   position: relative;
   text-align: center;
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 .chart canvas {
   height: 400px;
@@ -269,6 +271,10 @@ figure {
 
 .bar {
   height: 500px;
+  background-color: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+.bg {
   background-color: white;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }

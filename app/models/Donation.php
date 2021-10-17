@@ -62,7 +62,16 @@ class Donation extends Model
   public function barchartBank($banks)
   {
 
-    $stock =  $this->query("SELECT COUNT(id) as count,MONTHNAME(date) as month_name FROM donation_record WHERE location = ? AND  YEAR(date) = '" . date('Y') . "'  GROUP BY YEAR(date),MONTH(date)  ", [$banks]);
+    $stock =  $this->query("SELECT COUNT(*) as count, MONTHNAME(date) as month_name FROM donation_record WHERE location = ? AND  YEAR(date) =  date('Y')   GROUP BY YEAR(date),MONTH(date)  ", [$banks]);
+    //$db = DB::getInstance();
+    $results = $stock->results();
+
+    return $results;
+  }
+  public function barchartMLT($banks)
+  {
+
+    $stock =  $this->query("SELECT COUNT(case when status='approved' then 1 end) as app_count, COUNT(case when status='rejected' then 1 end) as rej_count, MONTHNAME(date) as month_name FROM donation_record WHERE location = ? AND  YEAR(date) =  date('Y')   GROUP BY YEAR(date),MONTH(date)  ", [$banks]);
     //$db = DB::getInstance();
     $results = $stock->results();
 
@@ -103,17 +112,19 @@ class Donation extends Model
   {
     return $this->find(['conditions' => "bld_banks = ?", 'bind' => [$bank]]);
   }
-  public function countRecords()
+
+  public function countRecords($bank)
   {
-    $stock = $this->query('SELECT COUNT(id) as total FROM donation_record ', []);
+    $stock = $this->query('SELECT COUNT(id) as total FROM donation_record  where location = ?', [$bank]);
 
     $results = $stock->results();
 
     return $results;
   }
+
   public function countRecordsBank($bank)
   {
-    $stock = $this->query('SELECT COUNT(id) as total FROM donation_record where location=? ', [$bank]);
+    $stock = $this->query('SELECT count(*) as total FROM donation_record WHERE MONTH(date)=MONTH(NOW()) AND location =?', [$bank]);
 
     $results = $stock->results();
 

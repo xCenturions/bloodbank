@@ -9,12 +9,23 @@ class HomeController extends Controller
 
   public function indexAction()
   {
+    $bank = '';
+    if (isset(staff()->assigned)) {
+      $bank = staff()->assigned;
+    } elseif (isset(admin()->assigned)) {
+      $bank = admin()->assigned;
+    }
+
+
 
     $stockModel = new Stock();
     $alertModel = new Alerts();
+    $patientModel = new Patient();
+    $donorModel = new Donor();
+    $staffModel = new Staff();
 
-    $bank = 'Jaffna';
-    $stockModel->bloodAlert();
+
+    $stockModel->bloodAlert($bank);
 
     // if(isset(staff()){
     $alerts = $alertModel->getAllAlerts($bank);
@@ -22,26 +33,31 @@ class HomeController extends Controller
 
     if (!empty($alerts) && $alerts[0]->status == 'unopened') {
       $this->view->alert = $alerts[0];
+
+
       // dnd($alerts[0]) ;
     }
 
+    $patient = $patientModel->countPatientsBank($bank);
+    $staff = $staffModel->countStaff($bank);
 
 
 
+    $donors = $donorModel->countDonors();
+    $donationModel = new Donation();
+
+    $count = $donationModel->countRecords($bank);
+    $countBank = $donationModel->countRecordsBank($bank);
+
+    //  dnd($patient);
+    $this->view->total = $count[0]->total;
+    $this->view->staff = $staff[0]->total;
+    $this->view->donors = $donors[0]->count;
+    $this->view->patients = $patient[0]->total;
+    $this->view->totalBank = $countBank[0]->total;
 
 
 
-
-    //dnd($alerts);
-
-
-
-    // }
-
-
-
-
-    //dnd(staff());
     $this->view->render('home/index');
   }
 
@@ -55,15 +71,7 @@ class HomeController extends Controller
 
   public function testAction()
   {
-    $bank = staff()->assigned;
-    $donationModel = new Donation();
 
-    $count = $donationModel->countRecords();
-    $countBank = $donationModel->countRecordsBank($bank);
-
-    //dnd($count);
-    $this->view->total = $count[0]->total;
-    $this->view->totalBank = $count[0]->total;
     $this->view->render('home/test');
   }
 
@@ -121,5 +129,77 @@ class HomeController extends Controller
   public function successAction()
   {
     $this->view->render('home/success');
+  }
+
+
+  public function requestBloodCampAction()
+
+  {
+
+    $this->view->render('home/requestBloodCamp');
+  }
+
+  public function requestAction()
+  {
+
+    //dnd($_POST);
+    if ($_POST) {
+
+      $validation = new Validate();
+
+
+      if ($_POST) {
+
+        //dnd($_POST);       
+        $validation->check($_POST, [
+
+          'name' => [
+            'display' => 'Patient Name',
+            'required' => true
+
+          ],
+
+          'nic' => [
+            'display' => 'National Identity Card Number',
+            'required' => true,
+            'valid_nic' => true
+
+          ],
+          'mobile' => [
+            'display' => 'Mobile Number',
+            'required' => true,
+            'valid_mobile' => true
+          ],
+          'nst_bank' => [
+            'display' => 'Nearest Blood Bank',
+            'required' => true
+
+          ],
+          'email' => [
+            'display' => 'Email',
+            'required' => true,
+            'valid_email' => true
+
+          ],
+          'location' => [
+            'display' => 'Venue',
+            'required' => true
+
+
+          ]
+
+        ]);
+
+
+        if ($validation->passed()) {
+          $campModel = new Camp();
+          $campModel->date = date('Y-m-d');
+          $campModel->requestCamp($_POST);
+          echo (1);
+        } else {
+          echo ($validation->displayErrors());
+        }
+      }
+    }
   }
 }

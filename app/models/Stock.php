@@ -38,7 +38,7 @@ class Stock extends Model
   public function piechartBank($bank)
   {
 
-    $stock = $this->query('SELECT bld_grps,bld_banks,  count(*) as count FROM stock where bld_banks = ? GROUP BY bld_grps  ', [$bank]);
+    $stock = $this->query('SELECT bld_grps,bld_banks,  count(*) as count FROM stock where bld_banks = ? AND deleted != 0 GROUP BY bld_grps   ', [$bank]);
     //  $db = DB::getInstance();
     $results = $stock->results();
     //dnd($results);
@@ -82,6 +82,7 @@ class Stock extends Model
   {
     return $this->find(['conditions' => "bld_grps = ?", 'bind' => [$bld]]);
   }
+
   public function bloodBankSort($bank)
   {
     return $this->find(['conditions' => "bld_banks = ?", 'bind' => [$bank]]);
@@ -92,16 +93,23 @@ class Stock extends Model
     //dnd($result);
     return $result->results();
   }
+  public function findBloodAndBank($bld, $bank)
+  {
+    $result = $this->query('SELECT * FROM stock where bld_grps = ? AND bld_banks =? AND deleted != 1 LIMIT 1', [$bld, $bank]);
+    //dnd($result);
+    return $result->results();
+  }
+
   public function searchByNic($nic)
   {
     return $this->find(['conditions' => "donor_nic = ? ", 'bind' => [$nic]]);
   }
 
 
-  public function bloodAlert()
+  public function bloodAlert($bank)
   {
 
-    $bank = 'Jaffna';
+
     $results = '';
 
     $count = $this->countBlood($bank);
@@ -121,5 +129,12 @@ class Stock extends Model
     }
 
     return $results;
+  }
+
+  public function reduceBlood($bld, $bank)
+  {
+    $result = $this->query('SELECT * FROM stock where bld_grps = ? AND bld_banks =?', [$bld, $bank]);
+    //dnd($result);
+    return $result->results();
   }
 }

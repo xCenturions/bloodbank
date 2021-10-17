@@ -30,7 +30,7 @@
     <!-- Uncomment below if you prefer to use an image logo -->
     <!-- <a href="<?= PROOT ?>home" class="logo me-auto"></a> -->
 
-    <nav id="navbar" class="navbar ">
+    <nav class="navbar">
       <ul>
         <?php foreach ($menu as $key => $val) :
           $active = ''; ?>

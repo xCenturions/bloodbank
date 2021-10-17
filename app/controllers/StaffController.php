@@ -273,7 +273,7 @@ class StaffController extends Controller
 
     $validation = new Validate();
 
-
+    $bank = staff()->assigned;
     if ($_POST) {
 
       //dnd($_POST);       
@@ -324,15 +324,106 @@ class StaffController extends Controller
 
       if ($validation->passed()) {
         $newPatient = new Patient();
+        $newPatient->location = staff()->assigned;
+        $newPatient->date = date('Y-m-d');
         $newPatient->register($_POST);
 
+        $stockModel = new Stock();
+
+        $stock =  $stockModel->findBloodAndBank($_POST['pt_bloodgroup'], $bank);
+        // dnd($stock);
+        $stockModel->delete($stock[0]->id);
+        $stockModel->bloodAlert($bank);
+
+
+
+
         //$newUser->login();
-        Router::redirect('');
+        //Router::redirect('');
       }
     }
 
     $this->view->displayErrors = $validation->displayErrors();
     $this->view->render('staff/patientRegister');
+  }
+
+  public function registeredPatientsAction()
+  {
+    $this->view->render('staff/registeredPatients');
+  }
+
+  public function patientsAction()
+  {
+
+    $bank = staff()->assigned;
+
+    $patientModel = new Patient();
+    // $stock = $stockModel->getAllFromStock();
+
+    $output = '';
+    $result = '';
+
+    if ((isset($_POST["nic"]) && $_POST['nic'] != '') && (isset($_POST["from_date"], $_POST['to_date']) && $_POST['to_date'] != '')) {
+
+
+
+      $check = $patientModel->sortByNICAndDate($bank, $_POST["nic"], $_POST["from_date"], $_POST['to_date']);
+      // dnd($donation);
+
+    } elseif (isset($_POST["from_date"]) && $_POST['to_date']) {
+
+
+
+      $check = $patientModel->sortByDate($_POST["from_date"], $_POST['to_date'], $bank);
+      // dnd($stock);
+    } elseif (isset($_POST["nic"]) && $_POST['nic'] != '') {
+      //$nic = $_POST["nic"];
+      $check = $patientModel->findByNIC($_POST["nic"], $bank);
+      // dnd($donation);
+      //
+    } else {
+      $check = $patientModel->getAllPatients($bank);
+      //dnd($stock);
+    }
+
+
+
+
+    $all = "allData";
+
+    $class = "cell100 column2";
+    //dnd($value);
+    if (empty($check)) {
+      $output = "No records found";
+    }
+
+    foreach ($check as $v) {
+
+
+
+      $output .= '<table>
+    <tbody>
+
+
+        <td class=""> ' . $v->pt_nic . '</a></td>
+        <td class=" "> ' . $v->pt_name . '</td>
+        <td> ' . $v->sex . '</td>
+        <td class=" "> ' . $v->dob . '</td>
+        <td class=" "> ' . $v->pt_mobile . '</td>
+        
+
+
+
+
+
+        </tr>
+
+
+    </tbody>
+</table>';
+    }
+
+    echo ($output);
   }
 
 
@@ -617,5 +708,86 @@ class StaffController extends Controller
 
     $this->view->displayErrors = $validation->displayErrors();
     $this->view->render('staff/resetPassword');
+  }
+  public function requestedCampsAction()
+  {
+    $this->view->render('staff/requestedCamps');
+  }
+
+  public function requestedAction()
+  {
+    $bank = staff()->assigned;
+
+    $campModel = new Camp();
+    // $stock = $stockModel->getAllFromStock();
+
+    $output = '';
+    $result = '';
+    if (isset($_POST["from_date"]) && $_POST['to_date']) {
+
+
+
+      $check = $campModel->sortByDate($bank, $_POST["from_date"], $_POST['to_date']);
+      // dnd($stock);
+    } else {
+      $check = $campModel->getAllCamps($bank);
+      //  dnd($check);
+    }
+
+
+
+
+    $all = "allData";
+
+    $class = "cell100 column2";
+    //dnd($value);
+    if (empty($check)) {
+      $output = "No records found";
+    }
+
+    foreach ($check as $v) {
+
+
+
+      $output .= '<table>
+    <tbody>
+
+
+        <td class=""> ' . $v->location . '</a></td>
+        <td class=" "> ' . $v->name . '</td>
+        <td> ' . $v->email . '</td>
+        <td class=" "> ' . $v->mobile . '</td>
+        <td class=" "> ' . $v->date . '</td>
+        <td class=" "> <button id="' . $v->id . '" type="button" data-toggle="modal" data-target="#centralModalSuccess" onClick="approve(this.id)" style="width:120px" class=" btn btn-rounded btn-success "><i class="fa fa-check" aria-hidden="true"></i>Approve</button> <button onClick="rejected(this.id)" id="' . $v->id . '" data-toggle="modal" data-target="#centralModalDanger" type="button" style="width:120px" class="c btn btn-rounded btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></i> Reject</button></td>
+        
+
+
+
+
+
+        </tr>
+
+
+    </tbody>
+</table>';
+    }
+
+    echo ($output);
+  }
+
+  public function approveAction()
+  {
+    //dnd($_POST['c_id']);
+    if (isset($_POST['c_id']) && $_POST['c_id'] != '') {
+
+
+      $campModel = new Camp();
+
+      $camp = $campModel->findById($_POST['c_id']);
+      //dnd($donor[0]->status);
+
+      echo json_encode($camp);
+      exit;
+    }
   }
 }

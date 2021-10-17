@@ -279,6 +279,28 @@
 
       echo json_encode($results);
     }
+    public function mltChartAction()
+    {
+      $donationModel = new Donation();
+      $bank = staff()->assigned;
+
+
+
+
+      $bar =  $donationModel->barchartMLT($bank);
+      //dnd($bar);
+
+
+
+      $results = [
+
+        'bar' => $bar,
+
+
+      ];
+
+      echo json_encode($results);
+    }
 
 
 

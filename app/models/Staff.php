@@ -260,6 +260,13 @@ class Staff extends Model
     //dnd($result);
     return $result->results();
   }
+  public function countStaff($bld)
+  {
+
+    $result = $this->query('SELECT count(*) as total FROM staff WHERE  assigned =?', [$bld]);
+    //dnd($result);
+    return $result->results();
+  }
 
 
 

@@ -3,7 +3,7 @@
 class Patient extends Model
 {
 
-    public $id, $pt_name, $dob, $pt_mobile, $pt_city, $qty, $pt_nic, $sex, $date;
+    public $id, $pt_name, $dob, $pt_mobile, $pt_city, $qty, $pt_nic, $sex, $date, $location, $pt_bloodgroup;
     public $deleted = 0;
 
     public function __construct()
@@ -22,6 +22,15 @@ class Patient extends Model
         $this->deleted = 0;
 
         $this->save();
+    }
+
+    public function countPatientsBank($bank)
+    {
+        $stock = $this->query('SELECT count(*) as total FROM patient WHERE MONTH(date)=MONTH(NOW()) AND location =?', [$bank]);
+
+        $results = $stock->results();
+
+        return $results;
     }
 
 
@@ -48,5 +57,22 @@ class Patient extends Model
     public function getAllFromStock()
     {
         return $this->findFromTable('stock');
+    }
+    public function getAllPatients($bank)
+    {
+        return $this->find(['conditions' => "location = ?", 'bind' => [$bank]]);
+    }
+    public function findByNIC($nic, $bank)
+    {
+        return $this->find(['conditions' => "pt_nic = ? AND location = ?", 'bind' => [$nic, $bank]]);
+    }
+    public function sortByDate($f_date, $t_date, $bank)
+    {
+        return $this->find(['conditions' => "location = ? AND date BETWEEN ? and ?", 'bind' => [$bank, $f_date, $t_date]]);
+    }
+    public function sortByNICAndDate($bank, $nic, $toDate, $fromDate)
+    {
+
+        return $this->find(['conditions' => "location = ? AND pt_nic =? date BETWEEN ? and ?", 'bind' => [$bank, $nic, $toDate, $fromDate]]);
     }
 }

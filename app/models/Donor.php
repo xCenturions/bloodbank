@@ -163,6 +163,14 @@ class Donor extends Model
   {
     return $this->findFromTable('donor');
   }
+  public function countDonors()
+  {
+    $count = $this->query('SELECT  count(*) as count FROM donor  ', []);
+    //  $db = DB::getInstance();
+    $results = $count->results();
+    //dnd($results);
+    return $results;
+  }
   public function getAllCities()
   {
     return $this->findFromTable('cities');
