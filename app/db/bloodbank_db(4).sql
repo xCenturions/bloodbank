@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2021 at 03:03 PM
+-- Generation Time: Oct 17, 2021 at 03:57 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.7
 
@@ -32,6 +32,7 @@ CREATE TABLE `admin` (
   `username` varchar(150) NOT NULL,
   `password` varchar(100) NOT NULL,
   `name` varchar(150) DEFAULT NULL,
+  `assigned` varchar(100) DEFAULT NULL,
   `acl` varchar(60) DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -40,8 +41,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `username`, `password`, `name`, `acl`, `deleted`) VALUES
-(1, 'admin', 'admin', 'Tharindu Maduranga', '[\"Admin\"]', 0);
+INSERT INTO `admin` (`id`, `username`, `password`, `name`, `assigned`, `acl`, `deleted`) VALUES
+(1, 'admin', 'admin', 'Tharindu Maduranga', 'Jaffna', '[\"Admin\"]', 0);
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,10 @@ INSERT INTO `alerts` (`id`, `alert`, `status`, `bank`, `date`, `time`, `deleted`
 (32, '', 'unopened', 'Horana', NULL, NULL, 0),
 (34, 'sdd', 'unopened', 'Jafafna', NULL, NULL, 0),
 (35, 'ssdd', 'unopened', 'Ho', NULL, NULL, 0),
-(36, 'A+,B-,', 'opened', 'Jaffna', '2021-10-09', '11:00:27', 0);
+(36, 'A+,B-,', 'opened', 'Jaffna', '2021-10-14', '10:00:04', 0),
+(37, '', 'unopened', NULL, NULL, NULL, 0),
+(38, '', 'unopened', NULL, NULL, NULL, 0),
+(39, '', 'unopened', '', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -92,7 +96,7 @@ CREATE TABLE `appointment` (
 
 INSERT INTO `appointment` (`id`, `donor_healthdetails`, `preffered_time`, `preffered_date`, `location`, `location_type`, `donor_id`, `deleted`) VALUES
 (4, NULL, '19:00:00', '2021-08-25', 'Embilipitiya - Embilipitiya Hospital', '1', 8, 1),
-(5, NULL, '19:00:00', '2021-08-25', 'Elpitiya - Elpitiya Hospital', '1', 8, 0),
+(5, NULL, '19:00:00', '2021-08-25', 'Elpitiya - Elpitiya Hospital', '1', 8, 1),
 (6, NULL, '19:00:00', '2021-08-25', 'Makehelwala Kanishta Vidyalaya - Mawanella', '2', 8, 1),
 (7, NULL, '19:00:00', '2021-08-26', 'Chilaw - Chilaw Hospital', '1', 8, 0),
 (8, NULL, '19:00:00', '2021-08-26', 'Makehelwala Kanishta Vidyalaya - Mawanella', '2', 8, 0);
@@ -2170,7 +2174,7 @@ CREATE TABLE `donation_record` (
   `id` int(5) NOT NULL,
   `donor_id` int(5) NOT NULL,
   `staff_id` int(5) NOT NULL,
-  `verified` tinyint(1) DEFAULT NULL,
+  `verified` varchar(10) DEFAULT NULL,
   `weight` int(5) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `location` varchar(100) DEFAULT NULL,
@@ -2185,8 +2189,8 @@ CREATE TABLE `donation_record` (
   `remarks` varchar(100) DEFAULT NULL,
   `cus` int(5) DEFAULT NULL,
   `bp` int(5) DEFAULT NULL,
-  `cue` int(5) DEFAULT NULL,
-  `pd` int(5) DEFAULT NULL,
+  `cue` varchar(5) DEFAULT NULL,
+  `pd` varchar(5) DEFAULT NULL,
   `hd` int(5) DEFAULT NULL,
   `temporary_deferral` int(5) DEFAULT NULL,
   `permanent_deferral` int(5) DEFAULT NULL,
@@ -2203,6 +2207,7 @@ CREATE TABLE `donation_record` (
   `cm_no` int(10) DEFAULT NULL,
   `status` varchar(100) DEFAULT NULL,
   `tested_disease` varchar(255) DEFAULT NULL,
+  `is_added` varchar(10) DEFAULT NULL,
   `deleted` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2210,9 +2215,9 @@ CREATE TABLE `donation_record` (
 -- Dumping data for table `donation_record`
 --
 
-INSERT INTO `donation_record` (`id`, `donor_id`, `staff_id`, `verified`, `weight`, `date`, `location`, `donor_name`, `bld_grp`, `din_name`, `mo_name`, `of_name`, `ph_name`, `name`, `history`, `remarks`, `cus`, `bp`, `cue`, `pd`, `hd`, `temporary_deferral`, `permanent_deferral`, `resons_deferral`, `hb_lvl1`, `hb_lvl2`, `Q`, `T`, `D`, `S`, `st_time`, `et_time`, `amount`, `cm_no`, `status`, `tested_disease`, `deleted`) VALUES
-(1, 8, 1, NULL, 0, '2021-09-13', 'Jaffna', '', 'A+', 'gh', '', '', '', '', NULL, '', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '00:00:00', '00:00:00', 0, 1899, 'rejected', 'hjkhj', 0),
-(2, 7, 1, NULL, NULL, NULL, 'Jaffna', 'sdf', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1245, 'approved', 'zxzxzzxxzzxc', 0);
+INSERT INTO `donation_record` (`id`, `donor_id`, `staff_id`, `verified`, `weight`, `date`, `location`, `donor_name`, `bld_grp`, `din_name`, `mo_name`, `of_name`, `ph_name`, `name`, `history`, `remarks`, `cus`, `bp`, `cue`, `pd`, `hd`, `temporary_deferral`, `permanent_deferral`, `resons_deferral`, `hb_lvl1`, `hb_lvl2`, `Q`, `T`, `D`, `S`, `st_time`, `et_time`, `amount`, `cm_no`, `status`, `tested_disease`, `is_added`, `deleted`) VALUES
+(1, 8, 1, 'Yes', 0, '2021-09-13', 'Jaffna', 'Tharindu Maduranga', 'A+', 'gh', 'Thar', '', '', '', NULL, 'asd', 10, 0, 'X', 'X', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '00:00:00', '00:00:00', 0, 1899, 'rejected', 'hjkhj', 'Yes', 0),
+(2, 7, 1, NULL, NULL, '2021-09-16', 'Jaffna', 'sdf', 'A+', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1245, 'rejected', 'zxzxzzxxzzxc', 'Yes', 0);
 
 -- --------------------------------------------------------
 
@@ -2382,8 +2387,7 @@ INSERT INTO `location` (`id`, `cid`, `nearest_location`, `lat`, `lng`) VALUES
 (35, 2, 'Kurukude Temple -Peradeniya', NULL, NULL),
 (36, 2, 'Lakshi Salon - Ratnapura', NULL, NULL),
 (37, 2, 'Lumbini Viharaya -Dalugama', NULL, NULL),
-(38, 2, 'Makehelwala Kanishta Vidyalaya - Mawanella', NULL, NULL),
-(39, 1, 'Avisawella', 6.9543, 80.2046);
+(38, 2, 'Makehelwala Kanishta Vidyalaya - Mawanella', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2429,11 +2433,13 @@ CREATE TABLE `patient` (
   `pt_name` varchar(35) DEFAULT NULL,
   `pt_nic` varchar(15) DEFAULT NULL,
   `sex` varchar(13) DEFAULT NULL,
+  `pt_bloodgroup` varchar(10) DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `pt_mobile` varchar(10) DEFAULT NULL,
   `pt_city` text DEFAULT NULL,
   `qty` int(5) DEFAULT NULL,
   `date` date DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2441,8 +2447,37 @@ CREATE TABLE `patient` (
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`id`, `pt_name`, `pt_nic`, `sex`, `dob`, `pt_mobile`, `pt_city`, `qty`, `date`, `deleted`) VALUES
-(2, 'tharindu Madrunga', '97354476V', 'male', '2021-08-10', '0762247830', 'Horana', 1, NULL, 0);
+INSERT INTO `patient` (`id`, `pt_name`, `pt_nic`, `sex`, `pt_bloodgroup`, `dob`, `pt_mobile`, `pt_city`, `qty`, `date`, `location`, `deleted`) VALUES
+(2, 'tharindu Madrunga', '97354476V', 'male', NULL, '2021-08-10', '0762247830', 'Horana', 1, NULL, NULL, 0),
+(3, 'addggggg', '973544276V', 'female', NULL, '2021-09-28', '0762247830', 'Jaffna', 1, '2021-10-06', 'Jaffna', 0),
+(4, 'sadasdas', '973524476V', 'male', NULL, '2021-09-29', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(5, 'sadasdas', '973524476V', 'male', NULL, '2021-09-29', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(6, 'addgggggs', '97354476V', 'female', NULL, '2021-10-05', '0762247830', 'Horana', 1, '2021-10-16', 'Jaffna', 0),
+(7, 'gfgfggg', '97354476V', 'male', NULL, '2021-10-05', '0762247830', 'Horana', 1, '2021-10-16', 'Jaffna', 0),
+(8, 'tharindu Madrunga', '97354476V', 'other', NULL, '2021-10-05', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(9, 'addggggg', '973524476V', 'other', NULL, '2021-10-06', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(10, 'addggggg', '973524476V', 'male', NULL, '2021-10-05', '0762247830', 'Horana', 1, '2021-10-16', 'Jaffna', 0),
+(11, 'addggggg', '97354476V', 'female', NULL, '2021-10-13', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(12, 'gfgfggg', '97354476V', 'male', 'B+', '2021-10-05', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(13, 'gfgfggg', '97354476V', 'male', 'A+', '2021-10-05', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(14, 'tharindu Madrunga', '97354476V', 'male', 'O-', '2021-10-12', '0762247830', 'Horana', 1, '2021-10-16', 'Jaffna', 0),
+(15, 'tharindu Madrunga', '973524476V', 'male', 'A+', '2021-10-06', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(16, 'gfgfggg', '973524476V', 'male', 'A+', '2021-10-05', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(17, 'addggggg', '97354476V', 'male', 'A+', '2021-10-12', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(18, 'addggggg', '97354476V', 'male', 'A+', '2021-10-12', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(19, 'tharindu Madrunga', '97354476V', 'female', 'A+', '2021-10-05', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(20, 'tharindu Madrunga', '973544276V', 'male', 'A+', '2021-10-05', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(21, 'gfgfggg', '973524476V', 'female', 'A-', '2021-09-27', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(22, 'addgggggs', '973524476V', 'male', 'A+', '2021-10-05', '0762247830', 'Horana', 1, '2021-10-16', 'Jaffna', 0),
+(23, 'addgggggs', '973524476V', 'male', 'A+', '2021-10-05', '0762247830', 'Horana', 1, '2021-10-16', 'Jaffna', 0),
+(24, 'addggggg', '973524476V', 'male', 'A+', '2021-10-06', '0762247830', 'Horana', 1, '2021-10-16', 'Jaffna', 0),
+(25, 'gfgfggg', '97354476V', 'male', 'A+', '2021-10-05', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(26, 'addgggggs', '973524476V', 'male', 'A+', '2021-10-07', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(27, 'addgggggs', '97354476V', 'male', 'A+', '2021-10-12', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(28, 'addgggggs', '97354476V', 'male', 'A+', '2021-10-12', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(29, 'addggggg', '973524476V', 'male', 'A+', '2021-09-28', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(30, 'gfgfggg', '973524476V', 'male', 'A+', '2021-10-05', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0),
+(31, 'addggggg', '973524476V', 'female', 'A+', '2021-10-06', '0762247830', 'Jaffna', 1, '2021-10-16', 'Jaffna', 0);
 
 -- --------------------------------------------------------
 
@@ -2475,6 +2510,32 @@ INSERT INTO `removed` (`id`, `stk_id`, `bld_grps`, `bld_rbc`, `bld_wbc`, `bld_pl
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `requestcamp`
+--
+
+CREATE TABLE `requestcamp` (
+  `id` int(10) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `nic` varchar(100) DEFAULT NULL,
+  `mobile` int(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `nst_bank` varchar(100) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `status` varchar(100) NOT NULL DEFAULT 'unchecked',
+  `date` date DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `requestcamp`
+--
+
+INSERT INTO `requestcamp` (`id`, `name`, `nic`, `mobile`, `email`, `nst_bank`, `location`, `status`, `date`, `deleted`) VALUES
+(1, 'Palle Arachchige Tharindu Maduranga', '973533576V', 762247830, 'maduranga.tharidu@gmail.com', 'Jaffna', 'Sri Palee College - Horana', 'unchecked', '2021-10-17', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `staff`
 --
 
@@ -2501,7 +2562,7 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id`, `acl`, `password`, `username`, `staff_mobile`, `staff_office`, `staff_email`, `staff_address`, `staff_name`, `pro_img`, `deleted`, `assigned`, `designation`, `nic`, `hash`) VALUES
-(1, '[\"MLT\"]', '$2y$10$KygAs9QyfkD66JjlTm.aG.M3bEV3gLoQOmqtP11joDxzP69wiTRYm', 'tharindu1', '1231414', NULL, 'qqweqwewq@gmail.com', 'horana', 'Tharindum', 'tharindu1-89b0c29226fd927aaddf3fac69513b82.jpeg', 0, 'Jaffna', 'MO', NULL, NULL),
+(1, '[\"Doctor\"]', '$2y$10$KygAs9QyfkD66JjlTm.aG.M3bEV3gLoQOmqtP11joDxzP69wiTRYm', 'tharindu1', '1231414', NULL, 'qqweqwewq@gmail.com', 'horana', 'Tharindumss', 'tharindu1-89b0c29226fd927aaddf3fac69513b82.jpeg', 0, 'Jaffna', 'MO', NULL, NULL),
 (2, '[\"Nurse\"]', '$2y$10$V4LhI1AM2RrOgsKWUHyU0e76CgAYpweoFUTywAp7b4ax.rGPXiSeK', 'sadasdd', '3245235', NULL, 'sadasd@hm.co', 'sdadad', 'madu', '', 0, NULL, NULL, NULL, NULL),
 (3, NULL, '$2y$10$0wQxwZLIvdrBI0Fd7E95lOjLQEAYX/kfbtxGR62iAXNtbvlQJuGSO', '5fgfhfghfh', NULL, NULL, 'qqweqwgewq@gmail.com', NULL, 'fdgdfg', NULL, 0, NULL, NULL, '3435', NULL),
 (4, '[', '$2y$10$H3K4Q5UsS1MW9esC.neLFu6nCymS4e.7thjsjX1EIi/2YWgqsYPm2', 'dddrrrrrr', NULL, NULL, 'dfgfdgdfg@dsf.com', NULL, 'fdgdfg', NULL, 0, NULL, NULL, '97356633576V', NULL),
@@ -2541,13 +2602,18 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`id`, `cm_no`, `donor_nic`, `bld_grps`, `date`, `bld_rbc`, `bld_wbc`, `bld_plates`, `bld_plasma`, `bld_banks`, `deleted`) VALUES
-(1, '', '77353333V', 'A+', '2021-05-24', NULL, 1, NULL, NULL, 'Jaffna', 0),
+(1, '', '77353333V', 'A+', '2021-05-24', NULL, 1, NULL, NULL, 'Jaffna', 1),
 (2, '', '6735335445V', 'B-', '2021-06-24', 1, 1, NULL, 1, 'Jaffna', 0),
-(3, '', '943533345V', 'A+', '2021-08-24', NULL, 1, NULL, NULL, 'Jaffna', 0),
+(3, '', '943533345V', 'A+', '2021-08-24', NULL, 1, NULL, NULL, 'Jaffna', 1),
 (4, '', '573533556V', 'A+', '2021-08-24', NULL, 1, NULL, NULL, 'asasa', 0),
 (5, '', '973532376V', 'A+', '2021-07-24', 1, NULL, NULL, NULL, 'dd', 0),
 (6, '', '973533556V', 'B+', '2021-07-24', NULL, 1, NULL, NULL, 'zcxz', 0),
-(7, '', '973533576V', 'A+', '2021-07-24', 1, NULL, NULL, NULL, 'waaaa', 0);
+(7, '', '973533576V', 'A+', '2021-07-24', 1, NULL, NULL, NULL, 'waaaa', 0),
+(8, '1245', '973531576V', 'A+', '2021-10-13', 1, 1, 1, 1, NULL, 0),
+(35, '1899', '973533576V', 'A+', '2021-10-13', 0, 1, 0, 0, 'Jaffna', 0),
+(36, '1245', '973531576V', 'A+', '2021-10-13', 0, 0, 1, 0, 'Jaffna', 0),
+(37, '1899', '973533576V', 'A+', '2021-10-13', 0, 0, 1, 0, 'Jaffna', 0),
+(38, '1245', '973531576V', 'A+', '2021-10-13', 0, 0, 1, 0, 'Jaffna', 0);
 
 -- --------------------------------------------------------
 
@@ -2566,8 +2632,7 @@ CREATE TABLE `type` (
 
 INSERT INTO `type` (`id`, `location_type`) VALUES
 (1, 'Blood Bank'),
-(2, 'Donor Camp'),
-(14, '');
+(2, 'Donor Camp');
 
 -- --------------------------------------------------------
 
@@ -2600,19 +2665,6 @@ CREATE TABLE `user_sessions` (
   `user_agent` varchar(255) NOT NULL,
   `acl` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user_sessions`
---
-
-INSERT INTO `user_sessions` (`id`, `user_id`, `session`, `user_agent`, `acl`) VALUES
-(0, 8, '3ef815416f775098fe977004015c6193', 'Mozilla (Windows NT 10.0; Win64; x64; rv:89.0) Gecko Firefox', NULL),
-(0, 37, 'b8c8c63d4b8856c7872b225e53a6656c', 'Mozilla (Windows NT 10.0; Win64; x64; rv:90.0) Gecko Firefox', NULL),
-(0, 8, '310614fca8fb8e5491295336298c340f', 'Mozilla (Windows NT 10.0; Win64; x64; rv:90.0) Gecko Firefox', NULL),
-(0, 49, 'f49cc4ca4cdadcf27523ee0eb6908bf8', 'Mozilla (Windows NT 10.0; Win64; x64) AppleWebKit (KHTML, like Gecko) Chrome Safari', NULL),
-(0, 1, '5446f217e9504bc593ad9dcf2ec88dda', 'Mozilla (Windows NT 10.0; Win64; x64; rv:91.0) Gecko Firefox', NULL),
-(0, 1, '3871bd64012152bfb53fdf04b401193f', 'Mozilla (Windows NT 10.0; Win64; x64; rv:92.0) Gecko Firefox', NULL),
-(0, 1, '9d4c03631b8b0c85ae08bf05eda37d0f', 'Mozilla (Windows NT 10.0; Win64; x64; rv:93.0) Gecko Firefox', NULL);
 
 --
 -- Indexes for dumped tables
@@ -2713,6 +2765,12 @@ ALTER TABLE `removed`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `requestcamp`
+--
+ALTER TABLE `requestcamp`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
@@ -2751,7 +2809,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `alerts`
 --
 ALTER TABLE `alerts`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `appointment`
@@ -2805,13 +2863,19 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `removed`
 --
 ALTER TABLE `removed`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `requestcamp`
+--
+ALTER TABLE `requestcamp`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `staff`
@@ -2823,7 +2887,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `type`
