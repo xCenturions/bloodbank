@@ -1,67 +1,66 @@
-<?php $this->start('head'); ?>
-
-<?php $this->end(); ?>
 <?php $this->start('body'); ?>
-
-<head>
-    <meta charset="utf-8">
-    <title>Form-v2 by Colorlib</title>
-    <!-- Mobile Specific Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- Font-->
-    <link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/roboto-font.css">
-    <link rel="stylesheet" type="text/css" href="<?= PROOT ?>fonts/line-awesome/css/line-awesome.min.css">
-    <!-- Jquery -->
-    <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
-    <!-- Main Style Css -->
-    <link rel="stylesheet" href="<?= PROOT ?>css/pt_style.css" />
+<!-- MATERIAL DESIGN ICONIC FONT -->
+<link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/roboto-font.css">
+<link rel="stylesheet" type="text/css" href="<?= PROOT ?>fonts/line-awesome/css/line-awesome.min.css">
+<!-- Jquery -->
+<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+<!-- Main Style Css -->
+<link rel="stylesheet" href="<?= PROOT ?>css/pt_style.css" />
 </head>
 
 <body class="form-v2">
     <div class="page-content">
         <div class="form-v2-content">
             <div class="form-left">
-                <!-- <img src="<?= PROOT ?>img/home/qw.jpg" alt="form"> -->
+                <img src="<?= PROOT ?>img/donor/pt.jpg" alt="form">
                 <div class="text-1">
-                    <p>Register A Patient Here</p>
+                    <p>Register From Here</p>
                 </div>
 
             </div>
-            <form class="form-detail" id="form" action="<?= PROOT ?>home/request" method="post">
-                <h2>Request to organize a Blood Donation Camp</h2>
+            <form class="form-detail" id="form" action="<?= PROOT ?>superadmin/register" method="post">
+                <h2>Admin Registration Form</h2>
+
+
 
                 <div class="form-row">
-                    <label for="pt_name">Your Full Name:</label>
-                    <input type="text" name="name" id="name" class="input-text" placeholder="ex: Lindsey Wilson">
+                    <label for="donor_name">Full Name:</label>
+                    <input type="text" name="name" id="name" class="input-text" placeholder="ex: Lindsey Wilson" required>
                 </div>
                 <div class="form-row">
-                    <label for="pt_nic">Your NIC Number:</label>
+                    <label for="pt_nic">NIC Number:</label>
                     <input type="text" name="nic" id="nic" class="input-text" required>
                 </div>
                 <div class="form-row">
-                    <label for="pt_nic">Location</label>
-                    <input type="text" name="location" id="location" class="input-text" required>
-                </div>
-                <div class="form-row">
-                    <label for="pt_nic">Nearest City For The Location</label>
-                    <input type="text" name="city" id="city" class="input-text" required>
+                    <label for="dob">Username :</label>
+                    <input type="text" name="username" id="username" class="input-text" required>
                 </div>
 
                 <div class="form-row">
-                    <label for="pt_city">Nearest Blood Bank</label>
-                    <input type="text" name="nst_bank" id="nst_bank" class="input-text" required>
+                    <label for="dob">Email :</label>
+                    <input type="email" name="email" id="email" class="input-text" required>
                 </div>
                 <div class="form-row">
-                    <label for="pt_mobile">Your Mobile Number</label>
+                    <label for="dob">Mobile :</label>
                     <input type="text" name="mobile" id="mobile" class="input-text" required>
                 </div>
+
                 <div class="form-row">
-                    <label for="pt_mobile">Your Email</label>
-                    <input type="text" name="email" id="email" class="input-text" required>
+                    <label for="pt_city">Assigned Blood bank</label>
+                    <select class="form-control" id="bank" name="assigned" required>
+                        <option value="" selected="" disabled="">Select City</option>
+                        <?php foreach ($this->banks as $value) : ?>
+                            <option value="<?= $value->bloodbank ?>"><?= $value->bloodbank ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
+
+
+
+
                 <div class="form-row-last">
-                    <button id="submit" class="btn btn-danger">Request</button>
+                    <input type="submit" name="register Now" class="register" id="submit" value="Register Now">
                 </div>
             </form>
         </div>
@@ -81,7 +80,7 @@
                             </div>
                         </div>
                         <div>
-                            <h1>Request Sent! </h1>
+                            <h1>Account Created! </h1>
 
                         </div>
                     </div>
@@ -112,8 +111,7 @@
         </div>
     </div>
 
-
-    <script src="<?= PROOT ?>vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     <script>
@@ -149,6 +147,7 @@
         });
     </script>
 
+
     <script type="text/javascript">
         $("#form").submit(function(event) {
 
@@ -163,11 +162,12 @@
             var posting = $.post(url, {
                 name: $('#name').val(),
                 nic: $('#nic').val(),
-                location: $('#location').val(),
+                username: $('#username').val(),
                 mobile: $('#mobile').val(),
                 email: $('#email').val(),
-                nst_bank: $('#nst_bank').val(),
-                city: $('#city').val()
+                bank: $('#bank').val(),
+
+
 
             });
 
@@ -192,67 +192,6 @@
 
             });
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // $('#submit').click(function() {
-
-        //     var name = $('#name').val();
-        //     var nic = $('#nic').val();
-        //     var location = $('#location').val();
-        //     var mobile = $('#mobile').val();
-        //     var email = $('#email').val();
-        //     var nst_bank = $('#nst_bank').val();
-
-        //     //console.log(donor_id);
-        //     $.ajax({
-        //         url: "http://localhost/bloodbank/home/request",
-        //         method: "POST",
-        //         data: {
-        //             name: name,
-        //             nic: nic,
-        //             location: location,
-        //             mobile: mobile,
-        //             email: email,
-        //             nst_bank: nst_bank,
-
-        //         },
-        //         success: function(data) {
-        //             console.log("This data", data);
-
-
-        //             // if (data == 1) {
-        //             //     $('#exampleModal').modal('show');
-
-        //             //     $('#name').val('');
-        //             //     data == 0;
-        //             // }
-
-
-        //         }
-
-        //     });
-
-        // })
     </script>
-
-
-
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 <?php $this->end(); ?>

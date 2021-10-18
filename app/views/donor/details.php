@@ -100,6 +100,7 @@ if (!$this->donation == null) : ?>
 										<tr class="row100 head">
 											<th class="cell100 column1">Date </th>
 											<th class="cell100 column2">Location</th>
+											<th class="cell100 column2">Tested Diseases</th>
 
 										</tr>
 									</thead>
@@ -121,7 +122,8 @@ if (!$this->donation == null) : ?>
 
 												<td class="cell100 column1"><?= $do->date ?> </td>
 
-												<td class="cell100 column2"><?= $do->bld_banks ?></td>
+												<td class="cell100 column2"><?= $do->location ?> Hospital</td>
+												<td class="cell100 column2"><?= $do->tested_disease ?> </td>
 
 
 

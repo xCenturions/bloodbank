@@ -42,6 +42,17 @@
     "Staff": ["*"]
   },
 
+  "Super_admin": {
+    "denied": {
+      "Admin": ["index"]
+    },
+    "Admin": ["*"],
+    "Superadmin": ["*"],
+    "Donor": ["*"],
+    "Home": ["*"],
+    "Staff": ["*"]
+  },
+
   "Doctor": {
     "denied": {
       "Staff": ["login"],

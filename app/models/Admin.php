@@ -5,7 +5,7 @@ class Admin extends Model
 
   private $_isLoggedIn, $_sessionName, $_cookieName;
   public static $currentLoggedInUser = null;
-  public $id, $password, $username, $name, $acl, $deleted = 0;
+  public $id, $password, $username, $name, $acl, $email, $mobile, $nic, $deleted = 0;
   public function __construct($user = '')
   {
     $table = 'admin';
@@ -94,5 +94,34 @@ class Admin extends Model
   public function getAllBloodbanks()
   {
     return $this->findFromTable('bloodbanks');
+  }
+
+  public function registerAdmin($params)
+  {
+    $this->assign($params);
+    $this->acl = '["Admin"]';
+    $this->save();
+  }
+  public function sendAccountDetails($email, $name, $username, $password)
+  {
+    $subject = "Your Admin Account Details";
+
+    //change the HTML code of the mailer here. Be sure to include the confirmation link!
+    $body = "<html>
+              <body>
+
+                <p>Hi," . $name . "</p>
+                
+                <p>Your Admin Account Has been successfully Created</p>
+                <p>Here's your Username : " . $username . "</p>
+                <p>Here's your Password : " . $password . "</p>
+
+              </body>
+            </html>";
+    //This will display if the mail client cannot display HTML.
+    $altBody = "";
+
+    //sending mail:
+    sendMail($email, $body, $altBody, $subject);
   }
 }

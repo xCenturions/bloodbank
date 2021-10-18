@@ -5,6 +5,10 @@
     "Staff Registration": "admin/staffRegister",
     "Staff Members": "admin/staffDetails"
   },
+  "Blood Donation Camps": {
+    "Blood Donation Camps": "home/allBloodCamps",
+    "Requested Donor Camps": "staff/requestedCamps"
+  },
 
   "Patients": "staff/patientRegister",
 

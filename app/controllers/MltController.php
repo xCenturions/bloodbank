@@ -126,6 +126,7 @@ class MltController extends Controller
         //dnd($donor[0]->status);
 
         $donor[0]->status = 'approved';
+        $donor[0]->tested_disease = 'No';
 
         $donationModel->update($donor[0]->id, $donor[0]);
     }

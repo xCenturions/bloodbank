@@ -5,6 +5,10 @@
     "My Appointments": "appo",
     "Make an Appointment": "appo/makeAppo"
   },
+  "Blood Donation Camps": {
+    "Blood Donation Camps": "home/allBloodCamps",
+    "Organize A Camp": "home/requestBloodCamp"
+  },
 
   "Contact Us": "home/contactus",
 
