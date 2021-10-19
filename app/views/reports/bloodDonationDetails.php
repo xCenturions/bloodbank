@@ -29,7 +29,9 @@
 	Launch demo modal
 </button>
 
-
+<!-----------------add title------------------->
+<title>Blood Donation Details</title>
+<!--------------------------------------------->
 
 <section id="breadcrumbs" class="breadcrumbs">
 	<div class="container">
