@@ -26,6 +26,9 @@
 <link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/check.css">
 <!--===============================================================================================-->
 
+<!-------add title--------->
+<title>Checked Blood</title>
+<!------------------------->
 
 <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
