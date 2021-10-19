@@ -30,10 +30,11 @@ FinishMessage = "You are available to donate blood again";
 
 </script>
 
-
-
 <?php endif; ?>
 
+<!---add title---------->
+<title>Donor Data</title>
+<!---------------------->
 
 <script type="text/javascript" src="<?=PROOT?>app/lib/Google Maps/js/googlemap.js"></script>
 	<style type="text/css">
@@ -67,6 +68,7 @@ FinishMessage = "You are available to donate blood again";
 
   </div>
 </section>
+
 <?php if(!$this->data->form == 'submitted'): ?>
      <div class="col-sm-12">
         <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
@@ -76,6 +78,7 @@ FinishMessage = "You are available to donate blood again";
         </div></center>
       </div>
 <?php endif; ?>
+
 <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
           <div class="row">
@@ -215,13 +218,6 @@ FinishMessage = "You are available to donate blood again";
 	
 </section>
       
-
-
-
-
-
-
-
 
 
 
