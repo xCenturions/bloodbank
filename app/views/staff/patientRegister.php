@@ -5,7 +5,11 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Form-v2 by Colorlib</title>
+
+	<!-------add title Form-v2 by Colorlib----->
+	<title>Patient Registration</title>
+	<!----------------------------------------->
+
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!-- Font-->
