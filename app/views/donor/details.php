@@ -42,6 +42,11 @@ if (!$this->donation == null) : ?>
 	}
 </style>
 
+<!----add title------------------->
+<title>Personal Information</title>
+<!-------------------------------->
+
+
 <section id="breadcrumbs" class="breadcrumbs">
 	<div class="container">
 
