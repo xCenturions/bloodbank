@@ -2,7 +2,9 @@
 <link rel="stylesheet" href="<?= PROOT ?>css/added.css">
 <script src="<?= PROOT ?>js/admin.js"></script>
 
-
+<!---add title---->
+<title>Test</title>
+<!---------------->
 
 <div id="container">
     <div id="success-box">
