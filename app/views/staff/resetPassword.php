@@ -5,6 +5,9 @@
 	
 	<link rel="stylesheet" href="<?=PROOT?>css/reset_style.css">
 
+		<!------add title----------->
+		<title>Reset password</title>
+		<!-------------------------->
 
 <section class="ftco-section">
 		<div class="container">
