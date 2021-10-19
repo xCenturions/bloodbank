@@ -4,6 +4,9 @@
 <?= $this->content('head'); ?>
 <?php $this->end(); ?>
 
+<!------------add title------------------->
+<title>Registered Patients</title>
+<!---------------------------------------->
 
 <?= $this->start('body'); ?>
 <?= $this->content('body'); ?>
