@@ -1,5 +1,6 @@
-<?php $this->start('body') ?>
 
+
+<?php $this->start('body') ?>
 
  <!-- MATERIAL DESIGN ICONIC FONT -->
 	<!-- MATERIAL DESIGN ICONIC FONT -->
@@ -10,7 +11,11 @@
 
 		<!-- STYLE CSS -->
 		<link rel="stylesheet" href="<?=PROOT?>css/form.css">
-		
+
+		<!------add title------>
+		<title>View Form</title>
+		<!--------------------->
+
 		<div class="wrapper" >
             <form action="" method="post" id="wizard">
 			<div ></div>
