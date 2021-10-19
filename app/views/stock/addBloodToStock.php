@@ -29,6 +29,10 @@
 
 <!--===============================================================================================-->
 
+<!---------add title------------>
+<title>Add Blood To Stock</title>
+<!------------------------------>
+
 
 <section id="breadcrumbs" class="breadcrumbs">
 	<div class="container">
