@@ -5,7 +5,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Form-v2 by Colorlib</title>
+
+    <!-----add title----replase----Form-v2 by Colorlib----->
+    <title>Request For Blood Donation Camp</title>
+    <!----------------------------------------------------->
+
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- Font-->
@@ -15,6 +19,7 @@
     <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
     <!-- Main Style Css -->
     <link rel="stylesheet" href="<?= PROOT ?>css/pt_style.css" />
+
 </head>
 
 <body class="form-v2">
