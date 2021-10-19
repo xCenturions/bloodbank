@@ -6,8 +6,9 @@
 <!-- <a href="javascript:if(window.print)window.print()">Print</a> -->
 
 
-
-
+<!-----add title----->
+<title>QR Code</title>
+<!-------------------->
 
 <script>
   const buttons = document.querySelectorAll("button");
@@ -30,6 +31,7 @@
     button.addEventListener("click", buttonHandler);
   });
 </script>
+
 <div style="text-align: center; padding-top: 50px;">
 
   <button><img id="img1" src="data:image/png;base64, <?= $this->qr_image; ?>" alt=""></button>
