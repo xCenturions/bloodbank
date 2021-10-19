@@ -15,6 +15,10 @@
   </div>
 </section>
 
+<!---------add title----------------->
+<title>Blood Donations Report</title>
+<!----------------------------------->
+
 <div class="container col-md-6" style="justify-content:center;">
 
   <div class="row">
