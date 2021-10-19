@@ -1,4 +1,9 @@
  <?php $this->start('body');?>
+
+ <!-----add title------>
+ <title>Messages</title>
+ <!-------------------->
+
  <!-- ======= Breadcrumbs ======= -->
       <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
