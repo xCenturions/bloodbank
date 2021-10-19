@@ -1,4 +1,9 @@
  <link href="<?= PROOT ?>css/homecards.css" rel="stylesheet">
+
+ <!-----add title-------->
+ <title>Donor Home</title>
+ <!---------------------->
+
  <section id="hero">
 
 
