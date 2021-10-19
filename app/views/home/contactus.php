@@ -16,6 +16,10 @@
 <link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/ct_main.css">
 <!--===============================================================================================-->
 
+<!-------add title------>
+<title>Contact Us</title>
+<!---------------------->
+
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 
