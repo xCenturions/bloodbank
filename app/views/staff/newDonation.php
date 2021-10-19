@@ -6,6 +6,10 @@
 
 	<link rel="stylesheet" href="<?=PROOT?>css/login_style.css">
 
+	<!----------------add title------------------>
+	<title>New Donor</title>
+	<!------------------------------------------->
+
 	</head>
 	<body class="img js-fullheight" style="background-image: url(../img/donor/login/bg.jpg);">
 	<section class="ftco-section">
