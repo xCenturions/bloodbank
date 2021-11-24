@@ -50,6 +50,7 @@
     "Superadmin": ["*"],
     "Donor": ["*"],
     "Home": ["*"],
+    "Reports": ["*"],
     "Staff": ["*"]
   },
 
