@@ -6,10 +6,6 @@
 <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
 <!-- Main Style Css -->
 <link rel="stylesheet" href="<?= PROOT ?>css/pt_style.css" />
-
-<!-------------add title------------------->
-<title>Admin Registration</title>
-<!----------------------------------------->
 </head>
 
 <body class="form-v2">
