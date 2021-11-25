@@ -25,6 +25,9 @@
 <link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/appo_tb_main.css">
 <!--===============================================================================================-->
 
+<!----add title------------>
+<title>Donor Details</title>
+<!------------------------->
 
 <section id="breadcrumbs" class="breadcrumbs">
 	<div class="container">

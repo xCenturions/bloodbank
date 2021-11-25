@@ -26,6 +26,10 @@
 <link rel="stylesheet" href="<?= PROOT ?>css/bd_style.css">
 <!--===============================================================================================-->
 
+<!----add title------------->
+<title>Check Donation</title>
+<!-------------------------->
+
 <div id="donation" class="modal fade " tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-xl" role="document">
 		<div class="modal-content">

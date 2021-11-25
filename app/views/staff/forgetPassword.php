@@ -1,5 +1,10 @@
 <?php $this->start('body') ?>
    <link rel="stylesheet" href="<?=PROOT?>css/forgetpw.css"/>
+
+<!-------add title------->
+<title>Change Password</title>
+<!----------------------->
+
 	<div class="container padding-bottom-3x mb-2 mt-5">
 	    <div class="row justify-content-center">
 	        <div class="col-lg-8 col-md-10">

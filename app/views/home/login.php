@@ -3,6 +3,10 @@
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 
+<!----------------->
+<title>Login</title>
+<!----------------->
+
 <link href="<?= PROOT ?>css/home_lo.scss" rel="stylesheet">
 <main class="page-content">
     <div class="card animate__animated animate__fadeInUp">

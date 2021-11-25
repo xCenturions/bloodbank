@@ -11,6 +11,10 @@
 <!-- STYLE CSS -->
 <link rel="stylesheet" href="<?= PROOT ?>css/form.css">
 
+<!-----------add title---------->
+<title>Edit Form</title>
+<!------------------------------>
+
 <div class="wrapper">
 	<form action="<?= PROOT ?>donor/editForm/<?= currentUser()->id ?>" method="post" id="wizard">
 		<div><?= $this->displayErrors ?></div>

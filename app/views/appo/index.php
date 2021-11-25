@@ -16,6 +16,11 @@
 <link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/appo_tb_util.css">
 <link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/appo_tb_main.css">
 <!--===============================================================================================-->
+
+<!-----add title------------>
+<title>My Appointments</title>
+<!-------------------------->
+
 <div class="limiter">
 	<div class="container-table100">
 		<div class="wrap-table100">

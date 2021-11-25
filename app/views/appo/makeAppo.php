@@ -8,6 +8,10 @@
 <link type="text/css" rel="stylesheet" href="<?= PROOT ?>css/appo_style.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
+<!----------add title------------>
+<title>Make An Appointment</title>
+<!------------------------------->
+
 <body>
 	<div id="booking" class="section">
 		<div class="section-center">

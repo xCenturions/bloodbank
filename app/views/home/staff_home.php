@@ -1,7 +1,9 @@
 <link rel="stylesheet" href="<?= PROOT ?>css/adminHome.css">
 <script src="<?= PROOT ?>js/admin.js"></script>
 
-
+<!------add title------->
+<title>Staff Home</title>
+<!---------------------->
 
 
 

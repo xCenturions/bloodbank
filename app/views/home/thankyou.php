@@ -1,5 +1,10 @@
 <?php $this->start('body') ?>
 <link rel="stylesheet" href="<?= PROOT ?>css/thankyou.css">
+
+<!----ad title-------->
+<title>Thank You<title>
+<!-------------------->
+
 <div class="body">
   <div class="div">Thank You</div>
   <div class="div">

@@ -10,7 +10,9 @@
 
 <!-- Bar Chart -->
 
-
+<!---------add title----------------->
+<title>Blood Stock Report</title>
+<!----------------------------------->
 
 
 <?php $this->end(); ?>

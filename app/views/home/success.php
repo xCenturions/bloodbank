@@ -2,6 +2,10 @@
 
 <link rel="stylesheet" href="<?= PROOT ?>css/success.css">
 
+<!----add title------->
+<title>Succcess</title>
+<!-------------------->
+
 <div id="app">
   <div class="title">
     <div class="title-inner">

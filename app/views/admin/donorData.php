@@ -2,6 +2,10 @@
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 
+<!---------add title----------->
+<title>Donor Data</title>
+<!----------------------------->
+
 <section id="breadcrumbs" class="breadcrumbs">
   <div class="container">
 

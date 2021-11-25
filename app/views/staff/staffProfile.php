@@ -1,6 +1,11 @@
 <?php $this->start('body') ?>
 		<link rel="stylesheet" href="<?=PROOT?>css/staffpro.css">
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+    <!----------add title-------------->
+    <title>Staff Profile</title>
+    <!--------------------------------->
+
 <div class="container">
     <div class="main-body">
     

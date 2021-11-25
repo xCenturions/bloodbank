@@ -10,6 +10,10 @@
 <!-- STYLE CSS -->
 <link rel="stylesheet" href="<?= PROOT ?>css/bd_style.css">
 
+<!--------add title---------->
+<title>Donation Record</title>
+<!--------------------------->
+
 <body>
 	<div class="container1">
 

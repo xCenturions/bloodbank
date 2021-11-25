@@ -1,6 +1,11 @@
 <?php $this->start('body') ?>
 <link rel="stylesheet" href="<?=PROOT?>css/editstaffpro.css">
 <form action="" method="post" enctype="multipart/form-data">
+
+<!----------------add title------------------>
+<title>Edit Profile</title>
+<!------------------------------------------->
+
 <div class="container">
 <div class="row gutters">
 			<div ><?= $this->displayErrors ?></div>

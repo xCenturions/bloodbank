@@ -1,5 +1,8 @@
 <?php $this->start('body') ?>
 
+<!------add tilte------>
+<title>Mail Sent</title>
+<!---------------------->
 
 <link rel="stylesheet" href="<?= PROOT ?>css/thankyou.css">
 <div class="body">

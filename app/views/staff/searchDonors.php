@@ -16,6 +16,12 @@
 <link rel="stylesheet" type="text/css" href="<?= PROOT ?>css/appo_tb_main.css">
 <!--===============================================================================================-->
 <script type="text/javascript" src="<?= PROOT ?>app/lib/Google Maps/js/googlemap.js"></script>
+
+
+<!--------add title-------------->
+<title>Search Donors</title>
+<!------------------------------->
+
 <style type="text/css">
 	#map {
 

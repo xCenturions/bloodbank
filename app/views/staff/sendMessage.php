@@ -16,7 +16,13 @@
 	<link rel="stylesheet" type="text/css" href="<?=PROOT?>css/ct_main.css">
 <!--===============================================================================================-->
 	
+
+<!---------------add title--------->
+<title>Send Message</title>
+<!--------------------------------->
+
 <?php $this->end(); ?>
+
 <?php $this->start('body'); ?>
 
 
