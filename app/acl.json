@@ -42,9 +42,10 @@
     "Staff": ["*"]
   },
 
-  "Super_admin": {
+  "Superadmin": {
     "denied": {
-      "Admin": ["index"]
+      "Admin": ["index"],
+      "Staff": ["patientRegister"]
     },
     "Admin": ["*"],
     "Superadmin": ["*"],

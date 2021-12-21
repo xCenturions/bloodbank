@@ -23,6 +23,8 @@ class HomeController extends Controller
     $patientModel = new Patient();
     $donorModel = new Donor();
     $staffModel = new Staff();
+    $adminModel = new Admin();
+    
 
 
     $stockModel->bloodAlert($bank);
@@ -49,12 +51,18 @@ class HomeController extends Controller
     $count = $donationModel->countRecords($bank);
     $countBank = $donationModel->countRecordsBank($bank);
 
-    //  dnd($patient);
+    $allDonations = $donationModel->countAll();
+    $totalBanks = $adminModel->allBanks();
+    $totalAdmin = $adminModel->countAdmin();
+    //dnd($totalAdmin);
     $this->view->total = $count[0]->total;
+    $this->view->all = $allDonations[0]->total;
     $this->view->staff = $staff[0]->total;
     $this->view->donors = $donors[0]->count;
     $this->view->patients = $patient[0]->total;
     $this->view->totalBank = $countBank[0]->total;
+    $this->view->allBanks = $totalBanks[0]->total;
+    $this->view->allAdmin= $totalAdmin[0]->total;
 
 
 

@@ -268,12 +268,36 @@
       $bar =  $donationModel->barchartBank($bank);
       //dnd($bar);
 
+      
 
 
       $results = [
         'pie' => $pie,
         'bar' => $bar,
+        
 
+      ];
+
+      echo json_encode($results);
+    }
+    public function sadminChartsAction()
+    {
+      $donationModel = new Donation();
+      //$bank = staff()->assigned;
+
+
+
+      $pie =  $donationModel->piechart();
+      $bar =  $donationModel->barchart();
+      //dnd($bar);
+
+
+
+
+      $results = [
+        'pie' => $pie,
+        'bar' => $bar,
+        
 
       ];
 
