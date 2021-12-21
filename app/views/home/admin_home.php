@@ -9,38 +9,46 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 my-3">
             <div class="card-list">
-                <div class="row">
+                <div class="row row-cols-1">
                     <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+
                         <div class="card blue">
-                            <div class="title">Total Donations in 2021</div>
+                            <div class="title">Total Donations in <?php echo date("Y"); ?></div>
                             <i class="zmdi zmdi-upload"></i>
                             <div class="value"><?= $this->total ?></div>
                             <div class="stat">Your Blood Bank</div>
                         </div>
+
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4 h-100">
+
                         <div class="card green">
                             <div class="title">Donations On This Month</div>
                             <i class="zmdi zmdi-upload"></i>
                             <div class="value"><?= $this->totalBank ?></div>
                             <div class="stat">Your Blood Bank</div>
                         </div>
+
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4 h-100">
+
                         <div class="card orange">
                             <div class="title">Total Staff Members </div>
                             <i class="zmdi zmdi-download"></i>
                             <div class="value"><?= $this->staff ?></div>
                             <div class="stat">Your Blood Bank</div>
                         </div>
+
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="card red">
+                        <div class="card h-100">
+
                             <div class="title">Patients On this Month</div>
                             <i class="zmdi zmdi-download"></i>
                             <div class="value"><?= $this->patients ?></div>
                             <div class="stat">Your Blood Bank</div>
                         </div>
+
                     </div>
                 </div>
             </div>

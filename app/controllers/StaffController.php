@@ -48,7 +48,7 @@ class StaffController extends Controller
         if ($user && password_verify(Input::get('password'), $user->password)) {
           $remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;
           $user->login($remember);
-          Router::redirect('staff/index');
+          Router::redirect('');
         } else {
           $validation->addError("There is an error with your User Name or Password");
         }
@@ -408,8 +408,9 @@ class StaffController extends Controller
         <td class=""> ' . $v->pt_nic . '</a></td>
         <td class=" "> ' . $v->pt_name . '</td>
         <td> ' . $v->sex . '</td>
-        <td class=" "> ' . $v->dob . '</td>
-        <td class=" "> ' . $v->pt_mobile . '</td>
+       
+        <td class=" "> ' . $v->date . '</td>
+        <td class=" "> ' . $v->pt_bloodgroup . '</td>
         
 
 
