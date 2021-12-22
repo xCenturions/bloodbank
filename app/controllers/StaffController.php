@@ -408,8 +408,9 @@ class StaffController extends Controller
         <td class=""> ' . $v->pt_nic . '</a></td>
         <td class=" "> ' . $v->pt_name . '</td>
         <td> ' . $v->sex . '</td>
-        <td class=" "> ' . $v->dob . '</td>
-        <td class=" "> ' . $v->pt_mobile . '</td>
+       
+        <td class=" "> ' . $v->date . '</td>
+        <td class=" "> ' . $v->pt_bloodgroup . '</td>
         
 
 
