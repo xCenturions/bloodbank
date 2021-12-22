@@ -48,7 +48,7 @@ class StaffController extends Controller
         if ($user && password_verify(Input::get('password'), $user->password)) {
           $remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;
           $user->login($remember);
-          Router::redirect('staff/index');
+          Router::redirect('');
         } else {
           $validation->addError("There is an error with your User Name or Password");
         }
