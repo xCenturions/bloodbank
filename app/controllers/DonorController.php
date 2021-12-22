@@ -955,7 +955,7 @@ class DonorController extends Controller
 
           $donor->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
           $donor->hash = NULL;
-          $this->StaffModel->update($donor->id, $donor);
+          $this->DonorModel->update($donor->id, $donor);
         }
       }
     } else {

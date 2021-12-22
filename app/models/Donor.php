@@ -132,7 +132,7 @@ class Donor extends Model
   }
   public function findByEmail($email)
   {
-    return $this->findFirst(['conditions' => "staff_email = ?", 'bind' => [$email]]);
+    return $this->findFirst(['conditions' => "donor_email = ?", 'bind' => [$email]]);
   }
 
   public function findDonorData($id)

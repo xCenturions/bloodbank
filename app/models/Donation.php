@@ -121,6 +121,14 @@ class Donation extends Model
 
     return $results;
   }
+  public function countAll()
+  {
+    $stock = $this->query('SELECT COUNT(id) as total FROM donation_record  ', []);
+
+    $results = $stock->results();
+
+    return $results;
+  }
 
   public function countRecordsBank($bank)
   {

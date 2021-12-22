@@ -96,6 +96,25 @@ class Admin extends Model
     return $this->findFromTable('bloodbanks');
   }
 
+  public function allBanks()
+  {
+
+    $stock =  $this->query("SELECT COUNT(id) as total FROM bloodbanks   ", []);
+    //$db = DB::getInstance();
+    $results = $stock->results();
+
+    return $results;
+  }
+  public function countAdmin()
+  {
+
+    $stock =  $this->query('SELECT COUNT(id) as total FROM admin WHERE assigned != NULL ', []);
+    //$db = DB::getInstance();
+    $results = $stock->results();
+
+    return $results;
+  }
+
   public function registerAdmin($params)
   {
     $this->assign($params);

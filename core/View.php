@@ -43,11 +43,12 @@
    }
 
    public function siteTitle(){
-
+    
      return $this->_siteTitle;
    }
 
    public function setSiteTitle($title) {
+   // dnd('sd');
      $this->_siteTitle = $title;
    }
 

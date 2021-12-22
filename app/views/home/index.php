@@ -11,9 +11,13 @@
 } elseif (staff()) {
 
   include('staff_home.php');
-} elseif (admin()) {
-  include('admin_home.php');
-} elseif (currentUser()) {
+} elseif (isset(admin()->acl) ) {
+  if(admin()->acl ==  '["Admin"]' ){
+    include('admin_home.php');
+  }else{
+    include('superadmin_home.php');
+  }
+}elseif (currentUser()) {
   include('donor_home.php');
 } else {
   include('donor_home.php');

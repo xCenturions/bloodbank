@@ -1,7 +1,9 @@
-<?php $this->setSiteTitle('Donor Details'); ?>
+
 
 <?php $this->start('head'); ?>
+
 <?= $this->content('head'); ?>
+<?php $this->setSiteTitle('Camps'); ?>
 <?php $this->end(); ?>
 
 
