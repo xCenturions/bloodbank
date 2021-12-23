@@ -2159,4 +2159,5 @@ section {
 .chart {
   height: 600px;
   margin-top: 50px !important;
+  width:auto;
 }

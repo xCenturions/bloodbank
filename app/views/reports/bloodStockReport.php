@@ -29,6 +29,13 @@
 
 
 <body>
+<<<<<<< Updated upstream
+=======
+ 
+    <center>
+      <h3 style="margin-top: 20px;"> Select Blood bank </h3>
+      <div class="col-md-3">
+>>>>>>> Stashed changes
 
   <center>
     <h3 style="margin-top: 20px;"> Select Blood bank </h3>
@@ -41,6 +48,7 @@
         <?php endforeach; ?>
 
 
+<<<<<<< Updated upstream
       </select>
 
     </div>
@@ -49,10 +57,23 @@
 
   <div class="container" style="justify-content:center;display:flex">
 
+=======
+      </div>
+    </center>
+ 
 
-    <div id="piechart_3d" class="chart col-md-6"></div>
 
+  <div class="row" >
+>>>>>>> Stashed changes
+
+    <div id="piechart_3d" class="chart col-md-3"></div>
+
+<<<<<<< Updated upstream
     <div id="top_x_div" class="chart col-md-6" style="width:auto"></div>
+=======
+    <div id="top_x_div" class="chart col-md-3"></div>
+  </div>
+>>>>>>> Stashed changes
 
   </div>
 
