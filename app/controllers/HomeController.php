@@ -82,6 +82,11 @@ class HomeController extends Controller
 
     $this->view->render('home/test');
   }
+  public function aboutusAction()
+  {
+
+    $this->view->render('home/aboutus');
+  }
 
 
 

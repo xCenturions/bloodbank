@@ -191,7 +191,7 @@ FinishMessage = "You are available to donate blood again";
             <a href="<?= PROOT ?>staff/viewForm/<?= $this->data->id?>"class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" style="width:70%">View Donor Form</button></a>
 			<a href="<?= PROOT ?>donor/pdfForm/<?=$this->data->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded"style="width:70%" >Download Donor's Form</button></a>
 			<?php else: ?>
-			<a href="<?= PROOT ?>donor/form" class="btn-get-started animate__animated animate__fadeInUp scrollto " style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" style="width:70%"><span>Donor Should Fill The Form</span></button></a>
+			<a href="<?= PROOT ?>donor/form" class="btn-get-started animate__animated animate__fadeInUp scrollto " style="padding-top:10px"><button type="button" class="btn btn-danger btn-rounded" disabled style="width:70%"><span>Donor Should Fill The Form</span></button></a>
 			<?php endif; ?>
             
 			
