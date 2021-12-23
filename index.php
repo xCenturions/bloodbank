@@ -36,11 +36,11 @@ session_start();
 
 $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'], '/')) : [];
 
-if (!Session::exists(CURRENT_USER_SESSION_NAME) && COOKIE::exists(REMEBER_ME_COOCKIE_NAME)) {
-  Donor::loginUserFromCookie();
-} elseif (!Session::exists(CURRENT_USER_SESSION_NAME) && COOKIE::exists(REMEBER_ME_COOCKIE_NAME)) {
-  Staff::loginUserFromCookie();
-}
+// if (!Session::exists(CURRENT_USER_SESSION_NAME) && COOKIE::exists(REMEBER_ME_COOCKIE_NAME)) {
+//   Donor::loginUserFromCookie();
+// } elseif (!Session::exists(CURRENT_USER_SESSION_NAME) && COOKIE::exists(REMEBER_ME_COOCKIE_NAME)) {
+//   Staff::loginUserFromCookie();
+// }
 
 // Route the request
 Router::route($url);

@@ -54,15 +54,22 @@
                     <center>
                         <div style="margin-top:20px;">
                             <h3>Quick Access</h3><br>
-                            <button type="button" style="width:300px" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">
-                                Check Blood Samples
-                            </button><br>
-                            <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
-                                Check Donations
-                            </button><br>
-                            <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
-                                Search Donors
-                            </button>
+                            <a href="<?= PROOT ?>mlt/checkDonations">
+                                <button type="button" style="width:300px" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark">
+                                    Uncheck Blood Samples
+                                </button></a><br>
+                            <a href="<?= PROOT ?>mlt/checkedBlood">
+                                <button type="button" style="width:300px" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">
+                                    Checkd Blood Samples
+                                </button></a><br>
+                            <a href="<?= PROOT ?>donor/register">
+                                <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
+                                    Check Donations
+                                </button></a><br>
+                            <a href="<?= PROOT ?>staff/searchDonors">
+                                <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
+                                    Search Donors
+                                </button></a>
                         </div>
                     </center>
 
