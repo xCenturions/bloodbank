@@ -5,7 +5,7 @@ class Admin extends Model
 
   private $_isLoggedIn, $_sessionName, $_cookieName;
   public static $currentLoggedInUser = null;
-  public $id, $password, $username, $name, $acl, $email, $mobile, $nic, $deleted = 0;
+  public $id, $password,$assigned, $username, $name, $acl, $email, $mobile, $nic, $deleted = 0;
   public function __construct($user = '')
   {
     $table = 'admin';

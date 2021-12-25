@@ -11,6 +11,7 @@
   },
 
   "Contact Us": "home/contactus",
+  "About Us": "home/aboutus",
 
   "Login": "home/login",
   "Register": "donor/register",

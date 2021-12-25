@@ -27,8 +27,12 @@
     "Blood Donation Report": "reports/bloodDonationReport",
     "Blood Donation Details": "reports/bloodStockDetails"
   },
+  "Admins ": {
+    "Admin Registration": "superadmin/adminRegister",
+    "Assigned Admins": "reports/bloodStockDetails"
+  },
 
-  "Admin Login": "admin/index",
+  "Admin Login": "admin/index"
 
-  "Admin Logout": "admin/logout"
+
 }

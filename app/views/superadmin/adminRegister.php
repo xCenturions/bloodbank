@@ -47,7 +47,7 @@
 
                 <div class="form-row">
                     <label for="pt_city">Assigned Blood bank</label>
-                    <select class="form-control" id="bank" name="assigned" required>
+                    <select class="form-control" id="assigned" name="assigned" required>
                         <option value="" selected="" disabled="">Select City</option>
                         <?php foreach ($this->banks as $value) : ?>
                             <option value="<?= $value->bloodbank ?>"><?= $value->bloodbank ?></option>
@@ -166,6 +166,7 @@
                 mobile: $('#mobile').val(),
                 email: $('#email').val(),
                 bank: $('#bank').val(),
+                assigned: $('#assigned').val(),
 
 
 
