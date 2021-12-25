@@ -188,14 +188,93 @@ class Donor extends Model
 
     //change the HTML code of the mailer here. Be sure to include the confirmation link!
     $body = "<html>
-              <body>
-
-                <p>Hi,.$name.</p>
-                <p>Thank you for signing up with us!</p>
-                <p> Click <a href=\"" . $confirmationLink . "\">here</a> to confirm your account.</p>
-
-              </body>
-            </html>";
+    <head>
+        
+       
+    
+      <style>
+            .maindiv{
+                margin: auto;
+                border: rgb(145, 140, 140) solid 1px;
+                border-radius: 5px;
+                width: 450px;
+                height: auto;
+                font-family: 'Google Sans','Noto Sans Myanmur UI','arial','sans-serif';
+            }
+    
+            .head h3{
+                text-align: center;
+                margin-top: 10px;
+            }
+    
+            .head img{
+                max-height: 100px;
+                max-width: 120px;
+                left:35%;
+                position: relative;
+            }
+    
+            .head hr{
+                width: 400px;
+            }
+    
+            .body{
+                margin: 10px;
+                margin-top: 20px;
+            }
+           
+    
+            .body p{
+                margin: 10px;
+                font-size: 16px;
+            }
+    
+            a{
+                display: block;
+                background: #00A9D4;
+                color: #fff;
+                padding: 10px;
+                cursor: pointer;
+                text-decoration: none;
+                width: 150px;
+                text-align: center;
+                border-radius: 5px;
+                font-size: 16px;
+                margin-left: 30%;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+    
+            a:hover{
+                 background: #00729D;
+            }
+    </style>
+    
+    </head>
+    
+    <body>
+        <div class='maindiv'>
+            <div class='head'>
+               <img src='img/blood1.jpg'>
+                <h3>Blood Bank Management System</h3>
+                <hr>
+            </div>
+            <div class='body'>
+                    <p>Hi, $name</p>
+                    <p>Thank you for signing up with us!</p>
+                    <p>We're excited to have you get started.First,you need to confirm your account.Just press the button bellow.</p>
+                   <input class='button' type='button' value='Confirm  Account'>
+    
+                    <a href= ' '\' . $confirmationLink . '\' '> Confirm  Account </a>
+    
+                    <p>If you have any questions, just reply to this email - we are always happy to help out.</p>
+                    <p> Click <a href= ' '\' . $confirmationLink . '\' '>here</a> to confirm your account.</p>
+                    <br>
+                    <p>The Contoso Team</p>
+            </div>
+        </div>
+    </body>
+    </html>";
     //This will display if the mail client cannot display HTML.
     $altBody = "Copy and paste the following link into your browser window to activate your account: " . $confirmationLink . "";
 

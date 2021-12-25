@@ -1,10 +1,22 @@
 <?php $this->start('body') ?>
 		<link rel="stylesheet" href="<?=PROOT?>css/staffpro.css">
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Your Profile</h2>
+        
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
 <div class="container">
     <div class="main-body">
     
-          <!-- Breadcrumb -->
          
           <!-- /Breadcrumb -->
     
