@@ -528,12 +528,12 @@
         $output .= '<table>
                 <tbody>
   
-                    <td class="cell100 column1"> ' . $v->acl . '</td>
+                    <td class="cell100 column1">  ACL </td>
                     <td class="cell100 column2"> <a href="' . PROOT . 'staff/staffProfile/' . $v->id . '"> ' . $v->staff_name . '</a></td>                
                     <td class="cell100 column3"> ' . $v->nic . '</td>
                     <td class="cell100 column4"> ' . $v->staff_mobile . '</td>
                     <td class="cell100 column5"> ' . $v->staff_email . '</td>
-                   
+                    <td class="cell100 column6">Action</td>
                     
                     
   
