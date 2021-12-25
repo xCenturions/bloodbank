@@ -87,11 +87,25 @@
 
 
           </a>
-        <?php endif; ?>
+        
         <!-- <i class="bi bi-list mobile-nav-toggle"></i>
         <li class="nav-item active"> -->
-        <?php if (currentUser()) : ?>
-          <a href="<?= PROOT ?>donor/details">Hellow <?= currentUser()->donor_name ?></a>
+        <?php elseif (currentUser()) : ?>
+          <ul>
+            <li class="dropdown"><a href="#"><span>Hello <?= currentUser()->donor_name ?> </span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="<?= PROOT ?>donor/staffProfile">My Profile</a></li>
+                <li> <a href="<?= PROOT ?>donor/logout">Logout</a>
+          </a></li>
+          </ul>
+        <?php elseif (admin()) : ?>
+          <ul>
+            <li class="dropdown"><a href="#"><span>Hello <?= admin()->name ?> </span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="<?= PROOT ?>admin/adminProfile">My Profile</a></li>
+                <li> <a href="<?= PROOT ?>admin/logout">Logout</a>
+          </a></li>
+          </ul>
         <?php endif; ?>
 
 
