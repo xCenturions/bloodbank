@@ -72,8 +72,12 @@ class AdminController extends Controller
     $this->view->render('admin/donorDetails');
   }
 
-  public function adminProfileAction()
+  public function adminProfileAction($id = null)
   {
+
+    if($id != null) {
+      $adminData = $this->AdminModel->findById($id);
+    }
 
     $adminData = admin();
 

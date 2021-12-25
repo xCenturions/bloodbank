@@ -562,11 +562,15 @@ class StaffController extends Controller
   }
 
 
-  public function staffProfileAction()
+  public function staffProfileAction($id = NULL)
   {
+    if($id != NULL){
+      $staffData = $this->StaffModel->findById($id);
+    }else{
+      $staffData = staff();
 
-    $staffData = staff();
-
+    }
+   
     $this->view->staffData = $staffData;
     $this->view->render('staff/staffProfile');
   }

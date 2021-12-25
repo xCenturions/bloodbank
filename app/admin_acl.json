@@ -3,7 +3,7 @@
 
   "Staff ": {
     "Staff Registration": "admin/staffRegister",
-    "Staff Members": "admin/staffDetails"
+    "All Staff Members": "reports/allStaff"
   },
   "Blood Donation Camps": {
     "Blood Donation Camps": "home/allBloodCamps",
@@ -25,11 +25,11 @@
 
   "Blood Donations ": {
     "Blood Donation Report": "reports/bloodDonationReport",
-    "Blood Donation Details": "reports/bloodStockDetails"
+    "Blood Donation Details": "reports/bloodDonationDetails"
   },
   "Admins ": {
     "Admin Registration": "superadmin/adminRegister",
-    "Assigned Admins": "reports/bloodStockDetails"
+    "All Admins": "reports/allAdmins"
   },
 
   "Admin Login": "admin/index"

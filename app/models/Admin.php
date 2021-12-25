@@ -95,6 +95,10 @@ class Admin extends Model
   {
     return $this->findFromTable('bloodbanks');
   }
+  public function getAllAdmins()
+  {
+    return $this->findFromTable('admin');
+  }
 
   public function allBanks()
   {
@@ -105,6 +109,26 @@ class Admin extends Model
 
     return $results;
   }
+  public function sortByBank($bank)
+  {
+
+    $stock =  $this->query("SELECT * FROM admin WHERE assigned = ?   ", [$bank]);
+    //$db = DB::getInstance();
+    $results = $stock->results();
+
+    return $results;
+  }
+  
+  public function searchByNic($nic)
+  {
+
+    $stock =  $this->query("SELECT * FROM admin WHERE nic = ?   ", [$nic]);
+    //$db = DB::getInstance();
+    $results = $stock->results();
+
+    return $results;
+  }
+
   public function countAdmin()
   {
 

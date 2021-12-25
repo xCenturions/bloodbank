@@ -137,6 +137,10 @@ class Staff extends Model
   {
     return $this->findFromTable('donor');
   }
+  public function getAllStaff()
+  {
+    return $this->findFromTable('staff');
+  }
   public function getAllBloodBanks()
   {
     return $this->findFromTable('bloodbanks');
@@ -232,6 +236,8 @@ class Staff extends Model
     //sending mail:
     sendMail($email, $body, $altBody, $subject);
   }
+
+  
   public function forgetPassword($email, $hash, $id)
   {
     include(ROOT . DS . 'app' . DS . 'lib' . DS . 'Email' . DS . 'settings.php');
@@ -268,10 +274,25 @@ class Staff extends Model
     return $result->results();
   }
 
+  public function sortByBank($bank)
+  {
 
+    $stock =  $this->query("SELECT * FROM staff WHERE assigned = ?   ", [$bank]);
+    //$db = DB::getInstance();
+    $results = $stock->results();
 
+    return $results;
+  }
+  
+  public function searchByNic($nic)
+  {
 
+    $stock =  $this->query("SELECT * FROM staff WHERE nic = ?   ", [$nic]);
+    //$db = DB::getInstance();
+    $results = $stock->results();
 
+    return $results;
+  }
 
 
   public function searchByNameNic($nic)
