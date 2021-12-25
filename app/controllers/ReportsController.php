@@ -455,8 +455,9 @@
   
                     <td class="cell100 column1"> <a href="' . PROOT . 'admin/adminProfile/' . $v->id . '"> ' . $v->name . '</a></td>                
                     <td class="cell100 column2"> ' . $v->nic . '</td>
-                    <td class="cell100 column3"> ' . $v->assigned . '</td>
-                    <td class="cell100 column8"> ' . $v->mobile . '</td>
+                    <td class="cell100 column3"> ' . $v->email . '</td>
+                    <td class="cell100 column4"> ' . $v->assigned . '</td>
+                    <td class="cell100 column5"> ' . $v->mobile . '</td>
                     
                     
   
@@ -532,7 +533,7 @@
                     <td class="cell100 column3"> ' . $v->nic . '</td>
                     <td class="cell100 column4"> ' . $v->staff_mobile . '</td>
                     <td class="cell100 column5"> ' . $v->staff_email . '</td>
-                    <td class="cell100 column6"> ' . $v->staff_email . '</td>
+                   
                     
                     
   
