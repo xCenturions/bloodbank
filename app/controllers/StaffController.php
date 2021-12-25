@@ -405,12 +405,15 @@ class StaffController extends Controller
     <tbody>
 
 
-        <td class=""> ' . $v->pt_nic . '</a></td>
-        <td class=" "> ' . $v->pt_name . '</td>
-        <td> ' . $v->sex . '</td>
-       
-        <td class=" "> ' . $v->date . '</td>
+        <td class=""> ' . $v->pt_name . '</a></td>
+        <td class=" "> ' . $v->pt_nic . '</td>
         <td class=" "> ' . $v->pt_bloodgroup . '</td>
+        <td class=" "> ' . $v->sex . '</td>
+        <td class=" "> ' . $v->pt_mobile . '</td>
+        <td class=" "> ' . $v->pt_city . '</td>
+        <td class=" "> ' . $v->qty . '</td>
+        <td class=" "> ' . $v->date . '</td>
+        
         
 
 
@@ -564,13 +567,12 @@ class StaffController extends Controller
 
   public function staffProfileAction($id = NULL)
   {
-    if($id != NULL){
+    if ($id != NULL) {
       $staffData = $this->StaffModel->findById($id);
-    }else{
+    } else {
       $staffData = staff();
-
     }
-   
+
     $this->view->staffData = $staffData;
     $this->view->render('staff/staffProfile');
   }

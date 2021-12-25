@@ -105,7 +105,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-12">
-                <a class="btn btn-info " href="<?= PROOT ?>staff/editProfile/<?= base64_encode($this->adminData->id) ?> ">Edit</a>
+                <a class="btn btn-info " href="<?= PROOT ?>admin/editProfile/<?= base64_encode($this->adminData->id) ?> ">Edit</a>
               </div>
             </div>
           </div>

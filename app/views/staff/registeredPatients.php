@@ -42,25 +42,25 @@
 
     <div class="row" style="margin-left:400px">
 
-        <div class="col-md-3">
+        <div class="col-md-3"><br>
             <input class="form-control" id="nic" name="nic" value="" style="width: 300px ; height: 50px;" placeholder="Enter NIC Number ">
 
             </select>
         </div>
 
-        <div class="col-md-2">
-            From Date<input type="date" name="from_date" id="from_date" class="form-control" placeholder="From Date" />
+        <div class="col-md-3">
+            From Date<input type="date" name="from_date" id="from_date" class="form-control" style="width: 300px ; height: 50px;" placeholder="From Date" />
         </div>
-        <div class="col-md-2">
-            To Date <input type="date" name="to_date" id="to_date" class="form-control" placeholder="To Date" />
+        <div class="col-md-3">
+            To Date <input type="date" name="to_date" id="to_date" class="form-control" style="width: 300px ; height: 50px;" placeholder="To Date" />
         </div>
 
 
 
 
         <div class="col-md-1">
-
-            <button type="button" data-toggle="modal" data-target="#modalSubscriptionForm" id="refresh" class="btn btn-danger">Reset</button>
+            <br>
+            <button type="button" data-toggle="modal" data-target="#modalSubscriptionForm" id="refresh" class="btn  btn-danger" style="height: 42px;">Reset</button>
         </div>
 
     </div>
@@ -71,7 +71,7 @@
 
 
 
-<div class="container-table100">
+<div class=" container-table100">
     <div class="wrap-table100" style="width:90%">
 
         <div class="table100 ver2 m-b-110">
@@ -79,12 +79,15 @@
                 <table>
                     <thead>
                         <tr class="">
-                            <th class=" ">CM Number</th>
-                            <th class="">Donor NIC</th>
-                            <th class=" ">Donor Name</th>
+                            <th class=" ">Name</th>
+                            <th class="">NIC</th>
                             <th class=" ">Blood Group</th>
-                            <th class=" ">Donated Date</th>
-                            <th class=" ">Status</th>
+                            <th class=" ">Gender</th>
+                            <th class=" ">Mobile</th>
+                            <th class=" ">City</th>
+                            <th class=" ">QTY</th>
+                            <th class=" ">Date</th>
+
 
                         </tr>
                     </thead>
