@@ -94,7 +94,7 @@
           <ul>
             <li class="dropdown"><a href="#"><span>Hello <?= currentUser()->donor_name ?> </span> <i class="bi bi-chevron-down"></i></a>
               <ul>
-                <li><a href="<?= PROOT ?>donor/staffProfile">My Profile</a></li>
+                <li><a href="<?= PROOT ?>donor/details">My Profile</a></li>
                 <li> <a href="<?= PROOT ?>donor/logout">Logout</a>
           </a></li>
           </ul>
