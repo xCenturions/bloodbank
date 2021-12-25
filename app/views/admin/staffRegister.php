@@ -11,13 +11,7 @@
 <body class="form-v2">
 	<div class="page-content">
 		<div class="form-v2-content">
-			<div class="form-left">
-				<img src="<?= PROOT ?>img/donor/pt.jpg" alt="form">
-				<div class="text-1">
-					<p>Register From Here</p>
-				</div>
 
-			</div>
 			<form class="form-detail" action="" method="post">
 				<h2>Staff Registration Form</h2>
 				<div><?= $this->displayErrors ?></div>

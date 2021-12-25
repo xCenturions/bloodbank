@@ -23,10 +23,10 @@
 
 
 
-<header id="header" class=" d-flex align-items-center">
-  <div class="container d-flex align-items-center">
+<header id="header" class=" d-flex align-items-center sticky-top">
+  <div class=" container d-flex align-items-center" ">
 
-    <h1 class="logo me-auto"><a href="<?= PROOT ?>home"><img src="<?= PROOT ?>img/blood1.jpg" alt="" class="img-fluid">Blood Bank</a></h1>
+    <h1 class=" logo me-auto"><a href="<?= PROOT ?>home"><img src="<?= PROOT ?>img/blood1.jpg" alt="" class="img-fluid">Blood Bank</a></h1>
     <!-- Uncomment below if you prefer to use an image logo -->
     <!-- <a href="<?= PROOT ?>home" class="logo me-auto"></a> -->
 
@@ -93,6 +93,9 @@
         <?php if (currentUser()) : ?>
           <a href="<?= PROOT ?>donor/details">Hellow <?= currentUser()->donor_name ?></a>
         <?php endif; ?>
+
+
+
 
 
 

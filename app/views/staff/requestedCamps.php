@@ -42,20 +42,15 @@
 
     <div class="row" style="margin-left:400px">
 
-
-
-        <div class="col-md-2">
+        <div class="col-md-3">
             From Date<input type="date" name="from_date" id="from_date" class="form-control" placeholder="From Date" />
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             To Date <input type="date" name="to_date" id="to_date" class="form-control" placeholder="To Date" />
         </div>
 
-
-
-
-        <div class="col-md-1">
-
+        <div class="col-md-3">
+            <br>
             <button type="button" data-toggle="modal" data-target="#modalSubscriptionForm" id="refresh" class="btn btn-danger">Reset</button>
         </div>
 
