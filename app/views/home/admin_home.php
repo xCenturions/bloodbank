@@ -41,7 +41,7 @@
 
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="card h-100">
+                        <div class="card red">
 
                             <div class="title">Patients On this Month</div>
                             <i class="zmdi zmdi-download"></i>

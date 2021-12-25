@@ -57,14 +57,14 @@
 			</select>
 		</div>
 		<div class="col-md-3">
-			<select  class="form-control" id="bld_banks" name="bld_banks" value="" style="width: 300px ; height: 50px;">
+			<select class="form-control" id="bld_banks" name="bld_banks" value="" style="width: 300px ; height: 50px;">
 				<option value="" selected="" disabled="">Select BloodBank</option>
 				<?php foreach ($this->banks as $ci) : ?>
 					<option value="<?= $ci->bloodbank ?>"><?= $ci->bloodbank ?></option>
 				<?php endforeach; ?>
 			</select>
 		</div>
-		
+
 
 
 
@@ -94,12 +94,12 @@
 				<table>
 					<thead>
 						<tr class="row100 head">
-							<th class="cell100 column1">Donor Name </th>
-							<th class="cell100 column2">NIC</th>
-							<th class="cell100 column3">Blood Group</th>
-							<th class="cell100 column4">City</th>
-							<th class="cell100 column4">Mobile </th>
-							<th class="cell100 column5">Contact </th>
+							<th class="cell100 column1">ACL</th>
+							<th class="cell100 column2">Staff Name </th>
+							<th class="cell100 column3">NIC</th>
+							<th class="cell100 column4">Mobile Number</th>
+							<th class="cell100 column5">Email</th>
+							<th class="cell100 column6">Action</th>
 
 						</tr>
 					</thead>

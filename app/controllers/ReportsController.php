@@ -268,13 +268,13 @@
       $bar =  $donationModel->barchartBank($bank);
       //dnd($bar);
 
-      
+
 
 
       $results = [
         'pie' => $pie,
         'bar' => $bar,
-        
+
 
       ];
 
@@ -297,7 +297,7 @@
       $results = [
         'pie' => $pie,
         'bar' => $bar,
-        
+
 
       ];
 
@@ -398,57 +398,58 @@
 
     public function allAdminsAction()
     {
-  
+
       $adminModel = new Admin();
-  
+
       $admins = $adminModel->getAllBloodbanks();
-  
-  
-      
-  
+
+
+
+
       $this->view->banks = $admins;
       //$this->view->allData = $allData;
       $this->view->render('reports/allAdmins');
     }
-  
-  
-      public function adminsAction() {
-  
-        $adminModel = new admin();
-        // $stock =  $stockModel->getAllFromStock(); 
-  
-        $output = '';
-        $result = '';
-  
-        if (isset($_POST["bld_banks"]) && $_POST['bld_banks'] != '') {
-          $banks = $_POST["bld_banks"];
-         // $blood = $_POST["bld_grps"];
-          $stock = $adminModel->sortByBank($banks);
-        }  elseif (isset($_POST["nic"]) && $_POST['nic'] != '') {
-          $nic = $_POST["nic"];
-          $stock = $adminModel->searchByNic($nic);
-          //
-        } else {
-          $stock =  $adminModel->getAllAdmins();
-          //dnd($city);
-        }
-        
-  
-  
-  
-        $all = "allData";
-  
-        $class = "cell100 column2";
-        //dnd($value);
-        if (empty($stock)) {
-          $output = "No records found";
-        }
-  
-        foreach ($stock as $v) {
-  
-  
-  
-          $output .= '<table>
+
+
+    public function adminsAction()
+    {
+
+      $adminModel = new admin();
+      // $stock =  $stockModel->getAllFromStock(); 
+
+      $output = '';
+      $result = '';
+
+      if (isset($_POST["bld_banks"]) && $_POST['bld_banks'] != '') {
+        $banks = $_POST["bld_banks"];
+        // $blood = $_POST["bld_grps"];
+        $stock = $adminModel->sortByBank($banks);
+      } elseif (isset($_POST["nic"]) && $_POST['nic'] != '') {
+        $nic = $_POST["nic"];
+        $stock = $adminModel->searchByNic($nic);
+        //
+      } else {
+        $stock =  $adminModel->getAllAdmins();
+        //dnd($city);
+      }
+
+
+
+
+      $all = "allData";
+
+      $class = "cell100 column2";
+      //dnd($value);
+      if (empty($stock)) {
+        $output = "No records found";
+      }
+
+      foreach ($stock as $v) {
+
+
+
+        $output .= '<table>
                 <tbody>
   
   
@@ -466,71 +467,72 @@
                    
                 </tbody>
               </table>';
-        }
-  
-        echo ($output);
       }
+
+      echo ($output);
+    }
     public function allStaffAction()
     {
-  
+
       $adminModel = new Admin();
-  
+
       $admins = $adminModel->getAllBloodbanks();
-  
-  
-      
-  
+
+
+
+
       $this->view->banks = $admins;
       //$this->view->allData = $allData;
       $this->view->render('reports/allStaff');
     }
-  
-  
-      public function staffAction() {
-  
-        $staffModel = new staff();
-        // $stock =  $stockModel->getAllFromStock(); 
-  
-        $output = '';
-        $result = '';
-  
-        if (isset($_POST["bld_banks"]) && $_POST['bld_banks'] != '') {
-          $banks = $_POST["bld_banks"];
-         // $blood = $_POST["bld_grps"];
-          $stock = $staffModel->sortByBank($banks);
-        }  elseif (isset($_POST["nic"]) && $_POST['nic'] != '') {
-          $nic = $_POST["nic"];
-          $stock = $staffModel->searchByNic($nic);
-          //
-        } else {
-          $stock =  $staffModel->getAllStaff();
-          //dnd($city);
-        }
-        
-  
-  
-  
-        $all = "allData";
-  
-        $class = "cell100 column2";
-        //dnd($value);
-        if (empty($stock)) {
-          $output = "No records found";
-        }
-  
-        foreach ($stock as $v) {
-  
-  
-  
-          $output .= '<table>
+
+
+    public function staffAction()
+    {
+
+      $staffModel = new staff();
+      // $stock =  $stockModel->getAllFromStock(); 
+
+      $output = '';
+      $result = '';
+
+      if (isset($_POST["bld_banks"]) && $_POST['bld_banks'] != '') {
+        $banks = $_POST["bld_banks"];
+        // $blood = $_POST["bld_grps"];
+        $stock = $staffModel->sortByBank($banks);
+      } elseif (isset($_POST["nic"]) && $_POST['nic'] != '') {
+        $nic = $_POST["nic"];
+        $stock = $staffModel->searchByNic($nic);
+        //
+      } else {
+        $stock =  $staffModel->getAllStaff();
+        //dnd($city);
+      }
+
+
+
+
+      $all = "allData";
+
+      $class = "cell100 column2";
+      //dnd($value);
+      if (empty($stock)) {
+        $output = "No records found";
+      }
+
+      foreach ($stock as $v) {
+
+
+
+        $output .= '<table>
                 <tbody>
   
-  
-                    <td class="cell100 column1"> <a href="' . PROOT . 'staff/staffProfile/' . $v->id . '"> ' . $v->staff_name . '</a></td>                
-                    <td class="cell100 column2"> ' . $v->nic . '</td>
-                    <td class="cell100 column3"> ' . $v->assigned . '</td>
-                    <td class="cell100 column8"> ' . $v->staff_mobile . '</td>
-                    
+                    <td class="cell100 column1"> ' . $v->acl . '</td>
+                    <td class="cell100 column2"> <a href="' . PROOT . 'staff/staffProfile/' . $v->id . '"> ' . $v->staff_name . '</a></td>                
+                    <td class="cell100 column3"> ' . $v->nic . '</td>
+                    <td class="cell100 column4"> ' . $v->staff_mobile . '</td>
+                    <td class="cell100 column5"> ' . $v->staff_email . '</td>
+                    <td class="cell100 column6"> ' . $v->staff_email . '</td>
                     
   
   
@@ -540,8 +542,8 @@
                    
                 </tbody>
               </table>';
-        }
-  
-        echo ($output);
       }
+
+      echo ($output);
+    }
   }
