@@ -230,13 +230,6 @@ class HomeController extends Controller
 
   {
 
-    $donorModel = new Donor();
-
-    $cities = $donorModel->getAllCities();
-
-    $this->view->cities = $cities;
-
-
     $this->view->render('home/requestBloodCamp');
   }
 
