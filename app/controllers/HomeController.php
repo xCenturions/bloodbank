@@ -224,20 +224,21 @@ class HomeController extends Controller
   }
 
 
-
-
+  
   public function requestBloodCampAction()
 
   {
-
     $donorModel = new Donor();
 
     $cities = $donorModel->getAllCities();
-
+    $bank=$donorModel->getallbloodbanks();
+  
     $this->view->cities = $cities;
+   
 
-
+    $this->view->bloodbank = $bank;
     $this->view->render('home/requestBloodCamp');
+
   }
 
   public function requestAction()
