@@ -175,6 +175,10 @@ class Donor extends Model
   {
     return $this->findFromTable('cities');
   }
+  public function getAllBloodbanks()
+  {
+    return $this->findFromTable('bloodbanks');
+  }
 
 
 

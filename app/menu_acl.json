@@ -14,7 +14,7 @@
   "About Us": "home/aboutus",
 
   "Login": "home/login",
-  "Register": "donor/register",
+  "Register": "donor/register"
 
-  "Logout": "donor/logout"
+  
 }
