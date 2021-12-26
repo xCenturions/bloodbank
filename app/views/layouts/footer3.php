@@ -27,13 +27,8 @@
           <ul>
             <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>home">Home</a></li>
             <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>home/allBloodCamps">Blood Donation Camps</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>staff/requestedCamps">Requested Donor Camps</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>reports/bloodStockReport">Blood Stock Report</a></li>
             <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>reports/bloodStockDetails">Blood stock Details</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>reports/bloodDonationReport">Blood Donation Report</a></li>
             <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>reports/bloodDonationDetails">Blood Donation Details</a></li>
-            <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li> -->
-            <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li> -->
           </ul>
         </div>
 
@@ -42,7 +37,6 @@
         <div class="col-lg-3 col-md-6 footer-links">
           <h4>Services</h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>reports/allStaff">Search Staff Memberr</a></li>
             <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>admin/staffRegister">Add A Staff Member</a></li>
             <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>staff/searchDonors">Search Dornor</a></li>
             <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>donor/register">Add a Dornor</a></li>

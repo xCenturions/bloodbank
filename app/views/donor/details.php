@@ -62,93 +62,82 @@ if (!$this->donation == null) : ?>
 			<div class="col-lg-8 entries">
 				<article class="entry">
 					<h2 class="entry-title"> <?= $this->donor->donor_name ?> </h2>
-
-
-					<div class="entry-content ">
-
-
-						<?php if (!$this->donation == null) : ?>
-							<div class="read-more">You can Donate blood after<br>
-								<p style="margin-right:95px">
-									<script language="JavaScript" src="https://rhashemian.github.io/js/countdown.js"></script>
-								</p>
-							</div>
-					</div>
-				<?php endif; ?>
-				<p style="padding-top:10px"><strong>Email : </strong> <?= currentUser()->donor_email ?></p>
-				<p style="padding-top:10px"><strong>NIC Number : </strong> <?= currentUser()->nic ?></p>
-				<?php if (currentUser()->form == 'submitted') : ?>
-					<p style="padding-top:10px"><strong>Mobile Number : </strong> <?= $this->data->mobile ?></p>
-					<p style="padding-top:10px"><strong>Blood Group : </strong> <?= $this->data->bloodgroup ?></p>
-				<?php endif; ?>
-				<p style="padding-top:10px"><strong>Date of Birth : </strong> <?= currentUser()->dob ?></p>
-				<p style="padding-top:10px"><strong>Nearest City : </strong> <?= currentUser()->donor_city ?></p>
-
-
-
-
-
-				<h2 class="entry-title" style="padding-top:40px; text-align: center"> My Donated History </h2>
-
-				<div class="container-table100">
-					<div class="wrap-table100">
-
-						<div class="table100 ver2 m-b-110">
-							<div class="table100-head">
-								<table>
-									<thead>
-										<tr class="row100 head">
-											<th class="cell100 column1">Date </th>
-											<th class="cell100 column2">Location</th>
-											<th class="cell100 column2">Tested Diseases</th>
-
-										</tr>
-									</thead>
-								</table>
-							</div>
-
-							<div class="table100-body js-pscroll">
-								<table>
-									<tbody>
-
-										<?php if ($this->donation == null) : ?>
-
-											<?= '<center>' . 'No Any Records avaliable' . '</center>' ?>
-										<?php else : ?>
-
-
-
-											<?php foreach ($this->donation as $do) : ?>
-
-												<td class="cell100 column1"><?= $do->date ?> </td>
-
-												<td class="cell100 column2"><?= $do->location ?> Hospital</td>
-												<td class="cell100 column2"><?= $do->tested_disease ?> </td>
-
-
-
-												</tr>
-
-											<?php endforeach; ?>
-										<?php endif; ?>
-									</tbody>
-								</table>
-							</div>
+					<div class="row">
+						<div class="col">
+							<p style="padding-top:10px"><strong>Email : </strong> <?= currentUser()->donor_email ?></p>
+							<p style="padding-top:10px"><strong>NIC Number : </strong> <?= currentUser()->nic ?></p>
+							<?php if (currentUser()->form == 'submitted') : ?>
+								<p style="padding-top:10px"><strong>Mobile Number : </strong> <?= $this->data->mobile ?></p>
+								<p style="padding-top:10px"><strong>Blood Group : </strong> <?= $this->data->bloodgroup ?></p>
+							<?php endif; ?>
+							<p style="padding-top:10px"><strong>Date of Birth : </strong> <?= currentUser()->dob ?></p>
+							<p style="padding-top:10px"><strong>Nearest City : </strong> <?= currentUser()->donor_city ?></p>
 						</div>
-
+						<div class="entry-content col">
+							<?php if (!$this->donation == null) : ?>
+								<div class="read-more">You can Donate blood after
+									<!-- <br> -->
+									<p style="margin-right:95px">
+										<script language="JavaScript" src="https://rhashemian.github.io/js/countdown.js"></script>
+									</p>
+								</div>
+						</div>
+					<?php endif; ?>
 					</div>
-				</div>
+
+					<h2 class="entry-title" style="padding-top:40px; text-align: center"> My Donated History </h2>
+
+					<div class="container-table100">
+						<div class="wrap-table100">
+
+							<div class="table100 ver2 m-b-110">
+								<div class="table100-head">
+									<table>
+										<thead>
+											<tr class="row100 head">
+												<th class="cell100 column1">Date </th>
+												<th class="cell100 column2">Location</th>
+												<th class="cell100 column2">Tested Diseases</th>
+
+											</tr>
+										</thead>
+									</table>
+								</div>
+
+								<div class="table100-body js-pscroll">
+									<table>
+										<tbody>
+
+											<?php if ($this->donation == null) : ?>
+
+												<?= '<center>' . 'No Any Records avaliable' . '</center>' ?>
+											<?php else : ?>
 
 
 
+												<?php foreach ($this->donation as $do) : ?>
 
+													<td class="cell100 column1"><?= $do->date ?> </td>
+
+													<td class="cell100 column2"><?= $do->location ?> Hospital</td>
+													<td class="cell100 column2"><?= $do->tested_disease ?> </td>
+
+
+
+													</tr>
+
+												<?php endforeach; ?>
+											<?php endif; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
 
 				</article>
 			</div>
-
-
-
-
 
 			<div class="col-lg-4">
 				<div class="sidebar">

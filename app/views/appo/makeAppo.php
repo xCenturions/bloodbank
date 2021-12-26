@@ -13,7 +13,7 @@
 		<div class="section-center">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-7 col-md-push-5">
+					<div class="col-md-8 col-md-push-5">
 						<div class="booking-cta">
 							<h1>Make An Appointment </h1>
 							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque
@@ -100,4 +100,5 @@
 		});
 	</script>
 </body>
+
 <?php $this->end(); ?>

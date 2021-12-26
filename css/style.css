@@ -1530,8 +1530,8 @@ section {
 .blog .entry .entry-content .read-more {
   -moz-text-align-last: right;
   text-align-last: right;
-  position: absolute;
-  padding-left: 500px;
+  /* position: absolute; */
+  /* padding-left: 500px; */
   font-size: 25px;
 }
 
