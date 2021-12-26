@@ -44,7 +44,12 @@
                 </div>
                 <div class="form-row">
                     <label for="pt_nic">Nearest City For The Location</label>
-                    <input type="text" name="city" id="city" class="input-text" required>
+                    <select name="donor_city" class="form-control" id="bld_banks" name="bld_banks" value="" style="width: 300px ; height: 50px;">
+				<option value="" selected="" disabled="">Select Blood bank</option>
+				<?php foreach ($this->cities as $ci) : ?>
+					<option value="<?= $ci->name ?>"><?= $ci->name ?></option>
+				<?php endforeach; ?>
+			</select>
                 </div>
 
                 <div class="form-row">
