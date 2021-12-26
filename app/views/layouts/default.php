@@ -124,6 +124,17 @@
 
 <!-- <script src="<?= PROOT ?>vendor/jquery/jquery-3.3.1.min.js"></script> -->
 
+<?php
+
+if (staff() !== null) {
+  include 'app/views/layouts/footer2.php';
+} elseif (admin() != null) {
+  include 'app/views/layouts/footer3.php';
+} else {
+  include 'app/views/layouts/footer1.php';
+}
+
+?>
 
 
 </html>

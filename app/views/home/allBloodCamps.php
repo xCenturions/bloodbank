@@ -31,7 +31,7 @@
     <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-            <h2> Checked Blood Samples</h2>
+            <h2> All Blood Camps</h2>
 
         </div>
 
@@ -43,7 +43,7 @@
     <div class="row" style="margin-left:400px">
 
         <div class="col-md-3 "></br>
-            <input class="form-control" id="city" name="city" value="" style="width: 300px ; height: 50px;" placeholder="Enter CM Number ">
+            <input class="form-control" id="city" name="city" value="" style="width: 300px ; height: 50px;" placeholder="Enter City">
 
         </div>
 

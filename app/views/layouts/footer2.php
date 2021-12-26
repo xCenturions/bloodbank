@@ -6,13 +6,13 @@
         <div class="col-lg-3 col-md-6">
           <div class="footer-info">
             <h3>Blood bank</h3>
-            <p>
+            <!-- <p>
               A108 Adam Street <br>
               NY 535022, USA<br><br>
               <strong>Phone:</strong> +1 5589 55488 55<br>
               <strong>Email:</strong> info@example.com<br>
-            </p>
-            <div class="social-links mt-3">
+            </p> -->
+            <div class="social-links mt-5">
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
               <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
@@ -25,22 +25,26 @@
         <div class="col-lg-2 col-md-6 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>home">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>staff/requestedCamps">Requested Donor Camps</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>reports/bloodStockReport">Blood Stock Report</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>reports/bloodStockDetails">Blood stock Details</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>reports/bloodDonationReport">Blood Donation Report</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>reports/bloodDonationDetails">Blood Donation Details</a></li>
+            <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li> -->
+            <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li> -->
           </ul>
         </div>
 
+
+
         <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Our Services</h4>
+          <h4>Services</h4>
           <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>staff/searchDonors">Search A Dornor</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>donor/register">Add A Dornor</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>staff/registeredPatients">Search Patient</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a class="text-white" href="<?= PROOT ?>staff/patientRegister">Add a Patient</a></li>
           </ul>
         </div>
 

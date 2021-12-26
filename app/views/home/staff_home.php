@@ -58,18 +58,24 @@
                     <center>
                         <div style="margin-top:20px;">
                             <h3>Quick Access</h3><br>
-                            <a href="<?= PROOT ?>donor/register">
-                                <button type=" button" style="width:300px" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">
-                                    Add A New Donor
-                                </button></a><br>
-                            <a href="<?= PROOT ?>staff/patientRegister">
-                                <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
-                                    Add A Patient
-                                </button></a><br>
                             <a href="<?= PROOT ?>staff/searchDonors">
                                 <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
                                     Search Donors
                                 </button></a>
+                            <a href="<?= PROOT ?>donor/register">
+                                <button type=" button" style="width:300px" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">
+                                    Add A New Donor
+                                </button></a><br>
+                            <a href="<?= PROOT ?>staff/registeredPatients">
+                                <button type="button" style="width:300px" class="btn btn-outline-warning btn-rounded" data-mdb-ripple-color="dark">
+                                    Search A Patient
+                                </button></a><br>
+                            <a href="<?= PROOT ?>staff/patientRegister">
+                                <button type="button" style="width:300px" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark">
+                                    Add A Patient
+                                </button></a><br>
+
+
                         </div>
                     </center>
 

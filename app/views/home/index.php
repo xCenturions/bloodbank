@@ -11,13 +11,13 @@
 } elseif (staff()) {
 
   include('staff_home.php');
-} elseif (isset(admin()->acl) ) {
-  if(admin()->acl ==  '["Admin"]' ){
+} elseif (isset(admin()->acl)) {
+  if (admin()->acl ==  '["Admin"]') {
     include('admin_home.php');
-  }else{
+  } else {
     include('superadmin_home.php');
   }
-}elseif (currentUser()) {
+} elseif (currentUser()) {
   include('donor_home.php');
 } else {
   include('donor_home.php');
@@ -34,7 +34,6 @@
 
 
 
- 
 
-  <?php include 'app/views/layouts/footer.php' ?>
-  <?php $this->end(); ?>
+
+<?php $this->end(); ?>

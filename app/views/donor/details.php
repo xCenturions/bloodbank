@@ -64,7 +64,7 @@ if (!$this->donation == null) : ?>
 					<h2 class="entry-title"> <?= $this->donor->donor_name ?> </h2>
 
 
-					<div class="entry-content">
+					<div class="entry-content ">
 
 
 						<?php if (!$this->donation == null) : ?>
