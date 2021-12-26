@@ -77,8 +77,8 @@ if (!$this->donation == null) : ?>
 							<?php if (!$this->donation == null) : ?>
 								<div class="read-more">You can Donate blood after
 									<!-- <br> -->
-									<p style="margin-right:95px">
-										<script language="JavaScript" src="https://rhashemian.github.io/js/countdown.js"></script>
+									</p><!-- <p style="margin-right:95px">  -->
+									<script language="JavaScript" src="https://rhashemian.github.io/js/countdown.js"></script>
 									</p>
 								</div>
 						</div>

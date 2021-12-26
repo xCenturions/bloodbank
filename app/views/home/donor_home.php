@@ -168,34 +168,39 @@
              </div>
 
              <div class="col-sm-4">
-                 <div class="card text-white card-has-bg click-col" style="background-image:url('img/home/app.JPG');">
-                     <img class="card-img d-none" src="img/home/app.JPG" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                     <div class="card-img-overlay d-flex flex-column">
-                         <div class="card-body">
-                             <h2 class="card-meta mb-2"><a class="card-meta mb-2" href="<?= PROOT ?>appo/makeAppo">Make An Appointment</h2></a>
+                 <a class="card-meta mb-2" href="<?= PROOT ?>appo/makeAppo">
+                     <div class="card text-white card-has-bg click-col" style="background-image:url('img/home/app.JPG');">
+                         <img class="card-img d-none" src="img/home/app.JPG" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+                         <div class="card-img-overlay d-flex flex-column">
 
-                             <center> <small>Now you can make an appointment online via this link for island wide selected blood centers.
-                                     Please reserve your convenient time slot as you wish. Donate Blood, Save a Life.</small></center>
+                             <div class="card-body">
+                                 <h2 class="card-meta mb-2">Make An Appointment</h2>
+
+                                 <center> <small>Now you can make an appointment online via this link for island wide selected blood centers.
+                                         Please reserve your convenient time slot as you wish. Donate Blood, Save a Life.</small></center>
+
+                             </div>
 
                          </div>
-
                      </div>
-                 </div>
+                 </a>
              </div>
 
              <div class="col-sm-4">
-                 <div class="card text-white card-has-bg click-col" style="background-image:url('img/home/camp.JPG');">
-                     <img class="card-img d-none" src="img/home/camp.JPG" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                     <div class="card-img-overlay d-flex flex-column">
-                         <div class="card-body">
-                             <h2 class="card-meta mb-2"> <a class="card-meta mb-2" href="<?= PROOT ?>home/requestBloodCamp">Organize a Blood Camp</h2></a>
+                 <a class="card-meta mb-2" href="<?= PROOT ?>home/requestBloodCamp">
+                     <div class="card text-white card-has-bg click-col" style="background-image:url('img/home/camp.JPG');">
+                         <img class="card-img d-none" src="img/home/camp.JPG" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+                         <div class="card-img-overlay d-flex flex-column">
+                             <div class="card-body">
+                                 <h2 class="card-meta mb-2">Organize a Blood Camp</h2>
 
-                             <center> <small>By organizing a blood donation campaign, you can give your society a chance to donate blood. It is not that difficult or expensive to organize a campaign in your area or work place. </small></center>
+                                 <center> <small>By organizing a blood donation campaign, you can give your society a chance to donate blood. It is not that difficult or expensive to organize a campaign in your area or work place. </small></center>
+
+                             </div>
 
                          </div>
-
                      </div>
-                 </div>
+                 </a>
              </div>
          </div>
      </div>

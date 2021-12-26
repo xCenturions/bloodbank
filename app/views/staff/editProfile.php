@@ -59,11 +59,7 @@
 									<input type="url" class="form-control" id="website" placeholder="Website url">
 								</div>
 							</div>
-						</div>
-						<div class="row gutters">
-							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-								<h6 class="mb-3 text-primary">Address</h6>
-							</div>
+
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label for="Address">Address</label>
@@ -73,7 +69,7 @@
 
 
 						</div>
-						<div class="row gutters">
+						<div class="row gutters mt-5">
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 								<div class="text-right">
 									<a href="<?= PROOT ?>staff/staffProfile"><button type="button" class="btn btn-secondary">Cancel</button></a>
