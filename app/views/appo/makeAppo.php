@@ -34,8 +34,8 @@
 										<div class="input-group has-validation mt-2">
 											<select class="form-control" id="location_type" name="location_type" value="<?= $this->appoint->location_type ?>">
 												<option value="" selected disabled="">Select Location type</option>
-												<option value="bloodbanks">Blood Bank</option>
-												<option value="requestedcamp">Blood Donation Camps</option>
+												<option value="Blood Bank">Blood Bank</option>
+												<option value="Blood Donation Camp">Blood Donation Camps</option>
 											</select>
 										</div>
 									</div>
@@ -68,7 +68,7 @@
 									</div>
 
 									<div class="form-btn">
-										<button type="submit" class="submit-btn">Schedule Now</button>
+										<button name="frmbtn" id="btn" type="submit" class="submit-btn ">Schedule Now</button>
 									</div>
 							</form>
 

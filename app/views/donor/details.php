@@ -13,12 +13,13 @@ if (!$this->donation == null) : ?>
 
 	$date = new DateTime($d);
 	$date->add(new DateInterval('P3M'));
-
+dnd($date);
 	?>
 	<script language="JavaScript">
 		TargetDate = "<?= $date->format('Y-m-d') ?>";
 		BackColor = "palegreen";
 		ForeColor = "navy";
+		
 		CountActive = true;
 		CountStepper = -1;
 		LeadingZero = true;

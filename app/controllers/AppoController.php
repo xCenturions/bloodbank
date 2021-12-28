@@ -71,7 +71,7 @@ class AppoController extends Controller
     // dnd($_GET["typeID"]);
     $typeId = $_GET["typeID"];
     $donornModel = new Donor('location');
-    if ($typeId == 'bloodbanks') {
+    if ($typeId == 'Blood Bank') {
       $locations =  $donornModel->getAllBloodbanks($typeId);
       foreach ($locations as $value) {
         $output .= '<option value="' . $value->bloodbank . '">' . $value->bloodbank . '</option>';

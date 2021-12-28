@@ -32,8 +32,7 @@ class Appo extends Model
       'conditions' => 'donor_id = ?',
       'bind' => [$donor_id]
     ];
-    $result = $this->query('SELECT * FROM type LEFT JOIN appointment on 
-    appointment.location_type = type.id where donor_id = ? and appointment.deleted != 1', [$donor_id]);
+    $result = $this->query('SELECT * FROM  appointment where donor_id = ? and appointment.deleted != 1', [$donor_id]);
     // dnd($result);
     return $result->results();
   }

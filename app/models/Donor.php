@@ -340,4 +340,12 @@ class Donor extends Model
     //dnd($results);
     return $results;
   }
+  public function searchByName($name)
+  {
+    $count = $this->query('SELECT  * FROM bloodbanks WHERE bloodbank = ? ', [$name]);
+    //  $db = DB::getInstance();
+    $results = $count->results();
+    //dnd($results);
+    return $results;
+  }
 }
