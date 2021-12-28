@@ -323,4 +323,22 @@ class Donor extends Model
     //sending mail:
     sendMail($email, $body, $altBody, $subject);
   }
+
+  public function sortCluster($cluster)
+  {
+    $count = $this->query('SELECT  * FROM bloodbanks WHERE cluster = ? ', [$cluster]);
+    //  $db = DB::getInstance();
+    $results = $count->results();
+    //dnd($results);
+    return $results;
+  }
+
+  public function searchByName($name)
+  {
+    $count = $this->query('SELECT  * FROM bloodbanks WHERE bloodbank = ? ', [$name]);
+    //  $db = DB::getInstance();
+    $results = $count->results();
+    //dnd($results);
+    return $results;
+  }
 }
