@@ -70,12 +70,21 @@ class AppoController extends Controller
     $output = '<option value="" disabled="" selected="">Find Nearest Location</option>';
     // dnd($_GET["typeID"]);
     $typeId = $_GET["typeID"];
-    $locationModel = new Location('location');
-    $locations =  $locationModel->findAllByTypeId((int)$typeId);
-    // dnd($locations);
-    foreach ($locations as $value) {
-      $output .= '<option value="' . $value->nearest_location . '">' . $value->nearest_location . '</option>';
+    $donornModel = new Donor('location');
+    if ($typeId == 'bloodbanks') {
+      $locations =  $donornModel->getAllBloodbanks($typeId);
+      foreach ($locations as $value) {
+        $output .= '<option value="' . $value->bloodbank . '">' . $value->bloodbank . '</option>';
+      }
+    } else {
+      $locations = $donornModel->getAllCamps();
+      foreach ($locations as $value) {
+        $output .= '<option value="' . $value->location . '">' . $value->location . '</option>';
+      }
     }
+
+    // dnd($locations);
+
     echo ($output);
   }
 }
