@@ -144,30 +144,32 @@
              <p class=" text-block1">Donating Blood Makes a Big Difference in the Lives of Others.</p>
 
          </div>
-         <?php if(currentUser()) : ?>
-         <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Make An Appointment</button></center>
-        <?php else : ?>
-            <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Register As A Donor</button></center>
-        <?php endif; ?>
+         <?php if (currentUser()) : ?>
+             <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Make An Appointment</button></center>
+         <?php else : ?>
+             <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Register As A Donor</button></center>
+         <?php endif; ?>
          <br>
 
      </div>
      <div class="homes">
          <div class="row">
              <div class="col-sm-4">
-                 <div class="card text-white card-has-bg click-col" style="background-image:url('img/home/bld.JPG');">
-                     <img class="card-img d-none" src="img/home/bld.JPG" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
-                     <div class="card-img-overlay d-flex flex-column">
-                         <div class="card-body">
-                             <h2 class="card-meta mb-2">Find Nearest Blood Bank</h2>
+                 <a class="card-meta mb-2" href="<?= PROOT ?>home/nearestBloodBank">
+                     <div class="card text-white card-has-bg click-col" style="background-image:url('img/home/bld.JPG');">
+                         <img class="card-img d-none" src="img/home/bld.JPG" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+                         <div class="card-img-overlay d-flex flex-column">
+                             <div class="card-body">
+                                 <h2 class="card-meta mb-2">Find Nearest Blood Bank</h2>
 
-                             <center> <small>NBTS consists of 96 hospital based blood banks affiliated to 19 cluster centers based on their geographic location. National Blood Center at Elvitigala Mawatha Narahenpita is the operational headquarters where national
-                                     policies are developed and implement for the efficient operation of blood bank network in the country. </small></center>
+                                 <center> <small>NBTS consists of 96 hospital based blood banks affiliated to 19 cluster centers based on their geographic location. National Blood Center at Elvitigala Mawatha Narahenpita is the operational headquarters where national
+                                         policies are developed and implement for the efficient operation of blood bank network in the country. </small></center>
+
+                             </div>
 
                          </div>
-
                      </div>
-                 </div>
+                 </a>
              </div>
 
              <div class="col-sm-4">

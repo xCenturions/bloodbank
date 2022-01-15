@@ -49,12 +49,13 @@
     <div class="row">
 
         <div class="col-md-3">
-            <input class="form-control" id="name" name="name" value="" style="width: 300px ; height: 50px;" placeholder="Enter Name or NIC ">
+            <input class="form-control" id="name" name="name" value="" style="width: 300px ; height: 50px;" placeholder="Enter Bloodbank Name ">
 
             </select>
         </div>
+
         <div class="col-md-3">
-            <select name="donor_city" class="form-control" id="bld_banks" name="bld_banks" value="" style="width: 300px ; height: 50px;">
+            <select name="donor_city" class="form-control" id="cluster" name="cluster" value="" style="width: 300px ; height: 50px;">
                 <option value="" selected="" disabled="">Select Cluster</option>
                 <?php foreach ($this->cluster as $ci) : ?>
                     <option value="<?= $ci->cluster ?>"><?= $ci->cluster ?></option>
@@ -86,12 +87,9 @@
                 <table>
                     <thead>
                         <tr class="row100 head">
-                            <th class="cell100 column1">Donor Name</th>
-                            <th class="cell100 column2">Donor NIC</th>
-                            <th class="cell100 column3">Donated Location</th>
-                            <th class="cell100 column8">Blood Group</th>
-                            <th class="cell100 column4">Donated Date</th>
-                            <th class="cell100 column4">Donation Record</th>
+                            <th class="cell100 column1">Blood Bank</th>
+                            <th class="cell100 column2">Telephone</th>
+
 
                         </tr>
                     </thead>
@@ -143,7 +141,7 @@
         //         $("#to_date").datepicker();  
         //    });  
 
-        $("#name").change(function() {
+        $("#cluster").change(function() {
             loadData();
         });
 
@@ -152,10 +150,8 @@
         $("#refresh").click(function() {
             $("#search").load("http://localhost/bloodbank/home/find");
             $("#name").val("");
-            $("#from_date").val("");
-            $("#to_date").val("");
+            $("#cluster").val("");
 
-            $("#nic").val("");
         });
 
 
@@ -163,18 +159,18 @@
         function loadData() {
 
 
-            var name = $("#name").val();
+            var name = $("#cluster").val();
 
-            console.log(to_date);
+            console.log(name);
             $.ajax({
                 url: "http://localhost/bloodbank/home/find",
                 method: "POST",
                 data: {
-                    bld_banks: name,
+                    cluster: name,
 
                 },
                 success: function(data) {
-                    //console.log("This data", data); 
+                    console.log("This data", data);
                     $("#search").html(data);
 
 
@@ -194,20 +190,20 @@
 
 
 
-        $("#bank").keyup(function() {
-            var name = $("#name").val();
+        $("#name").keyup(function() {
+            var bname = $("#name").val();
 
 
 
             //var name = $("#bld_banks").val();
-            console.log(nic);
+            console.log(bname);
             $.ajax({
                 url: "http://localhost/bloodbank/home/find",
                 method: "POST",
                 data: {
                     //bld_banks: name,
 
-                    name: name
+                    name: bname
                 },
                 success: function(data) {
                     console.log("This data", data);

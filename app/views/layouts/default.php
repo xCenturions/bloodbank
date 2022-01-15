@@ -60,6 +60,7 @@
 
 
   <?php include 'main_menu.php' ?>
+
   <?php if (staff() && staff()->designation == 'MO') : ?>
     <?php if (alert(staff()->assigned)) : ?>
 

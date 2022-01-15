@@ -14,8 +14,8 @@ if (!$this->donation == null) : ?>
 	$date = new DateTime($d);
 	$date->add(new DateInterval('P3M'));
 	$newDate = (array) $date;
-$newDate = str_replace("00:00:00.000000","",$newDate['date']) ;
-//dnd($date);
+	$newDate = str_replace("00:00:00.000000", "", $newDate['date']);
+	//dnd($date);
 	?>
 	<script language="JavaScript">
 		TargetDate = "<?= $date->format('Y-m-d') ?>";
@@ -27,7 +27,7 @@ $newDate = str_replace("00:00:00.000000","",$newDate['date']) ;
 		LeadingZero = true;
 		DisplayFormat = "%%D%% days";
 		//console.log(TargetDate);
-		
+
 		FinishMessage = "You are available to donate blood again";
 	</script>
 
@@ -58,8 +58,18 @@ $newDate = str_replace("00:00:00.000000","",$newDate['date']) ;
 	</div>
 
 </section>
-<?php if (!currentUser()->form == 'submitted') : ?>
-	<div class="example-right"><a href="<?= PROOT ?>donor/form?>">You have to Fill the form</a></div>
+<?php if (currentUser() && currentUser()->form == 'not_submitted') : ?>
+
+
+	<div class="col-sm-12" style="position: relative;">
+		<div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+
+			<center><i class="start-icon fa fa-exclamation-triangle faa-flash animated"></i>
+				<a style="color:red " href="<?= PROOT ?>donor/form"> <strong class="font__weight-semibold">Attenion!</strong> Please Fill The Donor Form. Click here!</a>
+			</center>
+		</div>
+	</div>
+
 <?php endif; ?>
 <section id="blog" class="blog">
 	<div class="container" data-aos="fade-up">

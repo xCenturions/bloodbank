@@ -1,3 +1,4 @@
+
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -324,14 +325,6 @@ class Donor extends Model
     sendMail($email, $body, $altBody, $subject);
   }
 
-  public function getAllCamps()
-  {
-    $count = $this->query('SELECT  * FROM requestcamp WHERE status = "approved" ', []);
-    //  $db = DB::getInstance();
-    $results = $count->results();
-    //dnd($results);
-    return $results;
-  }
   public function sortCluster($cluster)
   {
     $count = $this->query('SELECT  * FROM bloodbanks WHERE cluster = ? ', [$cluster]);
@@ -340,6 +333,7 @@ class Donor extends Model
     //dnd($results);
     return $results;
   }
+
   public function searchByName($name)
   {
     $count = $this->query('SELECT  * FROM bloodbanks WHERE bloodbank = ? ', [$name]);

@@ -1,3 +1,4 @@
+
 <?php
 
 class HomeController extends Controller
@@ -24,6 +25,7 @@ class HomeController extends Controller
     $donorModel = new Donor();
     $staffModel = new Staff();
     $adminModel = new Admin();
+
 
 
 
@@ -62,6 +64,7 @@ class HomeController extends Controller
     $this->view->patients = $patient[0]->total;
     $this->view->totalBank = $countBank[0]->total;
     $this->view->allBanks = $totalBanks[0]->total;
+    $this->view->allAdmin = $totalAdmin[0]->total;
     $this->view->allAdmin = $totalAdmin[0]->total;
 
 
@@ -225,6 +228,7 @@ class HomeController extends Controller
 
 
 
+
   public function requestBloodCampAction()
 
   {
@@ -233,7 +237,10 @@ class HomeController extends Controller
     $cities = $donorModel->getAllCities();
     $bank = $donorModel->getallbloodbanks();
 
+    $bank = $donorModel->getallbloodbanks();
+
     $this->view->cities = $cities;
+
 
 
     $this->view->bloodbank = $bank;
@@ -332,10 +339,13 @@ class HomeController extends Controller
     $output = '';
     $result = '';
 
+    //dnd($_POST);
+
     if (isset($_POST["cluster"]) && $_POST['cluster'] != '') {
       $banks = $_POST["cluster"];
       // $blood = $_POST["bld_grps"];
       $stock = $donorModel->sortCluster($banks);
+      // dnd($stock);
     } elseif (isset($_POST["name"]) && $_POST['name'] != '') {
       $nic = $_POST["name"];
       $stock = $donorModel->searchByName($nic);
@@ -364,11 +374,10 @@ class HomeController extends Controller
               <tbody>
 
 
-                  <td class="cell100 column1"> <a href="' . PROOT . 'admin/adminProfile/' . $v->id . '"> ' . $v->name . '</a></td>                
-                  <td class="cell100 column2"> ' . $v->nic . '</td>
-                  <td class="cell100 column3"> ' . $v->email . '</td>
-                  <td class="cell100 column4"> ' . $v->assigned . '</td>
-                  <td class="cell100 column5"> ' . $v->mobile . '</td>
+                       
+                  <td class="cell100 column2"> ' . $v->bloodbank . '</td>
+                  <td class="cell100 column3"> ' . $v->TP_No . '</td>
+                  
                   
                   
 
