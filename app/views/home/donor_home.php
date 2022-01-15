@@ -144,8 +144,11 @@
              <p class=" text-block1">Donating Blood Makes a Big Difference in the Lives of Others.</p>
 
          </div>
-         <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Register as a Donor</button></center>
-
+         <?php if(currentUser()) : ?>
+         <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Make An Appointment</button></center>
+        <?php else : ?>
+            <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Register As A Donor</button></center>
+        <?php endif; ?>
          <br>
 
      </div>

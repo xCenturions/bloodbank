@@ -13,17 +13,21 @@ if (!$this->donation == null) : ?>
 
 	$date = new DateTime($d);
 	$date->add(new DateInterval('P3M'));
-dnd($date);
+	$newDate = (array) $date;
+$newDate = str_replace("00:00:00.000000","",$newDate['date']) ;
+//dnd($date);
 	?>
 	<script language="JavaScript">
 		TargetDate = "<?= $date->format('Y-m-d') ?>";
 		BackColor = "palegreen";
 		ForeColor = "navy";
-		
+
 		CountActive = true;
 		CountStepper = -1;
 		LeadingZero = true;
 		DisplayFormat = "%%D%% days";
+		//console.log(TargetDate);
+		
 		FinishMessage = "You are available to donate blood again";
 	</script>
 
@@ -75,7 +79,8 @@ dnd($date);
 							<p style="padding-top:10px"><strong>Nearest City : </strong> <?= currentUser()->donor_city ?></p>
 						</div>
 						<div class="entry-content col">
-							<?php if (!$this->donation == null) : ?>
+
+							<?php if (!$this->donation == null &&  !$newDate == date('Y-m-d')) : ?>
 								<div class="read-more">You can Donate blood after
 									<!-- <br> -->
 									</p><!-- <p style="margin-right:95px">  -->

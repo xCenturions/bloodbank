@@ -273,7 +273,16 @@ class StaffController extends Controller
 
     $validation = new Validate();
 
-    $bank = staff()->assigned;
+    if(staff()){
+
+      $bank = staff()->assigned;
+
+    }else{
+      $bank = admin()->assigned;
+
+    }
+
+   
     if ($_POST) {
 
       //dnd($_POST);       
@@ -331,7 +340,7 @@ class StaffController extends Controller
         $stockModel = new Stock();
 
         $stock =  $stockModel->findBloodAndBank($_POST['pt_bloodgroup'], $bank);
-        // dnd($stock);
+        //  --dnd($stock);
         $stockModel->delete($stock[0]->id);
         $stockModel->bloodAlert($bank);
 

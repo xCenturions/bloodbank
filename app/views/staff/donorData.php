@@ -100,7 +100,7 @@ FinishMessage = "You are available to donate blood again";
             <p style="padding-top:10px"><strong>Nearest City : </strong> <?=$this->data->donor_city ?></p>
 		   </div>
 
-		    <?php if(!$this->donation == null): ?>
+		    <?php if(!$this->donation == null && !$newDate == date('Y-m-d')): ?>
            <div class="column" style="font-size:20px;text-align:center">Donor can Donate blood after<br><script language="JavaScript" src="https://rhashemian.github.io/js/countdown.js"></script>	</div>
 		   <?php endif; ?>
 			</div>
@@ -118,38 +118,40 @@ FinishMessage = "You are available to donate blood again";
 								<tr class="row100 head">
 									<th class="cell100 column1">Date </th>
 									<th class="cell100 column2">Location</th>
+									<th class="cell100 column3">Tested Diseases</th>
 									
 								</tr>
 							</thead>
 						</table>
 					</div>
 
-					<div class="table100-body js-pscroll">
-						<table>
-							<tbody>
-                
-								<?php if($this->donation == null): ?>
-									
-									<?= '<center>'.'No Any Records avaliable'. '</center>' ?>
-									<?php else: ?>
-									
+						<div class="table100-body js-pscroll">
+									<table>
+										<tbody>
 
-									
-								<?php foreach($this->donation as $do): ?>   
-                                        
-                    <td class="cell100 column1"><?= $do->date ?> </td>
-                 
-                    <td class="cell100 column2"><?= $do->bld_banks ?></td>
-                 
-								
+											<?php if ($this->donation == null) : ?>
 
-								</tr>
+												<?= '<center>' . 'No Any Records avaliable' . '</center>' ?>
+											<?php else : ?>
 
-								  <?php endforeach; ?>
-								  <?php endif; ?>
-							</tbody>
-						</table>
-					</div>
+
+
+												<?php foreach ($this->donation as $do) : ?>
+
+													<td class="cell100 column1"><?= $do->date ?> </td>
+
+													<td class="cell100 column2"><?= $do->location ?> Hospital</td>
+													<td class="cell100 column2"><?= $do->tested_disease ?> </td>
+
+
+
+													</tr>
+
+												<?php endforeach; ?>
+											<?php endif; ?>
+										</tbody>
+									</table>
+								</div>
 				</div>
 
 </div>
