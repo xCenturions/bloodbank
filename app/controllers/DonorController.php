@@ -861,34 +861,8 @@ class DonorController extends Controller
 
     $pdf->addPage();
     $pdf->SetFont('helvetica', '', 12);
-    $pdf->writeHTML('	<div  class="menu" >
-				<h6>REGISTRATION</h6>
-				<p> &nbsp;&nbsp;&nbsp;Above Donor name and ID card number verified?
-					Yes<input type="radio"  id="verified" name="verified" value="1" required>&nbsp;
-					No<input type="radio" id="verified" name="verified" value="0">
-				</p>
-				<p> &nbsp;&nbsp;&nbsp;DIN issuing officers Signature: <input class="din" type="text" name="din_name" size="10" value="<?= $this->staff->staff_name?>"></p>
-			</div>
-
-			<div class="box">
-				<h6>QR Code</h6>
-				<img id="img1" style="width:100px" src="data:image/png;base64, <?= $this->qr_image; ?>" alt="">
-				
-			</div>
-			
-
-			<div class="medical">
-				<h6>MEDICAL ASSESSMENT</h6>
-			</div>
-
-		<div class="mosignature">
-			<p>(Medical Officers Signature<input type="text" id="mo_name" name="mo_name" size="40"placeholder=".............................................................................................................................................">)</p>
-		</div>
-		<div class="box1">
-			<label><b>Weight(kg):</b></label>
-			<input type="text" id="weight" name="weight"  placeholder="" maxlength="" size="5">
-		</div>
-');
+   
+ob_end_clean();
 
     $pdf->Output('Donor Form.pdf', 'D');
   }

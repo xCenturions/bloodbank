@@ -76,7 +76,7 @@
             </div>
           <?php endif; ?>
           <ul>
-            <li class="dropdown"><a href="#"><span>Hello <?= staff()->staff_name ?> </span> <i class="bi bi-chevron-down"></i></a>
+            <li class="dropdown"><a href="#"><span>Hello <?= nameExplode(staff()->staff_name) ?> </span> <i class="bi bi-chevron-down"></i></a>
               <ul>
                 <li><a href="<?= PROOT ?>staff/staffProfile">My Profile</a></li>
                 <li> <a href="<?= PROOT ?>staff/logout">Logout</a>
@@ -92,7 +92,7 @@
         <li class="nav-item active"> -->
         <?php elseif (currentUser()) : ?>
           <ul>
-            <li class="dropdown"><a href="#"><span>Hello <?= currentUser()->donor_name ?> </span> <i class="bi bi-chevron-down"></i></a>
+            <li class="dropdown"><a href="#"><span>Hello <?= nameExplode(currentUser()->donor_name) ?> </span> <i class="bi bi-chevron-down"></i></a>
               <ul>
                 <li><a href="<?= PROOT ?>donor/details">My Profile</a></li>
                 <li> <a href="<?= PROOT ?>donor/logout">Logout</a>
@@ -100,7 +100,7 @@
           </ul>
         <?php elseif (admin()) : ?>
           <ul>
-            <li class="dropdown"><a href="#"><span>Hello <?= admin()->name ?> </span> <i class="bi bi-chevron-down"></i></a>
+            <li class="dropdown"><a href="#"><span>Hello <?= nameExplode(admin()->name) ?> </span> <i class="bi bi-chevron-down"></i></a>
               <ul>
                 <li><a href="<?= PROOT ?>admin/adminProfile">My Profile</a></li>
                 <li> <a href="<?= PROOT ?>admin/logout">Logout</a>

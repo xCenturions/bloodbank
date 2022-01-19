@@ -131,7 +131,10 @@ class Staff extends Model
 
   public function getAllCities()
   {
-    return $this->findFromTable('cities');
+    $result = $this->query('SELECT * FROM cities ORDER BY name ASC ', []);
+    // dnd($result->results());
+
+    return $result->results();
   }
   public function getAllDonors()
   {
@@ -143,7 +146,10 @@ class Staff extends Model
   }
   public function getAllBloodBanks()
   {
-    return $this->findFromTable('bloodbanks');
+   $result = $this->query('SELECT * FROM bloodbanks ORDER BY bloodbank ASC ', []);
+    // dnd($result->results());
+
+    return $result->results();
   }
 
 

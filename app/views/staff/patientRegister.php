@@ -21,7 +21,7 @@
 	<div class="page-content">
 		<div class="form-v2-content">
 			<div class="form-left">
-				<img src="<?= PROOT ?>img/pt.jpg" alt="form">
+				<!-- <img src="<?= PROOT ?>img/pt.jpg" alt="form"> -->
 				<div class="text-1">
 					<p>Register A Patient Here</p>
 				</div>

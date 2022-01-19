@@ -64,9 +64,9 @@ class HomeController extends Controller
     $this->view->patients = $patient[0]->total;
     $this->view->totalBank = $countBank[0]->total;
     $this->view->allBanks = $totalBanks[0]->total;
+    //$this->view->allAdmin = $totalAdmin[0]->total;
     $this->view->allAdmin = $totalAdmin[0]->total;
-    $this->view->allAdmin = $totalAdmin[0]->total;
-
+    //dnd($totalAdmin[0]->total);
 
 
     $this->view->render('home/index');

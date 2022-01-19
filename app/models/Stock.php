@@ -38,7 +38,7 @@ class Stock extends Model
   public function piechartBank($bank)
   {
 
-    $stock = $this->query('SELECT bld_grps,bld_banks,  count(*) as count FROM stock where bld_banks = ? AND deleted != 0 GROUP BY bld_grps   ', [$bank]);
+    $stock = $this->query('SELECT bld_grps,bld_banks,  count(*) as count FROM stock where bld_banks = ? AND deleted = 0 GROUP BY bld_grps   ', [$bank]);
     //  $db = DB::getInstance();
     $results = $stock->results();
     //dnd($results);
@@ -57,9 +57,11 @@ class Stock extends Model
   public function barchartBank($banks)
   {
 
-    $stock =  $this->query("SELECT COUNT(id) as count,MONTHNAME(date) as month_name FROM stock WHERE bld_banks = ? AND  YEAR(date) = '" . date('Y') . "'  GROUP BY YEAR(date),MONTH(date)  ", [$banks]);
+    $stock =  $this->query("SELECT COUNT(id) as count,MONTHNAME(date) as month_name FROM stock WHERE bld_banks = ? AND  YEAR(date) = '2021'  GROUP BY YEAR(date),MONTH(date)  ", [$banks]);
     //$db = DB::getInstance();
     $results = $stock->results();
+
+    //dnd($results);
 
     return $results;
   }

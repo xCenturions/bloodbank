@@ -68,8 +68,11 @@ class StaffController extends Controller
     Router::redirect('');
   }
 
-  public function donorDataAction($id)
+  public function donorDataAction($id = NULL)
+
   {
+
+    
     $donorModel = new Donor();
     //$id = '973533576V';
     $check = $donorModel->findDonorById($id);

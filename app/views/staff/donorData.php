@@ -100,7 +100,7 @@ FinishMessage = "You are available to donate blood again";
             <p style="padding-top:10px"><strong>Nearest City : </strong> <?=$this->data->donor_city ?></p>
 		   </div>
 
-		    <?php if(!$this->donation == null && !$newDate == date('Y-m-d')): ?>
+		    <?php if($this->donation != null && $newDate <= date('Y-m-d')): ?>
            <div class="column" style="font-size:20px;text-align:center">Donor can Donate blood after<br><script language="JavaScript" src="https://rhashemian.github.io/js/countdown.js"></script>	</div>
 		   <?php endif; ?>
 			</div>
@@ -201,7 +201,7 @@ FinishMessage = "You are available to donate blood again";
 			<?php if(!isset($newDate)): ?>
 			 <a href="<?= PROOT ?>staff/donateBlood/<?= $this->data->id?>" class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button  type="button"  class="btn btn-danger btn-rounded" style="width:70%">Add donor's blood to stock</button></a>
 			 <?php else: ?>
-            <a  class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button href="<?= PROOT ?>staff/donateBlood/<?= $this->data->id?>" type="button" <?php if( !($newDate == date('Y-m-d'))) print "disabled"?> class="btn btn-danger btn-rounded" style="width:70%">Add donor's blood to stock</button></a>
+            <a href="<?= PROOT ?>staff/donateBlood/<?= $this->data->id?>"  class="btn-get-started animate__animated animate__fadeInUp scrollto" style="padding-top:10px"><button  type="button" <?php if($newDate >= date('Y-m-d')) {print "disabled";} ?> class="btn btn-danger btn-rounded" style="width:70%">Add donor's blood to stock</button></a>
 			<?php endif; ?>
 		</div>
 		

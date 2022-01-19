@@ -37,10 +37,11 @@
 
     </div>
 </section>
-<form action="<?= PROOT ?>staff/searchDonors" method="post" style="margin-top:20px;text-align: center">
+
+<div class="container" style="justify-content:center;">
 
 
-    <div class="row" style="margin-left:400px">
+    <div class="row" >
 
         <div class="col-md-3"><br>
             <input class="form-control" id="nic" name="nic" value="" style="width: 300px ; height: 50px;" placeholder="Enter NIC Number ">
@@ -65,6 +66,7 @@
 
     </div>
 
+</div>
 
 
 </form>

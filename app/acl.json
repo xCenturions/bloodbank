@@ -39,13 +39,14 @@
     "Admin": ["*"],
     "Donor": ["*"],
     "Home": ["*"],
+    "Reports": ["*"],
     "Staff": ["*"]
   },
 
   "Superadmin": {
     "denied": {
       "Admin": ["index"],
-      "Staff": ["patientRegister"]
+      "Staff": ["patientRegister","requestedCamps"]
     },
     "Admin": ["*"],
     "Superadmin": ["*"],

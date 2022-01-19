@@ -164,20 +164,20 @@
   function drawStuff(bar_data) {
     var jsonData = bar_data;
     var data = new google.visualization.DataTable();
-
+    
     data.addColumn('string', 'Month');
     data.addColumn('number', 'Count');
-
+    
     $.each(jsonData, function(i, jsonData) {
       var month = jsonData.month_name;
       var count = parseInt(jsonData.count);
-
+      // console.log("bar",month);
       data.addRows([
         [month, count]
       ]);
     });
 
-
+    
 
     var options = {
       width: 800,
@@ -200,6 +200,8 @@
         groupWidth: "20%"
       }
     };
+
+    //console.log("bar",month);
 
     var chart = new google.charts.Bar(document.getElementById('top_x_div'));
     // Convert the Classic options to Material options.

@@ -90,7 +90,7 @@ if (!$this->donation == null) : ?>
 						</div>
 						<div class="entry-content col">
 
-							<?php if (!$this->donation == null &&  !$newDate == date('Y-m-d')) : ?>
+							<?php if ($this->donation != null &&  $newDate != date('Y-m-d')) : ?>
 								<div class="read-more">You can Donate blood after
 									<!-- <br> -->
 									</p><!-- <p style="margin-right:95px">  -->

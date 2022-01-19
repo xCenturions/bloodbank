@@ -42,9 +42,11 @@ class Donation extends Model
   public function barchart()
   {
 
-    $stock = "SELECT COUNT(id) as count,MONTHNAME(date) as month_name FROM donation_record WHERE YEAR(date) = '" . date('Y') . "'  GROUP BY YEAR(date),MONTH(date)";
+    $stock = "SELECT COUNT(id) as count,MONTHNAME(date) as month_name FROM donation_record WHERE YEAR(date) = '2021'  GROUP BY YEAR(date),MONTH(date)";
     $db = DB::getInstance();
     $results = $db->query($stock)->results();
+
+    //dnd($results);
 
     return $results;
   }
@@ -62,7 +64,7 @@ class Donation extends Model
   public function barchartBank($banks)
   {
 
-    $stock =  $this->query("SELECT COUNT(*) as count, MONTHNAME(date) as month_name FROM donation_record WHERE location = ? AND  YEAR(date) =  date('Y')   GROUP BY YEAR(date),MONTH(date)  ", [$banks]);
+    $stock =  $this->query("SELECT COUNT(*) as count, MONTHNAME(date) as month_name FROM donation_record WHERE location = ? AND  YEAR(date) =  2021   GROUP BY YEAR(date),MONTH(date)  ", [$banks]);
     //$db = DB::getInstance();
     $results = $stock->results();
 
@@ -71,7 +73,7 @@ class Donation extends Model
   public function barchartMLT($banks)
   {
 
-    $stock =  $this->query("SELECT COUNT(case when status='approved' then 1 end) as app_count, COUNT(case when status='rejected' then 1 end) as rej_count, MONTHNAME(date) as month_name FROM donation_record WHERE location = ? AND  YEAR(date) =  date('Y')   GROUP BY YEAR(date),MONTH(date)  ", [$banks]);
+    $stock =  $this->query("SELECT COUNT(case when status='approved' then 1 end) as app_count, COUNT(case when status='rejected' then 1 end) as rej_count, MONTHNAME(date) as month_name FROM donation_record WHERE location = ? AND  YEAR(date) =  2021   GROUP BY YEAR(date),MONTH(date)  ", [$banks]);
     //$db = DB::getInstance();
     $results = $stock->results();
 

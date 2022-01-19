@@ -23,6 +23,8 @@
 
 						<option value=["Doctor"]>Doctor</option>
 						<option value=["Nurse"]>Nurse</option>
+						<option value=["BSK"]>Blood Stock Keeper</option>
+						<option value=["MLT"]>Laboratory Technicien</option>
 
 					</select>
 				</div>
@@ -54,16 +56,7 @@
 					</select>
 				</div>
 
-				<div class="form-row">
-					<label for="designation">User Role</label>
-					<select class="form-control" id="designation" name="designation" value="<?= $this->post['designation'] ?>">
-						<option value="" selected="" disabled="">Designation</option>
-
-						<option value="[" Doctor"]">Doctor</option>
-						<option value="[" Nurse"]">Nurse</option>
-
-					</select>
-				</div>
+				
 
 
 

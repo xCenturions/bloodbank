@@ -61,7 +61,7 @@
 
   <?php include 'main_menu.php' ?>
 
-  <?php if (staff() && staff()->designation == 'MO') : ?>
+  <?php if (staff() && staff()->acl == '["BSK"]') : ?>
     <?php if (alert(staff()->assigned)) : ?>
 
       <div class="col-sm-12" style="position: relative;">

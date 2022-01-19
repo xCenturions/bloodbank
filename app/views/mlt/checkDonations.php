@@ -220,10 +220,10 @@
 
 	</div>
 </section>
-<form action="<?= PROOT ?>staff/searchDonors" method="post" style="margin-top:20px;text-align: center">
+<div class="container" style="justify-content:center;">
 
 
-	<div class="row" style="margin-left:400px">
+	<div class="row" >
 
 		<div class="col-md-3">
 			<input class="form-control" id="cm_no" name="cm_no" value="" style="width: 300px ; height: 50px;" placeholder="Enter CM Number ">
@@ -249,7 +249,7 @@
 	</div>
 
 
-
+</div>
 </form>
 
 

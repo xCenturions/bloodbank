@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="<?= PROOT ?>css/editstaffpro.css">
 <form action="" method="post" enctype="multipart/form-data">
 	<div class="container">
+		
 		<div class="row gutters">
 			<div><?= $this->displayErrors ?></div>
 			<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -82,6 +83,7 @@
 			</div>
 
 		</div>
+							
 
 	</div>
 </form>

@@ -12,7 +12,7 @@
 	<div class="page-content">
 		<div class="form-v2-content">
 			<div class="form-left">
-				<img src="<?= PROOT ?>img/donor/sign.jpg" alt="form">
+				<!-- <img src="<?= PROOT ?>img/donor/sign.jpg" alt="form"> -->
 				<div class="text-1">
 					<p>Register From Here</p>
 				</div>

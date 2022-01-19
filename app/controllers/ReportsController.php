@@ -94,7 +94,7 @@
 									<td class="cell100 column3"> ' . $v->location . '</td>
 									<td class="cell100 column8"> ' . $v->bld_grp . '</td>
 									<td class="cell100 column4"> ' . $v->date . '</td>
-									<td class="cell100 column4"> <button id="' . $v->cm_no . '" type="button" data-toggle="modal" data-target="#donation" onClick="view(this.id)" style="width:120px" class=" btn btn-rounded btn-success "><i class="fa fa-check" aria-hidden="true"></i>View</button> <button onClick="rejected(this.id)" id="' . $v->cm_no . '" data-toggle="modal" data-target="#centralModalDanger" type="button" style="width:120px" class="c btn btn-rounded btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></i> Download</button></td></td>
+									<td class="cell100 column4"> <button id="' . $v->cm_no . '" type="button" data-toggle="modal" data-target="#donation" onClick="view(this.id)" style="width:120px" class=" btn btn-rounded btn-success "><i class="fa fa-check" aria-hidden="true"></i>View</button> </td></td>
                   
 								
 
@@ -335,12 +335,13 @@
       $stockModel = new Stock();
 
       $stock =  $stockModel->piechart();
-      $bank = "Jaffna";
-      $bar =  $stockModel->barchartBank($bank);
+     // $bank = "Jaffna";
+      //$bar =  $stockModel->barchartBank($bank);
       $banks = $this->StaffModel->getAllBloodBanks();
       // dnd($bar);
       $currentBnk = staff()->assigned;
-
+      $bar =  $stockModel->barchartBank("Matara");
+     // dnd($bar);
       $this->view->banks = $banks;
       $this->view->currentBank = $currentBnk;
       // dnd($currentBnk);
@@ -376,6 +377,8 @@
 
 
       ];
+
+   // dnd($results);
 
       echo json_encode($results);
     }

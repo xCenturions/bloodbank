@@ -174,7 +174,10 @@ class Donor extends Model
   }
   public function getAllCities()
   {
-    return $this->findFromTable('cities');
+    $result = $this->query('SELECT * FROM cities ORDER BY name ASC ', []);
+    // dnd($result->results());
+
+    return $result->results();
   }
   public function getAllBloodbanks()
   {

@@ -302,9 +302,9 @@ function alert($bank)
 function unchecked($bank)
 {
 
-  $message = "SELECT status  , count(*) as count FROM donation_record WHERE status = 'unchecked' GROUP BY status   ";
+  $message = "SELECT status  , count(*) as count FROM donation_record WHERE status = 'unchecked' AND location =? GROUP BY status   ";
   $db = DB::getInstance();
-  $results = $db->query($message, [])->results();
+  $results = $db->query($message, [$bank])->results();
   // dnd($results);
 
   if (!empty($results)) {
@@ -328,4 +328,14 @@ function unAdded($bank)
   } else {
     return NULL;
   }
+}
+
+function nameExplode($name){
+
+  $newname = explode(" ",$name);
+
+ //  dnd($newname);
+  $fname =$newname[0];
+  
+  return $fname;
 }

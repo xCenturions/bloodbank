@@ -5,7 +5,7 @@
     "Staff Registration": "admin/staffRegister",
     "All Staff Members": "reports/allStaff"
   },
-  "Blood Donation Camps": {
+  "Donation Camps": {
     "Blood Donation Camps": "home/allBloodCamps",
     "Requested Donor Camps": "staff/requestedCamps"
   },
@@ -18,15 +18,14 @@
     "Add a new Donor": "donor/register"
   },
 
-  "Blood Stock ": {
+  "Reports ": {
     "Blood Stock Report": "reports/bloodStockReport",
-    "Blood Stock Details": "reports/bloodStockDetails"
-  },
-
-  "Blood Donations ": {
+    "Blood Stock Details": "reports/bloodStockDetails",
     "Blood Donation Report": "reports/bloodDonationReport",
     "Blood Donation Details": "reports/bloodDonationDetails"
   },
+
+ 
   "Admins ": {
     "Admin Registration": "superadmin/adminRegister",
     "All Admins": "reports/allAdmins"

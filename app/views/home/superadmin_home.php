@@ -84,28 +84,8 @@
 
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
-                        <div id="piechart_3d2" class="chart radar-chart dark">
-
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="chart doughnut-chart dark">
-                            <div class="actions">
-                                <button type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <button class="dropdown-item" type="button">Action</button>
-                                    <button class="dropdown-item" type="button">Another action</button>
-                                    <button class="dropdown-item" type="button">Something else here</button>
-                                </div>
-                            </div>
-                            <h3 class="title">Exports of Goods</h3>
-                            <p class="tagline">2015 (in billion US$)</p>
-                            <canvas height="400" id="doughnutChartDark"></canvas>
-                        </div>
-                    </div>
+                   
+                    
                 </div>
             </div>
         </main>
@@ -287,7 +267,7 @@
                 position: 'none'
             },
             chart: {
-                title: 'Our Blood bank Donations in 2021',
+                title: 'Annual Blood Donations in 2021',
                 subtitle: 'popularity by Donations'
             },
 

@@ -132,7 +132,7 @@ class Admin extends Model
   public function countAdmin()
   {
 
-    $stock =  $this->query('SELECT COUNT(id) as total FROM admin WHERE assigned != NULL ', []);
+    $stock =  $this->query('SELECT COUNT(id) as total FROM admin  ', []);
     //$db = DB::getInstance();
     $results = $stock->results();
 

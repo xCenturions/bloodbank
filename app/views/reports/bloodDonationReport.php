@@ -15,12 +15,11 @@
   </div>
 </section>
 
-<div class="container col-md-6" style="justify-content:center;">
+<div class="container ">
 
   <div class="row">
 
-
-    <div class="col-md-6">
+    <div class="col-md-6" style="margin-left:200px" >
       <select name="bld_bank" class="form-control" id="bld_bank" value="" style="width: 400px ; height: 50px;">
         <option value="" disabled selected>Select Blood bank</option>
         <?php foreach ($this->banks as $banks) : ?>
@@ -31,11 +30,11 @@
       </select>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-3">
 
       <button type="button" id="refresh" class="btn btn-danger">Reset</button>
     </div>
-
+       
 
   </div>
 </div>
@@ -45,13 +44,14 @@
 
 
 
-  <div class="container" style="justify-content:center ;display: flex">
+<div class="container" style="justify-content:center;display:flex">
 
-    <div id="piechart_3d" class="chart col-md-6"></div>
 
-    <div id="top_x_div" class="chart col-md-6"></div>
+<div id="piechart_3d" class="chart col-md-6"></div>
 
-  </div>
+<div id="top_x_div" class="chart col-md-6" style="width:auto"></div>
+
+</div>
 
 
 </body>

@@ -70,7 +70,7 @@ class MltController extends Controller
             //
         } else {
             $check = $donationModel->getAllUncheckedDonations($bank);
-            //dnd($stock);
+           // dnd($check);
         }
 
 
