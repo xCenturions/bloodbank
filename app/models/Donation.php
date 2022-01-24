@@ -5,7 +5,7 @@ class Donation extends Model
 
   public $id, $donor_id, $staff_id, $location, $bld_grp, $date, $verified, $weight, $donor_name, $mo_name, $din_name, $of_name, $ph_name, $name,
     $history, $remarks, $cus, $bp, $cue, $pd, $hd, $temporary_deferral, $permanent_deferral, $resons_deferral, $hb_lvl1, $hb_lvl2, $Q, $T, $D, $S,
-    $st_time, $et_time, $amount, $cm_no, $status, $tested_disease, $is_added;
+    $st_time, $et_time, $amount, $cm_no, $status, $tested_disease,$is_added ;
   public $deleted = 0;
 
 
@@ -24,8 +24,9 @@ class Donation extends Model
     $this->assign($params);
 
     $this->deleted = 0;
-
+    
     $this->save();
+    //dnd( $this->save());
   }
 
 

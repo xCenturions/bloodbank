@@ -91,6 +91,7 @@ class Staff extends Model
   public function findByUsername($username)
   {
     return $this->findFirst(['conditions' => "username = ?", 'bind' => [$username]]);
+    
   }
   public function findById($id)
   {

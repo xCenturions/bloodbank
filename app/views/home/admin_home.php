@@ -64,23 +64,23 @@
                         <div style="margin-top:20px;">
                             <h3>Quick Access</h3><br>
                             <a href="<?= PROOT ?>admin/staffRegister">
-                                <button type="button" style="width:300px" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">
+                                <button type="button" style="width:80%" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">
                                     Add A New Staff Member
                                 </button></a><br>
                             <a href="<?= PROOT ?>donor/register">
-                                <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
+                                <button type="button" style="width:80%" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
                                     Add A Donor
                                 </button></a><br>
                             <a href="<?= PROOT ?>staff/patientRegister">
-                                <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
+                                <button type="button" style="width:80%" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
                                     Add A Patient
                                 </button></a><br>
                             <a href="<?= PROOT ?>admin/staffDetails">
-                                <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
+                                <button type="button" style="width:80%" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
                                     Search Staff Members
                                 </button></a>
                             <a href="<?= PROOT ?>staff/searchDonors">
-                                <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
+                                <button type="button" style="width:80%" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
                                     Search Donors
                                 </button></a>
                         </div>

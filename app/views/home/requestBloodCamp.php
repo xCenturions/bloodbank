@@ -60,10 +60,13 @@
 					<option value="<?= $ci->bloodbank ?>"><?= $ci->bloodbank ?></option>
                     <?php endforeach; ?>
                 </div>
-                <div class="form-row" style="padding-top:20px" >
+
+                
+                <div class="form-row" >
                     <label for="pt_mobile">Your Mobile Number</label>
-                    <input type="text" name="mobile" id="mobile" class="input-text" required>
+                    <input  type="text" name="mobile" id="mobile" class="input-text" required>
                 </div>
+               
                 <div class="form-row">
                     <label for="pt_mobile">Your Email</label>
                     <input type="text" name="email" id="email" class="input-text" required>

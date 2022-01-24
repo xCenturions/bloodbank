@@ -95,11 +95,7 @@
 									<td class="cell100 column8"> ' . $v->bld_grp . '</td>
 									<td class="cell100 column4"> ' . $v->date . '</td>
 									<td class="cell100 column4"> <button id="' . $v->cm_no . '" type="button" data-toggle="modal" data-target="#donation" onClick="view(this.id)" style="width:120px" class=" btn btn-rounded btn-success "><i class="fa fa-check" aria-hidden="true"></i>View</button> </td></td>
-                  
-								
-
-
-
+                
 								</tr>
 
 								 

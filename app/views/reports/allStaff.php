@@ -94,12 +94,12 @@
 				<table>
 					<thead>
 						<tr class="row100 head">
-							<th class="cell100 column1">ACL</th>
+							<!-- <th class="cell100 column1">ACL</th> -->
 							<th class="cell100 column2">Staff Name </th>
 							<th class="cell100 column3">NIC</th>
 							<th class="cell100 column4">Mobile Number</th>
 							<th class="cell100 column5">Email</th>
-							<th class="cell100 column6">Action</th>
+							<!-- <th class="cell100 column6">Action</th> -->
 
 						</tr>
 					</thead>

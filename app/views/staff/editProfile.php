@@ -1,5 +1,16 @@
 <?php $this->start('body') ?>
 <link rel="stylesheet" href="<?= PROOT ?>css/editstaffpro.css">
+  <!-- ======= Breadcrumbs ======= -->
+  <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Edit Your Profile</h2>
+        
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
 <form action="" method="post" enctype="multipart/form-data">
 	<div class="container">
 		
@@ -20,9 +31,9 @@
 							</label>
 
 							<div class="mt-3">
-								<h4>John Doe</h4>
-								<p class="text-secondary mb-1">Full Stack Developer</p>
-								<p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+								<h4><?= $this->data->staff_name ?></h4>
+								<p class="text-secondary mb-1"><?= $this->data->designation ?></p>
+								<p class="text-muted font-size-sm"><?= $this->data->staff_address ?></p>
 
 							</div>
 						</div>
@@ -45,26 +56,21 @@
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label for="eMail">Email</label>
-									<input type="email" class="form-control" name="" id="eMail" placeholder="Enter email ID">
+									<input type="email" class="form-control" name="" id="eMail" placeholder="Enter email ID" value="<?= $this->data->staff_email ?>">
 								</div>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label for="phone">Phone</label>
-									<input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+									<input type="text" class="form-control" id="phone" placeholder="Enter phone number" value="<?= $this->data->staff_mobile ?>">
 								</div>
 							</div>
-							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-								<div class="form-group">
-									<label for="website">Website URL</label>
-									<input type="url" class="form-control" id="website" placeholder="Website url">
-								</div>
-							</div>
+							
 
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label for="Address">Address</label>
-									<input type="text" class="form-control" id="Address" placeholder="Enter Address">
+									<input type="text" class="form-control" id="Address" placeholder="Enter Address" value="<?= $this->data->staff_address ?>">
 								</div>
 							</div>
 

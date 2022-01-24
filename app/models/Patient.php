@@ -60,19 +60,19 @@ class Patient extends Model
     }
     public function getAllPatients($bank)
     {
-        return $this->find(['conditions' => "location = ?", 'bind' => [$bank]]);
+        return $this->find(['conditions' => "location = ? ", 'order' => 'date DESC','bind' => [$bank] ]);
     }
     public function findByNIC($nic, $bank)
     {
-        return $this->find(['conditions' => "pt_nic = ? AND location = ?", 'bind' => [$nic, $bank]]);
+        return $this->find(['conditions' => "pt_nic = ? AND location = ? ", 'order' => 'date DESC', 'bind' => [$nic, $bank]]);
     }
     public function sortByDate($f_date, $t_date, $bank)
     {
-        return $this->find(['conditions' => "location = ? AND date BETWEEN ? and ?", 'bind' => [$bank, $f_date, $t_date]]);
+        return $this->find(['conditions' => "location = ? AND date BETWEEN ? and ? ", 'order' => 'date DESC', 'bind' => [$bank, $f_date, $t_date]]);
     }
     public function sortByNICAndDate($bank, $nic, $toDate, $fromDate)
     {
 
-        return $this->find(['conditions' => "location = ? AND pt_nic =? date BETWEEN ? and ?", 'bind' => [$bank, $nic, $toDate, $fromDate]]);
+        return $this->find(['conditions' => "location = ? AND pt_nic =? date BETWEEN ? and ?", 'order' => 'date DESC', 'bind' => [$bank, $nic, $toDate, $fromDate]]);
     }
 }

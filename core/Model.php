@@ -76,7 +76,7 @@ use PHPMailer\PHPMailer\PHPMailer;
       return $this->findFirst(['conditions'=>"id = ?", 'bind' => [$id]]);
     }
 
-    public function save()
+    public function     save()
     {
       $fields = getObjectProperties($this);
 

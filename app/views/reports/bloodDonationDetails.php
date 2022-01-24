@@ -443,6 +443,7 @@
 	
 	function view(id) {
 
+		//console.log("id", id);
 
 var cm = id;
 
@@ -455,7 +456,7 @@ $.ajax({
 		cm_no: cm
 	},
 	success: function(data) {
-		console.log("text", data);
+		
 
 		$('#verified').html(data.verified);
 		$('#weight').html(data.weight);
@@ -486,7 +487,7 @@ $.ajax({
 		$('#remarks').html(data.remarks);
 
 
-
+		//console.log("text", cm_no);
 
 	}
 

@@ -145,9 +145,9 @@
 
          </div>
          <?php if (currentUser()) : ?>
-             <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Make An Appointment</button></center>
+            <a href="<?= PROOT ?>appo/makeAppo"> <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Make An Appointment</button></center></a>
          <?php else : ?>
-             <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Register As A Donor</button></center>
+          <a href="<?= PROOT ?>donor/register">   <center><button type="button" class="btn btn-danger" style="top:70%;left:42%;position:absolute;">Register As A Donor</button></center></a>
          <?php endif; ?>
          <br>
 

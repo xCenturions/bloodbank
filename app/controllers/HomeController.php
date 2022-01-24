@@ -17,8 +17,7 @@ class HomeController extends Controller
       $bank = admin()->assigned;
     }
 
-
-
+   
     $stockModel = new Stock();
     $alertModel = new Alerts();
     $patientModel = new Patient();

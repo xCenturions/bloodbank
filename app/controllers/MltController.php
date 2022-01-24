@@ -18,12 +18,12 @@ class MltController extends Controller
         // dnd($_POST['text']);
 
         if (isset($_POST['cm_no']) && $_POST['cm_no'] != '') {
-            // dnd($donor_id);
+            //dnd($donor_id);
 
             $donationModel = new Donation();
 
             $donor = $donationModel->findByCM($_POST['cm_no']);
-            //dnd($donor[0]->status);
+           //dnd($donor);
 
             echo json_encode($donor[0]);
             exit;

@@ -59,19 +59,19 @@
                         <div style="margin-top:20px;">
                             <h3>Quick Access</h3><br>
                             <a href="<?= PROOT ?>staff/searchDonors">
-                                <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
+                                <button type="button" style="width:80%" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
                                     Search Donors
                                 </button></a>
                             <a href="<?= PROOT ?>donor/register">
-                                <button type=" button" style="width:300px" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">
+                                <button type=" button" style="width:80%" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">
                                     Add A New Donor
                                 </button></a><br>
                             <a href="<?= PROOT ?>staff/registeredPatients">
-                                <button type="button" style="width:300px" class="btn btn-outline-warning btn-rounded" data-mdb-ripple-color="dark">
+                                <button type="button" style="width:80%" class="btn btn-outline-warning btn-rounded" data-mdb-ripple-color="dark">
                                     Search A Patient
                                 </button></a><br>
                             <a href="<?= PROOT ?>staff/patientRegister">
-                                <button type="button" style="width:300px" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark">
+                                <button type="button" style="width:80%" class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark">
                                     Add A Patient
                                 </button></a><br>
 
@@ -84,34 +84,18 @@
             </div>
 
             <div class="chart-data">
-                <div class="row">
-                    <div class="col-12 col-md-4">
+                <div class="row justify-content-center" >
+                    <div class="col-12 col-md-5">
                         <div id="piechart_3d" class="chart radar-chart dark">
 
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-5">
                         <div id="piechart_3d2" class="chart radar-chart dark">
 
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
-                        <div class="chart doughnut-chart dark">
-                            <div class="actions">
-                                <button type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <button class="dropdown-item" type="button">Action</button>
-                                    <button class="dropdown-item" type="button">Another action</button>
-                                    <button class="dropdown-item" type="button">Something else here</button>
-                                </div>
-                            </div>
-                            <h3 class="title">Exports of Goods</h3>
-                            <p class="tagline">2015 (in billion US$)</p>
-                            <canvas height="400" id="doughnutChartDark"></canvas>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </main>

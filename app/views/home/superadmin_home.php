@@ -55,19 +55,19 @@
                     <center>
                         <div style="margin-top:20px;">
                             <h3>Quick Access</h3><br>
-                            <button type="button" style="width:300px" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">
+                            <button type="button" style="width:80%" class="btn btn-outline-success btn-rounded" data-mdb-ripple-color="dark">
                                 Add A New Staff Member
                             </button><br>
-                            <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
+                            <button type="button" style="width:80%" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
                                 Add A Donor
                             </button><br>
-                            <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
+                            <button type="button" style="width:80%" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
                                 Add A Patient
                             </button><br>
-                            <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
+                            <button type="button" style="width:80%" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
                                 Search Staff Members
                             </button>
-                            <button type="button" style="width:300px" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
+                            <button type="button" style="width:80%" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">
                                 Search Donors
                             </button>
                         </div>

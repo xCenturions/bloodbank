@@ -15,7 +15,7 @@
   </div>
 </section>
 
-<div class="container ">
+<div class="container" style="justify-content:center;">
 
   <div class="row">
 

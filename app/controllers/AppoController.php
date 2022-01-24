@@ -22,14 +22,19 @@ class AppoController extends Controller
 
   public function makeAppoAction()
   {
-    $appoint = new Appo();
+
+    if(currentUser() == NULL){
+      Router::redirect('login');
+    }
+   
+      $appoint = new Appo();
     $validation = new Validate();
     if ($_POST) {
       $appoint->assign($_POST);
       //dnd($_POST);
       $validation->check($_POST, Appo::$addValidation, true);
       if ($validation->passed()) {
-        $appoint->donor_id = currentUser()->id;;
+        $appoint->donor_id = currentUser()->id;
         $appoint->save();
         Router::redirect('appo');
       }
@@ -39,10 +44,8 @@ class AppoController extends Controller
     $this->view->locations = $locations;
     //dnd($locations);
     $this->view->location_types = $locationModel->getAllTypes();
-    //dnd($this->view->location_types);
-    foreach ($locationModel->getAllTypes() as $values) {
-      //dnd($this->appoint->type);
-    }
+  
+
 
     $this->view->appoint = $appoint;
     $this->view->displayErrors = $validation->displayErrors();
@@ -70,7 +73,7 @@ class AppoController extends Controller
     $output = '<option value="" disabled="" selected="">Find Nearest Location</option>';
     // dnd($_GET["typeID"]);
     $typeId = $_GET["typeID"];
-    $donornModel = new Donor('location');
+    $donornModel = new Donor();
     if ($typeId == 'Blood Bank') {
       $locations =  $donornModel->getAllBloodbanks($typeId);
       foreach ($locations as $value) {
@@ -78,6 +81,7 @@ class AppoController extends Controller
       }
     } else {
       $locations = $donornModel->getAllCamps();
+      //dnd($locations);
       foreach ($locations as $value) {
         $output .= '<option value="' . $value->location . '">' . $value->location . '</option>';
       }

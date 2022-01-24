@@ -50,7 +50,7 @@
 
 
 				<div class="form-row-last">
-					<input type="submit" name="register Now" class="register" value="Register Now">
+					<input type="submit" name="register Now" class="register" value="Update">
 				</div>
 			</form>
 		</div>

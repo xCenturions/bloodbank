@@ -89,7 +89,8 @@ class DonorController extends Controller
           'required' => true,
           'unique' => 'donor',
           'min' => 6,
-          'max' => 150
+          'max' => 150,
+          'valid_nic'=> true
 
 
         ],
@@ -202,29 +203,23 @@ class DonorController extends Controller
     if ($_POST) {
 
       $validation->check($_POST, [
-        'donor_fname' => [
+        'donor_name' => [
           'display' => 'First Name',
           'required' => true
-        ],
+        ]
         // 'password' => [
         //   'display' => 'Password',
         //   'required' => true ,
         //   'min' => 6,
         // ],
-        'donor_email' => [
-          'display' => 'Email',
-          'required' => true,
-          'unique' => 'donor',
-          'max' => 150,
-          'valid_email' => true
-        ]
+       
       ], false);
 
       if ($validation->passed()) {
         $updateFields = $_POST;
-
-        $this->DonorModel->update($id, $updateFields);
-        $formModel->update($id, $updateFields);
+        //dnd($updateFields);
+        $this->DonorModel->update(currentUser()->id, $updateFields);
+        $formModel->update(currentUser()->id, $updateFields);
         Router::redirect('donor/details');
       }
     }
@@ -783,34 +778,48 @@ class DonorController extends Controller
 
     $pdf->Text(10, 16, 'iïmQ¾K ku ( ');
     /* --- Text --- */
+    $pdf->SetFont('freeserif', '', 12);
     $pdf->Text(40, 16, $nw['name']);
 
+    $pdf->SetFont('sinhala', '', 14);
     $pdf->Text(150, 16, 'mqreI $ ia;%S (');
     $pdf->Text(155, 21, 'Ndjh');
     /* --- Text --- */
+    $pdf->SetFont('freeserif', '', 12);
     $pdf->Text(178, 16, $nw['sex']);
 
+    $pdf->SetFont('sinhala', '', 14);
     $pdf->Text(10, 26, 'cd;sl ye÷kqïm;a wxlh ( ');
     /* --- Text --- */
+    $pdf->SetFont('freeserif', '', 12);
     $pdf->Text(65, 26, $nw['nic']);
+    
+    $pdf->SetFont('sinhala', '', 14);
 
     $pdf->Text(10, 36, 'ksjfia ,smskh  ( ');
     $pdf->Text(10, 41, '^iaÓr$;djld,sl& ');
     /* --- Text --- */
+    $pdf->SetFont('freeserif', '', 12);
     $pdf->Text(45, 36, $nw['address']);
 
+    $pdf->SetFont('sinhala', '', 14);
     $pdf->Text(10, 51, 'úoHq;a ;emE,  ( ');
     /* --- Text --- */
+    $pdf->SetFont('freeserif', '', 12);
     $pdf->Text(45, 51, $nw['email']);
 
+    $pdf->SetFont('sinhala', '', 14);
     $pdf->Text(10, 61, 'ÿrl:k wxlh  ( ');
     /* --- Text --- */
     $pdf->Text(45, 61, $nw['mobile']);
 
+    $pdf->SetFont('sinhala', '', 14);
     $pdf->Text(150, 30, 'reêr j¾.h (');
     /* --- Text --- */
+    $pdf->SetFont('freeserif', '', 14);
     $pdf->Text(178, 30, $nw['bloodgroup']);
 
+    $pdf->SetFont('sinhala', '', 14);
     $pdf->Text(165, 40, 'jhi (');
     /* --- Text --- */
     $pdf->Text(178, 40, $nw['age']); ////////////

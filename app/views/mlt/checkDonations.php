@@ -290,7 +290,7 @@
 	<div class="modal fade" style="top:20%;" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content p-4" style="align-items: center;border-radius: 30px;">
-				<div class='top'>
+				
 					<div class="success-checkmark">
 						<div class="check-icon">
 							<span class="icon-line line-tip"></span>
@@ -302,7 +302,7 @@
 					<div>
 						<h1>Succesfully Approved! </h1>
 					</div>
-				</div>
+				
 				<div class="modal-header border-0 mb-2">
 
 				</div>
@@ -315,7 +315,7 @@
 	<div class="modal fade" style="top:20%;" id="rejectedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content p-4" style="align-items: center;border-radius: 30px;">
-				<div class='top'>
+				
 					<div class="success-checkmark">
 						<div class="check-icon">
 							<span class="icon-line line-tip"></span>
@@ -327,7 +327,7 @@
 					<div>
 						<h1>Succesfully Rejected! </h1>
 					</div>
-				</div>
+				
 				<div class="modal-header border-0 mb-2">
 
 				</div>

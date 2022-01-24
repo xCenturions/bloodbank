@@ -1,10 +1,10 @@
 <?php $this->start('body'); ?>
 
-<!-- <form action="<?= PROOT ?>/staff/addStock/<?= $this->donor->id ?>" method="post">
-					<?= FH::csrfInput() ?> -->
+
+				
 
 
-<!-- <input type="date" id="date" name="date" class="form-control" value="<?= $this->post['date'] ?>"> -->
+
 <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
 
 <!-- STYLE CSS -->
@@ -17,7 +17,7 @@
 			<p style="font-size: 20px;">Donation Record </p>
 		</div>
 		<div class="bg-white"><?= $this->displayErrors ?></div>
-
+	<form method="post" action="">
 		<div class="menu">
 			<h6>REGISTRATION</h6>
 			<p> &nbsp;&nbsp;&nbsp;Above Donor name and ID card number verified?
@@ -165,7 +165,7 @@
 
 		</div>
 
-
+	</form>
 	</div>
 
 	<script src="<?= PROOT ?>vendor/jquery/jquery-3.3.1.min.js"></script>

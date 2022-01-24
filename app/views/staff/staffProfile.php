@@ -31,7 +31,7 @@
                             <img src="<?=PROOT?>app/views/staff/pro_img/avatar.png" alt="Admin" class="rounded-circle" width="200">
                         <?php endif; ?>
                     <div class="mt-3">
-                      <h4>John Doe</h4>
+                      <h4><?= $this->staffData->staff_name ?></h4>
                       <p class="text-secondary mb-1"><?= $this->staffData->designation ?></p>
                       <p class="text-muted font-size-sm"><?= $this->staffData->assigned ?></p>
                       

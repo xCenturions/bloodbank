@@ -10,6 +10,11 @@
     "Organize A Camp": "home/requestBloodCamp"
   },
 
+  "Blood Banks": {
+    "Find Nearest Blood Banks": "home/nearestBloodBank"
+    
+  },
+
   "Contact Us": "home/contactus",
   "About Us": "home/aboutus",
 

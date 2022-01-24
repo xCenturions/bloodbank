@@ -345,4 +345,13 @@ class Donor extends Model
     //dnd($results);
     return $results;
   }
+
+  public function getAllCamps()
+  {
+    $count = $this->query('SELECT * FROM requestcamp WHERE status = "approved" ', []);
+    //  $db = DB::getInstance();
+    $results = $count->results();
+    //dnd($results);
+    return $results;
+  }
 }

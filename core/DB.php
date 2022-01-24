@@ -107,7 +107,7 @@ protected function _read($table, $params=[],$class=false){
       }
       return false;
     }
-
+    
     public function insert($table, $fields = [])
     {
       $fieldString = '';

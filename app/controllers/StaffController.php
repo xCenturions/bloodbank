@@ -41,6 +41,8 @@ class StaffController extends Controller
       ], true);
       if ($validation->passed()) {
 
+        
+
         $user = $this->StaffModel->findByUsername($_POST['username']);
 
         //   }
@@ -153,6 +155,7 @@ class StaffController extends Controller
     $donorModel = new Donor('donor');
     $formModel = new Form();
     $formData = $formModel->getDonorData($id);
+
     $donor = $donorModel->findDonorById($id);
     $staff = staff();
     //dnd($donor);
@@ -207,7 +210,7 @@ class StaffController extends Controller
         ],
         'cm_no' => [
           'display' => "C.M number",
-          'unique' => 'donation_record',
+         
           'required' => true
         ]
 
@@ -230,6 +233,7 @@ class StaffController extends Controller
         $donate->tested_diseases = 'Processing';
         $donate->date = date('Y-m-d');
         $donate->bld_grp = $formData->bloodgroup; ////chnage
+       // dnd($donate->tested_diseases);
         $donate->addToDonation($_POST);
 
 

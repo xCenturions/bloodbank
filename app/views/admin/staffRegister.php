@@ -28,6 +28,19 @@
 
 					</select>
 				</div>
+
+				<div class="form-row">
+					<label for="acl">Designation</label>
+					<select class="form-control" id="designation" name="designation"  required>
+						<option value="" selected="" disabled="">Select Designation</option>
+
+						<option value="Consultant">Consultant</option>
+						<option value=>Nurse</option>
+						<option value=>Blood Stock Keeper</option>
+						<option value=>Laboratory Technicien</option>
+
+					</select>
+				</div>
 				<div class="form-row">
 					<label for="donor_name">Full Name:</label>
 					<input type="text" name="staff_name" id="staff_name" class="input-text" placeholder="ex: Lindsey Wilson" value="<?= $this->post['staff_name'] ?>" required>

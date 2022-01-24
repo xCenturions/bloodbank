@@ -270,10 +270,11 @@ function sendMail($toEmail, $emailBody, $emailAltBody, $sub)
 
 function validNIC($nic)
 {
-
-  //dnd($nic);
+  
+ 
   try {
     $parser = new Parser($nic);
+   // dnd($parser);
   } catch (\SLWDC\NICParser\Exception\InvalidArgumentException $exception) {
     if ($exception->getMessage()) {
       $msg = $exception->getMessage();
